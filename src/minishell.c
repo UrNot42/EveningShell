@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:06:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/04 18:46:25 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/04 19:14:13 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,38 @@
  * @return the copied environment
  */
 char	**copy_env(char **old_env)
+{
+	char	**new_env;
+	size_t	size;
+	size_t	i;
+
+	size = 0;
+	while (old_env && old_env[size])
+		size++;
+	if (size == 0)
+		return (NULL);
+	new_env = ft_calloc(size + 1, sizeof(char *));
+	if (!new_env)
+		return (NULL);
+	i = 0;
+	while (old_env[i])
+	{
+		new_env[i] = ft_strdup(old_env[i]);
+		if (!new_env[i])
+			return (ft_free_dstr(new_env), NULL);
+		i++;
+	}
+	return (new_env);
+}
+
+/**
+ * @brief Copies the inherited env object
+ * 			so that the shell can manage it's own environement
+ *
+ * @param old_env
+ * @return the copied environment
+ */
+char	**add_to_env(char **env, char *)
 {
 	char	**new_env;
 	size_t	size;

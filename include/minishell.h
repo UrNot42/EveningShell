@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:07:20 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/04 17:35:13 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/04 19:04:26 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <errno.h>
 # include <stdbool.h>
 # include <readline/readline.h>
+# include <readline/history.h>
 
 # include "parsing.h"
 # include "execution.h"
