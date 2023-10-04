@@ -53,9 +53,10 @@ ${NAME}:		${OBJS}
 				@ar rcs ${NAME} ${OBJS}
 
 clean:
-				rm -f ${OBJS}
+				@${RM} ${OBJS}
+
 fclean:			clean
-				${RM} ${NAME}
+				@${RM} ${NAME}
 
 re:				fclean all
 

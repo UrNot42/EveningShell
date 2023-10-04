@@ -9,7 +9,7 @@ OBJ_DIR 			=	.obj/
 LIB_DIR 			=	lib/
 INCLUDES_H			=	-I./$(INCLUDES_DIR) -I./$(LIB_DIR)
 DEPS 				=	$(INCLUDES_DIR)minishell.h $(INCLUDES_DIR) Makefile
-
+RM					=	rm -f
 
 SRC_PARSING			=	$(addprefix parsing/, \
 						\
@@ -47,7 +47,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(DEPS)
 
 $(NAME): $(OBJS) $(DEPS)
 	@echo "\e[36mMaking $(NAME)...\e[0m"
-	@make -C lib/libft/
+	@make --no-print-directory -C lib/libft/
 	@mv lib/libft/libft.a .obj/
 	@$(CC) $(CFLAGS) $(INCLUDES_H) $(OBJS) -o $(NAME) .obj/libft.a
 	@echo "\e[32mDone !\e[0m"
@@ -56,10 +56,11 @@ bonus: all
 
 clean:
 	@rm -rf $(OBJ_DIR)
+	@make --no-print-directory -C lib/libft/ clean
 	@echo "\e[31mObject files removed.\e[0m"
 
 fclean:	clean
-	@rm -f $(NAME)
+	@$(RM) $(NAME)
 	@echo "\e[31m$(NAME) removed.\e[0m"
 
 re:		fclean all
