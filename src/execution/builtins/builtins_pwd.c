@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 09:45:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/04 10:39:10 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/04 12:50:21 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static int	buitlins_pwd(void)
 	return (1);
 }
 
-int	detect_pwd(char *cmd)
+int	detect_pwd(char **argv)
 {
-	if (!ft_strcmp(cmd, "pwd"))
+	if (!ft_strcmp(argv[0], "pwd"))
 	{
 		printf("A builtins detected : pwd\n");
 		return (buitlins_pwd());
