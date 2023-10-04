@@ -1,7 +1,8 @@
 NAME 				=	minishell
 
 CC 					=	cc
-CFLAGS 				=	-g -pthread -Wall -Wextra -Werror
+CFLAGS 				=	-pthread -Wall -Wextra -Werror $(DBFLAGS)
+DBFLAGS				=	-g -g3
 INCLUDES_DIR 		=	include/
 SRC_DIR 			=	src/
 OBJ_DIR 			=	.obj/
@@ -30,7 +31,6 @@ SRC_EXECUTION		=	$(addprefix execution/, \
 # COMMENT
 MINISHELL_SRC		=  $(addprefix $(SRC_DIR), \
 						minishell.c \
-						utils_waitforlibft.c \
 						\
 						$(SRC_PARSING) \
 						$(SRC_EXECUTION) \
@@ -47,7 +47,9 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(DEPS)
 
 $(NAME): $(OBJS) $(DEPS)
 	@echo "\e[36mMaking $(NAME)...\e[0m"
-	@$(CC) $(CFLAGS) $(INCLUDES_H) $(OBJS) -o $(NAME)
+	@make -C lib/libft/
+	@mv lib/libft/libft.a .obj/
+	@$(CC) $(CFLAGS) $(INCLUDES_H) $(OBJS) -o $(NAME) .obj/libft.a
 	@echo "\e[32mDone !\e[0m"
 
 bonus: all

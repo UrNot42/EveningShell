@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:07:20 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/04 10:21:14 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/04 15:55:39 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,6 @@
 
 # include "parsing.h"
 # include "execution.h"
-
-// -------------------------- UTILS_WAITFORLIBFT --------------------------
-
-int	ft_strlen(char *str);
-int	ft_strcmp(const char *s1, const char *s2);
+# include "../lib/libft/libft.h"
 
 #endif
