@@ -6,11 +6,21 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:28:48 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/03 17:28:58 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/04 09:58:18 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
 
 int	ft_strcmp(const char *s1, const char *s2)
 {

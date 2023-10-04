@@ -10,19 +10,30 @@ INCLUDES_H			=	-I./$(INCLUDES_DIR) -I./$(LIB_DIR)
 DEPS 				=	$(INCLUDES_DIR)minishell.h $(INCLUDES_DIR) Makefile
 
 
-SRC_BUILTINS		=	$(addprefix src_builtins/, \
+SRC_PARSING			=	$(addprefix parsing/, \
+						\
+						)
+
+SRC_BUILTINS		=	$(addprefix builtins/, \
 						builtins_cd.c \
+						builtins_pwd.c \
 						builtins_echo.c \
+						\
+						)
+
+SRC_EXECUTION		=	$(addprefix execution/, \
+						$(SRC_BUILTINS) \
 						\
 						)
 
 # COMMENT
 MINISHELL_SRC		=  $(addprefix $(SRC_DIR), \
-					utils.c \
-					minishell.c \
-					\
-					$(SRC_BUILTINS) \
-					)
+						minishell.c \
+						utils_waitforlibft.c \
+						\
+						$(SRC_PARSING) \
+						$(SRC_EXECUTION) \
+						)
 
 OBJS 			=	$(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o, $(MINISHELL_SRC))
 

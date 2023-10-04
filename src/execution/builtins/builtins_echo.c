@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins_cd.c                                      :+:      :+:    :+:   */
+/*   builtins_echo.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/03 17:36:57 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/03 17:47:04 by aoberon          ###   ########.fr       */
+/*   Created: 2023/10/03 17:28:19 by aoberon           #+#    #+#             */
+/*   Updated: 2023/10/04 09:49:08 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	builtins_cd(int argc, char **argv)
+static int	builtins_echo(int argc, char **argv, int backslash)
 {
-	(void)argc;
-	if (access(argv[2], F_OK) == -1)
+	if ((argc == 2 && !backslash) || (argc == 3 && backslash))
 	{
-		printf("cd: %s: No such file or directory\n", argv[2]);
+		printf("Missing arguments.\n");
 		return (0);
 	}
-	printf("cd to %s\n", argv[2]);
-	chdir(argv[2]);
+	printf("%s", argv[2 + backslash]);
+	if (!backslash)
+		printf("\n");
 	return (1);
 }
 
-int	detecte_cd(int argc, char **argv)
+int	detect_echo(int argc, char **argv)
 {
-	(void)argc;
-	if (!ft_strcmp(argv[1], "cd"))
+	if (!ft_strcmp(argv[1], "echo"))
 	{
-		printf("A builtins detected : cd\n");
-		return (builtins_cd(argc, argv));
+		printf("A builtins detectd : echo\n");
+		if (!ft_strcmp(argv[2], "-n"))
+			return (builtins_echo(argc, argv, 1));
+		return (builtins_echo(argc, argv, 0));
 	}
 	return (0);
 }
