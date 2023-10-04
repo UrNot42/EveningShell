@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:36:57 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/04 12:02:50 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/04 12:52:11 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static int	builtins_cd(char **argv)
 {
-	if (access(argv[2], F_OK) == -1)
+	if (access(argv[1], F_OK) == -1)
 	{
-		printf("cd: %s: No such file or directory\n", argv[2]);
+		printf("cd: %s: No such file or directory\n", argv[1]);
 		return (0);
 	}
-	printf("cd to %s\n", argv[2]);
-	chdir(argv[2]);
+	printf("cd to %s\n", argv[1]);
+	chdir(argv[1]);
 	return (1);
 }
 
