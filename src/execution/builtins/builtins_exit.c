@@ -6,12 +6,20 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:26:42 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/04 12:50:41 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/04 18:20:59 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief Exits the shell process currently running
+ *
+ * @return exit [n]
+ * 			Exit the shell, returning a status of n to the shell’s parent. If n is omitted, the
+ * 			exit status is that of the last command executed. Any trap on EXIT is executed
+ * 			before the shell terminates.
+ */
 static int	builtins_exit(void)
 {
 	printf("free all\n");
