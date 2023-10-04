@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:06:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/04 18:10:08 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/04 18:46:25 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,20 @@ char	**copy_env(char **old_env)
  */
 char	**create_default_env(void)
 {
-	char	**env;
+	char		**env;
+	const char	*def_vars[3] = {"PWD=", "SHLVL=", "_="};
+	int			i;
 
 	env = ft_calloc(3 + 1, sizeof(char *));
-	env[0] = ft_strdup("PWD=");
-	env[1] = ft_strdup("SHLVL=");
-	env[2] = ft_strdup("_=");
-	return (new_env);
+	i = 0;
+	while (i < 3)
+	{
+		env[i] = ft_strdup(def_vars[i]);
+		if (!env[i])
+			return (ft_free_dstr(env), NULL);
+		i++;
+	}
+	return (env);
 }
 
 int	main(int argc, char **argv, char **envp)
