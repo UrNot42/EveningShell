@@ -18,6 +18,7 @@ SRC_BUILTINS		=	$(addprefix builtins/, \
 						builtins_cd.c \
 						builtins_pwd.c \
 						builtins_echo.c \
+						builtins_exit.c \
 						\
 						)
 
