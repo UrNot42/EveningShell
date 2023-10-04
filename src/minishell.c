@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:06:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/04 18:54:00 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/04 19:13:35 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,24 @@ char	**create_default_env(void)
 	return (env);
 }
 
+void	prompt(void)
+{
+	char	*buffer;
+	bool	error;
+
+	buffer = NULL;
+	error = false;
+	while (!error)
+	{
+		if (buffer)
+			free(buffer);
+		buffer = readline("minishell$:");
+		if (buffer[0] == 'q')
+			error = true;
+		add_history(buffer);
+	}
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	char	**env;
@@ -85,5 +103,6 @@ int	main(int argc, char **argv, char **envp)
 	{
 		printf ("The %zu str is: %s\n", i, env[i]);
 	}
+	prompt();
 	return (0);
 }
