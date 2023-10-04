@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/03 17:07:20 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/04 10:21:14 by aoberon          ###   ########.fr       */
+/*   Created: 2023/10/04 10:20:51 by aoberon           #+#    #+#             */
+/*   Updated: 2023/10/04 10:21:17 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef EXECUTION_H
+# define EXECUTION_H
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <readline/readline.h>
+// -------------------------- BUILTINS_CD --------------------------
 
-# include "parsing.h"
-# include "execution.h"
+int	detect_cd(char **argv);
 
-// -------------------------- UTILS_WAITFORLIBFT --------------------------
+// -------------------------- BUILTINS_ECHO --------------------------
 
-int	ft_strlen(char *str);
-int	ft_strcmp(const char *s1, const char *s2);
+int	detect_echo(int argc, char **argv);
+
+// -------------------------- BUILTINS_PWD --------------------------
+
+int	detect_pwd(char **argv);
 
 #endif
