@@ -6,32 +6,84 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:06:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/04 18:20:47 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/04 18:54:00 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char **argv)
+/**
+ * @brief Copies the inherited env object
+ * 			so that the shell can manage it's own environement
+ *
+ * @param old_env
+ * @return the copied environment
+ */
+char	**copy_env(char **old_env)
 {
-	printf("minishell :\n");
-	if (argc == 1)
+	char	**new_env;
+	size_t	size;
+	size_t	i;
+
+	size = 0;
+	while (old_env && old_env[size])
+		size++;
+	if (size == 0)
+		return (NULL);
+	new_env = ft_calloc(size + 1, sizeof(char *));
+	if (!new_env)
+		return (NULL);
+	i = 0;
+	while (old_env[i])
 	{
-		printf("No arguments.\n");
-		return (1);
+		new_env[i] = ft_strdup(old_env[i]);
+		if (!new_env[i])
+			return (ft_free_dstr(new_env), NULL);
+		i++;
 	}
-	if (detect_echo(argc - 1, argv + 1))
-		return (0);
-	if (detect_cd(argv + 1))
-		return (0);
-	if (detect_pwd(argv + 1))
-		return (0);
-	if (detect_exit(argv + 1))
-		return (0);
-	else
+	return (new_env);
+}
+
+/**
+ * @brief creates a default shell environment creating 3 default variables
+ *
+ * /!\ UNFINISHED
+ *
+ * @return returns a brand new allocated env
+ */
+char	**create_default_env(void)
+{
+	char		**env;
+	const char	*def_vars[3] = {"PWD=", "SHLVL=", "_="};
+	int			i;
+
+	env = ft_calloc(3 + 1, sizeof(char *));
+	i = 0;
+	while (i < 3)
 	{
-		printf("Not a builtins.\n");
-		return (1);
+		env[i] = ft_strdup(def_vars[i]);
+		if (!env[i])
+			return (ft_free_dstr(env), NULL);
+		i++;
+	}
+	return (env);
+}
+
+int	main(int argc, char **argv, char **envp)
+{
+	char	**env;
+
+	(void)argc;
+	(void)argv;
+	if (envp)
+		env = copy_env(envp);
+	else
+		env = create_default_env();
+	if (!env)
+		return (EXIT_FAILURE);
+	for (size_t i = 0; env && env[i]; i++)
+	{
+		printf ("The %zu str is: %s\n", i, env[i]);
 	}
 	return (0);
 }

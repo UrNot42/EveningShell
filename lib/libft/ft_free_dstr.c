@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_free_dstr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/03 17:07:20 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/04 17:35:13 by ulevallo         ###   ########.fr       */
+/*   Created: 2023/10/04 17:52:37 by ulevallo          #+#    #+#             */
+/*   Updated: 2023/10/04 17:59:35 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-# include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <stddef.h>
-# include <sys/types.h>
-# include <sys/wait.h>
-# include <fcntl.h>
-# include <errno.h>
-# include <stdbool.h>
-# include <readline/readline.h>
+// Frees a Double string (char **) safely
+void	ft_free_dstr(char **dstr)
+{
+	int	i;
 
-# include "parsing.h"
-# include "execution.h"
-# include "../lib/libft/libft.h"
-
-#endif
+	i = 0;
+	while (dstr && dstr[i])
+	{
+		free(dstr[i]);
+		i++;
+	}
+	free(dstr);
+}
