@@ -17,10 +17,11 @@ SRC_PARSING			=	$(addprefix parsing/, \
 						)
 
 SRC_BUILTINS		=	$(addprefix builtins/, \
-						builtins_cd.c \
-						builtins_pwd.c \
-						builtins_echo.c \
-						builtins_exit.c \
+						cd.c \
+						pwd.c \
+						echo.c \
+						exit.c \
+						builtins.c \
 						\
 						)
 
