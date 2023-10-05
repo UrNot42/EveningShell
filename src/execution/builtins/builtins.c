@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 11:36:39 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/05 12:10:26 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/05 19:24:52 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,28 @@
  */
 void	builtins(int argc, char **argv)
 {
+	int	debug = 0;
+
 	if (argc == 1)
 		return ;
-	if (detect_echo(argv + 1))
+	if (detect_echo(argv + debug))
 	{
-		builtins_echo(argv + 1);
+		builtins_echo(argv + debug);
 		return ;
 	}
-	if (detect_cd(argv + 1))
+	if (detect_cd(argv + debug))
 	{
-		builtins_cd(argv + 1);
+		builtins_cd(argv + debug);
 		printf("pwd : ");
-		buitlins_pwd(argv + 1);
+		buitlins_pwd(argv + debug);
 		return ;
 	}
-	if (detect_pwd(argv + 1))
+	if (detect_pwd(argv + debug))
 	{
-		buitlins_pwd(argv + 1);
+		buitlins_pwd(argv + debug);
 		return ;
 	}
-	if (detect_exit(argv + 1))
+	if (detect_exit(argv + debug))
 	{
 		builtins_exit();
 		return ;

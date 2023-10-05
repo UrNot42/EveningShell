@@ -13,6 +13,7 @@ DEPS 				=	$(INCLUDES_DIR)minishell.h $(INCLUDES_DIR) Makefile
 RM					=	rm -f
 
 SRC_PARSING			=	$(addprefix parsing/, \
+						split_minishell.c \
 						\
 						)
 

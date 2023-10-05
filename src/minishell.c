@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:06:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/05 11:42:47 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/05 19:23:51 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	prompt(void)
 		if (buffer[0] == 'q')
 			error = true;
 		add_history(buffer);
+		builtins(0, split_minishell(buffer));
 	}
 }
 
@@ -91,8 +92,8 @@ int	main(int argc, char **argv) //, char **envp)
 {
 	// char	**env;
 
-	// (void)argc;
-	// (void)argv;
+	(void)argc;
+	(void)argv;
 	// if (envp)
 	// 	env = copy_env(envp);
 	// else
@@ -103,7 +104,7 @@ int	main(int argc, char **argv) //, char **envp)
 	// {
 	// 	printf ("The %zu str is: %s\n", i, env[i]);
 	// }
-	// prompt();
-	builtins(argc, argv);
+	prompt();
+	// builtins(argc, argv);
 	return (0);
 }
