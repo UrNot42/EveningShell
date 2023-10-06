@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:07:20 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/04 19:19:35 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/06 13:20:15 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,11 @@
 # include "parsing.h"
 # include "execution.h"
 # include "../lib/libft/libft.h"
+
+// 
+// -------------------------- TEMPORARY --------------------------
+// -------------------------- DEBUG --------------------------
+
+void	debug_minishplit(char **argv);
 
 #endif

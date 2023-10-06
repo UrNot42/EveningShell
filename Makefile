@@ -12,11 +12,23 @@ INCLUDES_H			=	-I./$(INCLUDES_DIR) -I./$(LIB_DIR)
 DEPS 				=	$(INCLUDES_DIR)minishell.h $(INCLUDES_DIR) Makefile
 RM					=	rm -f
 
-SRC_PARSING			=	$(addprefix parsing/, \
-						split_minishell.c \
+# COMMENT ?
+SRC_MINISHLIPT		=	$(addprefix minishlipt/, \
+						dollars.c \
+						minishlipt.c \
+						double_quotes.c \
+						single_quotes.c \
+						metacharacters.c \
 						\
 						)
 
+# COMMENT ?
+SRC_PARSING			=	$(addprefix parsing/, \
+						$(SRC_MINISHLIPT) \
+						\
+						)
+
+# COMMENT ?
 SRC_BUILTINS		=	$(addprefix builtins/, \
 						cd.c \
 						pwd.c \
@@ -26,18 +38,22 @@ SRC_BUILTINS		=	$(addprefix builtins/, \
 						\
 						)
 
+# COMMENT ?
 SRC_EXECUTION		=	$(addprefix execution/, \
 						$(SRC_BUILTINS) \
 						\
 						)
 
-# COMMENT
+# COMMENT ?
 MINISHELL_SRC		=  $(addprefix $(SRC_DIR), \
 						minishell.c \
 						\
 						$(SRC_PARSING) \
 						$(SRC_EXECUTION) \
+						\
+						debug.c \
 						)
+#debug.c => temporary
 
 OBJS 			=	$(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o, $(MINISHELL_SRC))
 

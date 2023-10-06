@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split_minishell.c                                  :+:      :+:    :+:   */
+/*   minishlipt.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 18:59:58 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/05 21:28:32 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/06 13:29:55 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,97 +20,48 @@
 // | -> cut
 // $ -> sapce + tab
 
-static bool	is_metacharacter(char c)
-{
-	if (c == ' ' || c == '\t' || c == '<' || c == '>' || c == '|')
-		return (true);
-	return (false);
-}
-
-static int	wl_double_quote(char const *s, int i)
-{
-	i++;
-	while (s[i] != '"' && s[i])
-	{
-		i++;
-	}
-	return (i);
-}
-
-static int	wl_single_quote(char const *s, int i)
-{
-	i++;
-	while (s[i] != '\'' && s[i])
-	{
-		i++;
-	}
-	return (i);
-}
-
+/**
+ * @brief Count the length of a word. A word is delimited by metacharacters,
+ * double quotes, single quotes and dollars.
+ * /!\ BRIEF IS BAD /!\
+ * 
+ * @param s string to count in
+ * @return size_t size of the word
+ */
 static size_t	word_length(char const *s)
 {
 	size_t	i;
 
-	i = 0;
-	if (s[i] == '|' || s[i] == ' ' || s[i] == '\t')
-		return (1);
-	if (s[i] == '<')
-	{
-		if (s[i + 1] == '<')
-			return (2);
-		return (1);
-	}
-	if (s[i] == '>')
-	{
-		if (s[i + 1] == '>')
-			return (2);
-		return (1);
-	}
+	i = wl_metacharacters(s);
+	if (i)
+		return (i);
 	while (s[i])
 	{
 		if (s[i] == '"')
 		{
-			i = wl_double_quote(s, i);
-			while (!is_metacharacter(s[i + 1]) && s[i])
-			{
-				i++;
-				if (s[i] == '"')
-					i = wl_double_quote(s, i);
-			}
-			i++;
-			break ;
+			return (wl_double_quotes(s));
 		}
 		if (s[i] == '\'')
 		{
-			i = wl_single_quote(s, i);
-			while (!is_metacharacter(s[i + 1]) && s[i])
-			{
-				i++;
-				if (s[i] == '\'')
-					i = wl_single_quote(s, i);
-			}
-			i++;
-			break ;
+			return (wl_single_quotes(s));
 		}
 		if (is_metacharacter(s[i]))
 			break ;
 		if (s[i] == '$')
 		{
-			while (s[i] == '$')
-				i++;
-			while (!is_metacharacter(s[i]) && s[i] != '/' && s[i])
-			{
-				i++;
-				if (s[i] == '$')
-					break ;
-			}
-			break ;
+			return (wl_dollars(s));
 		}
 		i++;
 	}
 	return (i);
 }
 
+/**
+ * @brief count the number of words in a string.
+ * 
+ * @param s string to count in
+ * @return size_t number of words, used to malloc the array of strings
+ */
 static size_t	word_count(char const *s)
 {
 	size_t	i;
@@ -131,10 +82,17 @@ static size_t	word_count(char const *s)
 	return (count);
 }
 
-static char	*ft_strcpy(char *src, int n)
+/**
+ * @brief copy a string of size n
+ * 
+ * @param src string to copy
+ * @param n size of the string
+ * @return char* string copied
+ */
+static char	*ft_strcpy(char *src, size_t n)
 {
-	int		i;
-	char	*dest;
+	size_t		i;
+	char		*dest;
 
 	i = 0;
 	dest = malloc(sizeof(char) * (n + 1));
@@ -149,30 +107,30 @@ static char	*ft_strcpy(char *src, int n)
 	return (dest);
 }
 
-static char	**ft_rewind_free(char **result, size_t y)
+/**
+ * @brief free the mallocs in rewind to avoid unallocated memory
+ * 
+ * @param argv array of strings to free
+ * @param y size_t of the last string malloced
+ * @return char** NULL
+ */
+static char	**ft_rewind_free(char **argv, size_t y)
 {
 	while (y <= 0)
 	{
-		free(result[y]);
+		free(argv[y]);
 		y--;
 	}
-	free(result);
+	free(argv);
 	return (NULL);
 }
 
-
-void	debug_minishplit(char **argv)
-{
-	int	i;
-
-	i = 0;
-	while (argv[i])
-	{
-		printf("minishplit[%d] : %s\n", i, argv[i]);
-		++i;
-	}
-}
-
+/**
+ * @brief Special split for minishell
+ * 
+ * @param s string returned by readline
+ * @return char** array of strings splitted by bash rules
+ */
 char	**split_minishell(char const *s)
 {
 	size_t	i;
@@ -211,4 +169,4 @@ char	**split_minishell(char const *s)
 // "a"sss"f"f|fdf>fd<$$$HOME
 // "a  1	2"bbb"c"d|efg>hi<<$$$HOME$USER
 // "a  1        2"bbb"c"d|efg>hi<<$$$HOME$$USER || $PW|
-// "a  1        2"bbb"c"d| e          fg>hi<<$$$HOME$$USER || $PW|
+// "a  1        2"bbb"c"d| e          fg>hi<<$$$HOME$$USER || $PW|	'zyx'5'wvuts' "rq'po'nmlk" 'jihg"fed"cba'

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:06:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/05 19:23:51 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/06 13:34:51 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,10 @@ char	**create_default_env(void)
 	return (env);
 }
 
+/**
+ * @brief prompt of the shell. Don't know what to write here...
+ * 
+ */
 void	prompt(void)
 {
 	char	*buffer;
@@ -88,6 +92,10 @@ void	prompt(void)
 	}
 }
 
+/**
+ * @brief It a main...
+ * 
+ */
 int	main(int argc, char **argv) //, char **envp)
 {
 	// char	**env;
