@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:36:57 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/05 12:01:02 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/09 17:27:26 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 /**
  * @brief Builtins of the command cd
- * 
+ *
  * /!\ Have to change "arguments" to a better word
- * 
+ *
  * @param argv char** of the arguments
  * @return int 1 if the command is well executed, 0 otherwise
  */
@@ -39,9 +39,9 @@ int	builtins_cd(char **argv)
 
 /**
  * @brief Detects if the command is cd
- * 
+ *
  * /!\ Have to change "arguments" to a better word
- * 
+ *
  * @param argv char** of the arguments to check
  * @return int 1 if the command is cd, 0 otherwise
  */
