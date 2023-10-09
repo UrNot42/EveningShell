@@ -1,8 +1,9 @@
 NAME 				=	minishell
 
 CC 					=	cc
-CFLAGS 				=	-pthread -Wall -Wextra -Werror $(DBFLAGS)
+CFLAGS 				=	-Wall -Wextra -Werror $(DBFLAGS)
 DBFLAGS				=	-g -g3
+LIBFLAGS			=	-lreadline
 INCLUDES_DIR 		=	include/
 SRC_DIR 			=	src/
 OBJ_DIR 			=	.obj/
@@ -11,30 +12,48 @@ INCLUDES_H			=	-I./$(INCLUDES_DIR) -I./$(LIB_DIR)
 DEPS 				=	$(INCLUDES_DIR)minishell.h $(INCLUDES_DIR) Makefile
 RM					=	rm -f
 
+# COMMENT ?
+SRC_MINISHLIPT		=	$(addprefix minishlipt/, \
+						dollars.c \
+						minishlipt.c \
+						double_quotes.c \
+						single_quotes.c \
+						metacharacters.c \
+						\
+						)
+
+# COMMENT ?
 SRC_PARSING			=	$(addprefix parsing/, \
+						$(SRC_MINISHLIPT) \
 						\
 						)
 
+# COMMENT ?
 SRC_BUILTINS		=	$(addprefix builtins/, \
-						builtins_cd.c \
-						builtins_pwd.c \
-						builtins_echo.c \
-						builtins_exit.c \
+						cd.c \
+						pwd.c \
+						echo.c \
+						exit.c \
+						builtins.c \
 						\
 						)
 
+# COMMENT ?
 SRC_EXECUTION		=	$(addprefix execution/, \
 						$(SRC_BUILTINS) \
 						\
 						)
 
-# COMMENT
+# COMMENT ?
 MINISHELL_SRC		=  $(addprefix $(SRC_DIR), \
 						minishell.c \
 						\
 						$(SRC_PARSING) \
 						$(SRC_EXECUTION) \
+						\
+						debug.c \
 						)
+#debug.c => temporary
 
 OBJS 			=	$(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o, $(MINISHELL_SRC))
 
@@ -49,7 +68,7 @@ $(NAME): $(OBJS) $(DEPS)
 	@echo "\e[36mMaking $(NAME)...\e[0m"
 	@make --no-print-directory -C lib/libft/
 	@mv lib/libft/libft.a .obj/
-	@$(CC) $(CFLAGS) $(INCLUDES_H) $(OBJS) -o $(NAME) .obj/libft.a
+	@$(CC) $(CFLAGS) $(INCLUDES_H) $(OBJS) $(LIBFLAGS) -o $(NAME) .obj/libft.a
 	@echo "\e[32mDone !\e[0m"
 
 bonus: all

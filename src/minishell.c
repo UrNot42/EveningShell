@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:06:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/04 19:14:13 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/09 13:58:50 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,38 +20,6 @@
  * @return the copied environment
  */
 char	**copy_env(char **old_env)
-{
-	char	**new_env;
-	size_t	size;
-	size_t	i;
-
-	size = 0;
-	while (old_env && old_env[size])
-		size++;
-	if (size == 0)
-		return (NULL);
-	new_env = ft_calloc(size + 1, sizeof(char *));
-	if (!new_env)
-		return (NULL);
-	i = 0;
-	while (old_env[i])
-	{
-		new_env[i] = ft_strdup(old_env[i]);
-		if (!new_env[i])
-			return (ft_free_dstr(new_env), NULL);
-		i++;
-	}
-	return (new_env);
-}
-
-/**
- * @brief Copies the inherited env object
- * 			so that the shell can manage it's own environement
- *
- * @param old_env
- * @return the copied environment
- */
-char	**add_to_env(char **env, char *)
 {
 	char	**new_env;
 	size_t	size;
@@ -101,21 +69,37 @@ char	**create_default_env(void)
 	return (env);
 }
 
-int	main(int argc, char **argv, char **envp)
+/**
+ * @brief prompt of the shell. Don't know what to write here...
+ *
+ */
+void	prompt(void)
 {
-	char	**env;
+	char	*buffer;
+	bool	error;
 
+	buffer = NULL;
+	error = false;
+	while (!error)
+	{
+		if (buffer)
+			free(buffer);
+		buffer = readline("minishell$:");
+		if (buffer[0] == 'q')
+			error = true;
+		add_history(buffer);
+		builtins(0, split_minishell(buffer));
+	}
+}
+
+/**
+ * @brief It a main...
+ *
+ */
+int	main(int argc, char **argv) //, char **envp)
+{
 	(void)argc;
 	(void)argv;
-	if (envp)
-		env = copy_env(envp);
-	else
-		env = create_default_env();
-	if (!env)
-		return (EXIT_FAILURE);
-	for (size_t i = 0; env && env[i]; i++)
-	{
-		printf ("The %zu str is: %s\n", i, env[i]);
-	}
+	prompt();
 	return (0);
 }

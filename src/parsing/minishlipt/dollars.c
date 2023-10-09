@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins_cd.c                                      :+:      :+:    :+:   */
+/*   dollars.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/03 17:36:57 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/04 12:02:50 by aoberon          ###   ########.fr       */
+/*   Created: 2023/10/06 13:02:01 by aoberon           #+#    #+#             */
+/*   Updated: 2023/10/06 13:31:39 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	builtins_cd(char **argv)
+/**
+ * @brief count the length of a word depending of the dollars' rules
+ * 
+ * @param s string to count in
+ * @return size_t size of the word
+ */
+size_t	wl_dollars(char const *s)
 {
-	if (access(argv[2], F_OK) == -1)
-	{
-		printf("cd: %s: No such file or directory\n", argv[2]);
-		return (0);
-	}
-	printf("cd to %s\n", argv[2]);
-	chdir(argv[2]);
-	return (1);
-}
+	size_t	i;
 
-int	detect_cd(char **argv)
-{
-	if (!ft_strcmp(argv[0], "cd"))
+	i = 0;
+	while (s[i] == '$')
+		i++;
+	while (!is_metacharacter(s[i]) && s[i] != '/' && s[i])
 	{
-		printf("A builtins detected : cd\n");
-		return (builtins_cd(argv));
+		i++;
+		if (s[i] == '$')
+			return (i);
 	}
-	return (0);
+	return (i);
 }
