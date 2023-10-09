@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:06:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/06 13:34:51 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/09 17:24:12 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ void	prompt(void)
 		if (buffer[0] == 'q')
 			error = true;
 		add_history(buffer);
-		builtins(0, split_minishell(buffer));
+		tokenization(split_minishell(buffer));
+		// builtins(0, split_minishell(buffer));
 	}
 }
 

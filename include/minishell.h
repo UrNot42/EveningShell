@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:07:20 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/06 13:20:15 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/09 18:09:08 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 // -------------------------- TEMPORARY --------------------------
 // -------------------------- DEBUG --------------------------
 
-void	debug_minishplit(char **argv);
+void	debug_token(t_token *token);
+void	debug_double_char(char **argv, char *debug_print);
 
 #endif

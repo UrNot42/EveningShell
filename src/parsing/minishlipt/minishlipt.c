@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 18:59:58 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/06 13:29:55 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/09 18:03:38 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ char	**split_minishell(char const *s)
 		s += word_length(s);
 		i++;
 	}
-	debug_minishplit(argv);
+	debug_double_char(argv, "minishplit");
 	return (argv);
 }
 

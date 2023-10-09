@@ -23,8 +23,15 @@ SRC_MINISHLIPT		=	$(addprefix minishlipt/, \
 						)
 
 # COMMENT ?
+SC_TOKENIZATION		=	$(addprefix tokenization/, \
+						tokenization.c \
+						\
+						)
+
+# COMMENT ?
 SRC_PARSING			=	$(addprefix parsing/, \
 						$(SRC_MINISHLIPT) \
+						$(SC_TOKENIZATION) \
 						\
 						)
 
