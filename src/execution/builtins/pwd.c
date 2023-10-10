@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 09:45:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/05 12:08:04 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/09 17:27:30 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 /**
  * @brief Builtins of the command pwd
- * 
+ *
  * /!\ Have to change "arguments" to a better word
- * 
+ *
  * @param argv char** of the arguments
  * @return int 1 getcwd() success, 0 otherwise
  */
@@ -42,9 +42,9 @@ int	buitlins_pwd(char **argv)
 
 /**
  * @brief Detects if the command is pwd
- * 
+ *
  * /!\ Have to change "arguments" to a better word
- * 
+ *
  * @param argv char** of the arguments to check
  * @return int 1 if the command is pwd, 0 otherwise
  */
