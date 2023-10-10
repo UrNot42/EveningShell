@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:20:31 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/09 17:57:24 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/10 16:29:27 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,21 @@ bool	is_metacharacter(char c);
 size_t	wl_metacharacters(char const *s);
 
 // ========================== TOKENIZATION ==========================
+
+// -------------------------- COMMAND --------------------------
+
+int		tokenization_command(t_token *token, size_t *i, size_t *n, char **argv);
+
+// -------------------------- REDIR_TYPE --------------------------
+
+int		get_redir_type(char const *str);
+int		get_redir_flag(char const *str);
+
+// -------------------------- TOKEN_CREATION --------------------------
+
+char	**doublecharncpy(char **src, size_t n);
+
+t_token	create_token(char **argv, int type, int size);
 
 // -------------------------- TOKENIZATION --------------------------
 

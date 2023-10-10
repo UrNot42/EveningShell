@@ -6,26 +6,55 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:06:06 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/10 11:04:00 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/10 16:19:37 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief Counts the number of tokens to be created in a command type
+ * 
+ * @param argv array of strings used to create tokens
+ * @param i size_t pointer to the index of argv
+ * @param count size_t pointer to the count of tokens
+ */
+static void	count_tokenization_cmd(char **argv, size_t *i, size_t *count)
+{
+	*count += 1;
+	while (argv[*i] && ft_strcmp(argv[*i], "|"))
+	{
+		if (!ft_strcmp(argv[*i], "<") || !ft_strcmp(argv[*i], "<<")
+			|| !ft_strcmp(argv[*i], ">") || !ft_strcmp(argv[*i], ">>"))
+		{
+			*i += 2;
+			*count += 1;
+		}
+		else
+			*i += 1;
+	}
+}
+
+/**
+ * @brief Counts the number of tokens to be created
+ * 
+ * @param argv array of strings used to create tokens
+ * @return size_t count of tokens
+ */
 static size_t	count_tokenization(char **argv)
 {
-	int	i;
-	int	count;
+	size_t	i;
+	size_t	count;
 
 	i = 0;
-	count = 1;
+	count = 0;
 	while (argv[i])
 	{
 		if (!ft_strcmp(argv[i], "<") || !ft_strcmp(argv[i], "<<")
 			|| !ft_strcmp(argv[i], ">") || !ft_strcmp(argv[i], ">>"))
 		{
 			i += 2;
-			count += 2;
+			count++;
 		}
 		else if (!ft_strcmp(argv[i], "|"))
 		{
@@ -34,62 +63,48 @@ static size_t	count_tokenization(char **argv)
 		}
 		else
 		{
-			while (argv[i] && ft_strcmp(argv[i], "|"))
-			{
-				if (!ft_strcmp(argv[i], "<") || !ft_strcmp(argv[i], ">")
-					|| !ft_strcmp(argv[i], ">>"))
-				{
-					i += 2;
-					count += 2;
-				}
-				else
-					i++;
-			}
-		}
-	}
-	printf("count: %d\n", count);
-	return (count);
-}
-
-size_t	get_next_command_type(char **argv)
-{
-	int	i;
-	int	count;
-
-	i = 0;
-	count = 0;
-	while (argv[i] && ft_strcmp(argv[i], "|"))
-	{
-		if (!ft_strcmp(argv[i], ">"))
-		{
-			i += 2;
-		}
-		else
-		{
-			i++;
-			count++;
+			count_tokenization_cmd(argv, &i, &count);
 		}
 	}
 	return (count);
 }
 
-char	**doublecharncpy(char **src, size_t n)
+/**
+ * @brief Set the tokens
+ * 
+ * @param token array of tokens
+ * @param argv array of strings used to create tokens
+ * @param i size_t pointer to the index of argv
+ * @param n size_t pointer to the index of token
+ * @return int 
+ */
+static int	set_tokens(t_token *token, char **argv, size_t *i, size_t *n)
 {
-	char	**dest;
-	size_t	i;
-
-	dest = ft_calloc(n + 1, sizeof(char *));
-	if (!dest)
-		return (NULL);
-	i = 0;
-	while (i < n)
+	if (get_redir_type(argv[*i]))
 	{
-		dest[i] = ft_strdup(src[i]);
-		i++;
+		token[*n] = create_token(&argv[*i], get_redir_flag(argv[*i]), 2);
+		*i += 2;
+		*n += 1;
 	}
-	return (dest);
+	else if (!ft_strcmp(argv[*i], "|"))
+	{
+		token[*n] = create_token(&argv[*i], PIPE, 1);
+		*i += 1;
+		*n += 1;
+	}
+	else if (!tokenization_command(token, i, n, argv))
+		return (0);
+	if (!token[*n - 1].content)
+		return (0);
+	return (1);
 }
 
+/**
+ * @brief Tokenization of the command line
+ * 
+ * @param argv array of strings used to create tokens
+ * @return t_token* array of tokens
+ */
 t_token	*tokenization(char **argv)
 {
 	size_t	i;
@@ -103,84 +118,12 @@ t_token	*tokenization(char **argv)
 	n = 0;
 	while (argv[i])
 	{
-		if (!ft_strcmp(argv[i], "<"))
-		{
-			token[n].type = REDIR_IN;
-			token[n].content = doublecharncpy(&argv[i], 2);
-			if (!token[n].content)
-				return (printf("FREE AND EXIT !\n"), NULL);
-			i += 2;
-			n++;
-		}
-		else if (!ft_strcmp(argv[i], ">"))
-		{
-			token[n].type = REDIR_OUT;
-			token[n].content = doublecharncpy(&argv[i], 2);
-			if (!token[n].content)
-				return (printf("FREE AND EXIT !\n"), NULL);
-			i += 2;
-			n++;
-		}
-		else if (!ft_strcmp(argv[i], "<<"))
-		{
-			token[n].type = HERE_DOC;
-			token[n].content = doublecharncpy(&argv[i], 2);
-			if (!token[n].content)
-				return (printf("FREE AND EXIT !\n"), NULL);
-			i += 2;
-			n++;
-		}
-		else if (!ft_strcmp(argv[i], ">>"))
-		{
-			token[n].type = APPEND;
-			token[n].content = doublecharncpy(&argv[i], 2);
-			if (!token[n].content)
-				return (printf("FREE AND EXIT !\n"), NULL);
-			i += 2;
-			n++;
-		}
-		else if (!ft_strcmp(argv[i], "|"))
-		{
-			token[n].type = PIPE;
-			token[n].content = doublecharncpy(&argv[i], 1);
-			if (!token[n].content)
-				return (printf("FREE AND EXIT !\n"), NULL);
-			i++;
-			n++;
-		}
-		else
-		{
-			size_t		j;
-			size_t		k;
-			size_t	n_bis;
-			token[n].type = CMD;
-			j = get_next_command_type(&argv[i]);
-			token[n].content = ft_calloc(j + 1, sizeof(char *));
-			if (!token[n].content)
-				return (printf("FREE AND EXIT !\n"), NULL);
-			k = 0;
-			n_bis = 0;
-			while (k < j)
-			{
-				if (!ft_strcmp(argv[i], ">"))
-				{
-					n_bis++;
-					token[n + n_bis].type = REDIR_OUT;
-					token[n + n_bis].content = doublecharncpy(&argv[i], 2);
-					if (!token[n + n_bis].content)
-						return (printf("FREE AND EXIT !\n"), NULL);
-					i += 2;
-				}
-				if (argv[i])
-				{
-					token[n].content[k] = ft_strdup(argv[i]);
-					i++;
-				}
-				k++;
-			}
-			n += n_bis + 1;
-		}
+		if (!set_tokens(token, argv, &i, &n))
+			return (printf("FREE AND EXIT !\n"), NULL);
 	}
 	debug_token(token);
 	return (token);
 }
+
+// cmd1 op arg1 arg2 > file arg3 | cmd2 arg1 arg2 < file arg3 | cmd3 arg1 >> file arg2 arg3 | cmd4 << file arg1 arg2 arg3
+// cmd1 op arg1 arg2 > file arg3 | cmd2 arg1 arg2 < file arg3 | cmd3 arg1 >> file arg2 arg3 | cmd4 << file arg1 arg2 arg3 | cmd5 > file | >> file < file

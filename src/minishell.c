@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:06:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/09 17:24:12 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/10 16:26:16 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ char	**create_default_env(void)
 void	prompt(void)
 {
 	char	*buffer;
+	char	**argv;
 	bool	error;
 
 	buffer = NULL;
@@ -88,7 +89,12 @@ void	prompt(void)
 		if (buffer[0] == 'q')
 			error = true;
 		add_history(buffer);
-		tokenization(split_minishell(buffer));
+		argv = split_minishell(buffer);
+		if (!argv)
+			return ;
+		tokenization(argv);
+		if (!argv)
+			return ;
 		// builtins(0, split_minishell(buffer));
 	}
 }
