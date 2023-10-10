@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:20:31 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/10 17:01:56 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/10 17:27:22 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,10 @@ bool	is_metacharacter(char c);
 size_t	wl_metacharacters(char const *s);
 
 // ========================== TOKENIZATION ==========================
+
+// -------------------------- CHECK_SYNTAX_ERROR --------------------------
+
+int		check_syntax_error(t_token *token);
 
 // -------------------------- COMMAND --------------------------
 

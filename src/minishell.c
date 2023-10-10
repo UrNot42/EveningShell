@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:06:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/10 17:06:54 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/10 17:34:42 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	prompt(void)
 {
 	char	*buffer;
 	char	**argv;
+	t_token	*token;
 	bool	error;
 
 	buffer = NULL;
@@ -94,8 +95,10 @@ void	prompt(void)
 			return ;
 		if (check_error(argv))
 			return ;
-		tokenization(argv);
-		if (!argv)
+		token = tokenization(argv);
+		if (!token)
+			return ;
+		if (check_syntax_error(token))
 			return ;
 		// builtins(0, split_minishell(buffer));
 	}

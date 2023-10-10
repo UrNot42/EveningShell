@@ -29,6 +29,7 @@ SC_TOKENIZATION		=	$(addprefix tokenization/, \
 						redir_type.c \
 						tokenization.c \
 						token_creation.c \
+						check_syntax_error.c \
 						\
 						)
 
