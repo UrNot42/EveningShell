@@ -16,6 +16,7 @@ RM					=	rm -f
 SRC_MINISHPLIT		=	$(addprefix minishplit/, \
 						dollars.c \
 						minishplit.c \
+						check_error.c \
 						double_quotes.c \
 						single_quotes.c \
 						metacharacters.c \

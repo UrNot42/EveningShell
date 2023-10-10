@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:06:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/10 16:26:16 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/10 17:06:54 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ void	prompt(void)
 		add_history(buffer);
 		argv = split_minishell(buffer);
 		if (!argv)
+			return ;
+		if (check_error(argv))
 			return ;
 		tokenization(argv);
 		if (!argv)

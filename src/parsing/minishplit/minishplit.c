@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishlipt.c                                       :+:      :+:    :+:   */
+/*   minishplit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 18:59:58 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/09 18:03:38 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/10 17:16:02 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ char	**split_minishell(char const *s)
 {
 	size_t	i;
 	size_t	count;
+	size_t	length_word;
 	char	**argv;
 
 	i = 0;
@@ -146,10 +147,11 @@ char	**split_minishell(char const *s)
 	{
 		while (!*s || *s == ' ' || *s == '\t')
 			s++;
-		argv[i] = ft_strcpy((char *)s, word_length(s));
+		length_word = word_length(s);
+		argv[i] = ft_strcpy((char *)s, length_word);
 		if (!argv[i])
 			return (ft_rewind_free(argv, i));
-		s += word_length(s);
+		s += length_word;
 		i++;
 	}
 	debug_double_char(argv, "minishplit");
