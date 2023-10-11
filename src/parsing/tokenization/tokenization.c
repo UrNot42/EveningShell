@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:06:06 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/11 14:49:49 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/11 16:33:48 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,7 @@ static size_t	count_tokenization(char **argv)
 			count++;
 		}
 		else
-		{
 			count_tokenization_cmd(argv, &i, &count);
-		}
 	}
 	return (count);
 }
