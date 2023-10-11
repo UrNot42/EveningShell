@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:06:06 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/10 16:19:37 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/11 14:49:49 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ static void	count_tokenization_cmd(char **argv, size_t *i, size_t *count)
 		if (!ft_strcmp(argv[*i], "<") || !ft_strcmp(argv[*i], "<<")
 			|| !ft_strcmp(argv[*i], ">") || !ft_strcmp(argv[*i], ">>"))
 		{
-			*i += 2;
+			if (argv[*i + 1])
+				*i += 2;
+			else
+				*i += 1;
 			*count += 1;
 		}
 		else
@@ -53,7 +56,10 @@ static size_t	count_tokenization(char **argv)
 		if (!ft_strcmp(argv[i], "<") || !ft_strcmp(argv[i], "<<")
 			|| !ft_strcmp(argv[i], ">") || !ft_strcmp(argv[i], ">>"))
 		{
-			i += 2;
+			if (argv[i + 1])
+				i += 2;
+			else
+				i++;
 			count++;
 		}
 		else if (!ft_strcmp(argv[i], "|"))
@@ -83,7 +89,10 @@ static int	set_tokens(t_token *token, char **argv, size_t *i, size_t *n)
 	if (get_redir_type(argv[*i]))
 	{
 		token[*n] = create_token(&argv[*i], get_redir_flag(argv[*i]), 2);
-		*i += 2;
+		if (argv[*i + 1])
+			*i += 2;
+		else
+			*i += 1;
 		*n += 1;
 	}
 	else if (!ft_strcmp(argv[*i], "|"))

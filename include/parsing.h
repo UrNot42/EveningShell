@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:20:31 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/10 17:27:22 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/11 16:31:40 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,14 @@ struct s_token
 
 int		check_error(char **argv);
 
+// -------------------------- CHECK_QUOTING_ERROR --------------------------
+
+int		check_quoting_error(char **argv);
+
+// -------------------------- CHECK_SYNTAX_ERROR --------------------------
+
+int		check_syntax_error(char **argv);
+
 // -------------------------- DOUBLE_QUOTES --------------------------
 
 size_t	wl_double_quotes(char const *s);
@@ -60,10 +68,6 @@ bool	is_metacharacter(char c);
 size_t	wl_metacharacters(char const *s);
 
 // ========================== TOKENIZATION ==========================
-
-// -------------------------- CHECK_SYNTAX_ERROR --------------------------
-
-int		check_syntax_error(t_token *token);
 
 // -------------------------- COMMAND --------------------------
 

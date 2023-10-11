@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:06:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/10 18:11:18 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/11 14:24:22 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,11 @@ void	prompt(void)
 		argv = split_minishell(buffer);
 		if (!argv)
 			return ;
-		// if (check_error(argv))
-			// return ;
+		if (check_error(argv))
+			return ;
 		token = tokenization(argv);
 		if (!token)
 			return ;
-		// if (check_syntax_error(token))
-			// return ;
 		// builtins(0, split_minishell(buffer));
 	}
 }

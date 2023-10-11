@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:00:52 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/10 16:39:36 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/11 14:50:33 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ static size_t	get_number_str_in_cmd(char **argv)
 		if (!ft_strcmp(argv[i], "<") || !ft_strcmp(argv[i], "<<")
 			|| !ft_strcmp(argv[i], ">") || !ft_strcmp(argv[i], ">>"))
 		{
-			i += 2;
+			if (argv[i + 1])
+				i += 2;
+			else
+				i += 1;
 		}
 		else
 		{

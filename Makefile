@@ -20,6 +20,8 @@ SRC_MINISHPLIT		=	$(addprefix minishplit/, \
 						double_quotes.c \
 						single_quotes.c \
 						metacharacters.c \
+						check_syntax_error.c \
+						check_quoting_error.c \
 						\
 						)
 
@@ -29,7 +31,6 @@ SC_TOKENIZATION		=	$(addprefix tokenization/, \
 						redir_type.c \
 						tokenization.c \
 						token_creation.c \
-						check_syntax_error.c \
 						\
 						)
 

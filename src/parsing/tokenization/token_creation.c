@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:01:47 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/10 16:27:41 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/11 14:24:13 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ char	**doublecharncpy(char **src, size_t n)
 	i = 0;
 	while (i < n)
 	{
+		if (!src[i])
+			break ;
 		dest[i] = ft_strdup(src[i]);
 		if (!dest[i])
 			return (printf("FREE AND EXIT !\n"), NULL);

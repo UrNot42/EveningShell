@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 18:59:58 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/10 17:16:02 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/11 14:04:34 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,12 @@ static size_t	word_count(char const *s)
 	count = 0;
 	while (*s)
 	{
-		while (!*s || *s == ' ' || *s == '\t')
+		while (*s && (*s == ' ' || *s == '\t'))
 		{
 			s++;
 		}
+		if (!*s)
+			break ;
 		i = word_length(s);
 		if (i)
 			count++;
@@ -172,3 +174,4 @@ char	**split_minishell(char const *s)
 // "a  1	2"bbb"c"d|efg>hi<<$$$HOME$USER
 // "a  1        2"bbb"c"d|efg>hi<<$$$HOME$$USER || $PW|
 // "a  1        2"bbb"c"d| e          fg>hi<<$$$HOME$$USER || $PW|	'zyx'5'wvuts' "rq'po'nmlk" 'jihg"fed"cba'
+// DELETE COMMENT AT THE START OF THE FILE \/!\/!\/!\/
