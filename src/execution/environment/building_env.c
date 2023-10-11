@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 18:07:46 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/11 14:34:00 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/11 17:44:39 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,8 @@ char	**create_default_env(void)
 	return (env);
 }
 
+/*
+
 void	print_env(char **env)
 {
 	for (size_t i = 0; env && env[i]; i++)
@@ -174,7 +176,7 @@ void	print_env(char **env)
 
 int	main(int argc, char **argv, char **envp)
 {
-	char **env;
+	char	**env;
 
 	env = copy_env(envp);
 	print_env(env);
@@ -182,8 +184,15 @@ int	main(int argc, char **argv, char **envp)
 		env = extend_env(env, argv[1]);
 	print_env(env);
 	if (argc > 2)
+	{
 		printf("index of %s: %d\n", argv[2], get_env_var(env, argv[2]));
-	// shorten_env();
+		shorten_env(env, get_env_var(env, argv[2]));
+		print_env(env);
+		env = extend_env(env, "KOALA=NON");
+		env = extend_env(env, "NQOQOFHOSD=OPO");
+		print_env(env);
+	}
 	ft_free_dstr(env);
 	return (0);
 }
+*/
