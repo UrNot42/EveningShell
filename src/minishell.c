@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:06:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/09 18:22:51 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/11 14:11:02 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ void	prompt(void)
 		builtins(0, split_minishell(buffer));
 	}
 }
-
 /**
  * @brief Main that is bound to change as it is mainly used to redirect
  * to change funtions
  *
  */
+/*
 int	main(int argc, char **argv, char **envp)
 {
 	(void)argc;
@@ -53,3 +53,4 @@ int	main(int argc, char **argv, char **envp)
 	prompt();
 	return (0);
 }
+*/
