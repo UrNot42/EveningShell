@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 18:07:46 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/11 17:44:39 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/11 20:53:06 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ char	**extend_env(char **old_env, char *new_var)
  * @return the index of the found variable
  */
 // TODO : FINISH
-int	get_env_var(char **env, char *var)
+int	get_env_var_index(char **env, char *var)
 {
 	int	i;
 	int	j;
@@ -141,7 +141,7 @@ char	**shorten_env(char **env, size_t index_var_to_delete)
 /**
  * @brief creates a default shell environment creating 3 default variables
  *
- * /!\ UNFINISHED
+ * /!\ UNFINISHED TODO
  *
  * @return returns a brand new allocated env
  */
@@ -185,8 +185,8 @@ int	main(int argc, char **argv, char **envp)
 	print_env(env);
 	if (argc > 2)
 	{
-		printf("index of %s: %d\n", argv[2], get_env_var(env, argv[2]));
-		shorten_env(env, get_env_var(env, argv[2]));
+		printf("index of %s: %d\n", argv[2], get_env_var_index(env, argv[2]));
+		shorten_env(env, get_env_var_index(env, argv[2]));
 		print_env(env);
 		env = extend_env(env, "KOALA=NON");
 		env = extend_env(env, "NQOQOFHOSD=OPO");

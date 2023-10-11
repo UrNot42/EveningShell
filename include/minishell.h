@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:07:20 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/06 13:20:15 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/11 20:51:54 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@
 # include <readline/history.h>
 
 # include "parsing.h"
+# include "env.h"
 # include "execution.h"
 # include "../lib/libft/libft.h"
 
-// 
+//
 // -------------------------- TEMPORARY --------------------------
 // -------------------------- DEBUG --------------------------
 
