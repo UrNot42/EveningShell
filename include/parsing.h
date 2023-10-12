@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:20:31 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/11 16:31:40 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/12 14:16:09 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,11 @@ t_token	create_token(char **argv, int type, int size);
 // -------------------------- TOKENIZATION --------------------------
 
 t_token	*tokenization(char **argv);
+
+// ========================== EXPANSION ==========================
+
+// -------------------------- EXPANSION --------------------------
+
+void	expansion(t_token **token, char **env);
 
 #endif

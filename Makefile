@@ -26,7 +26,7 @@ SRC_MINISHPLIT		=	$(addprefix minishplit/, \
 						)
 
 # COMMENT ?
-SC_TOKENIZATION		=	$(addprefix tokenization/, \
+SRC_TOKENIZATION		=	$(addprefix tokenization/, \
 						command.c \
 						redir_type.c \
 						tokenization.c \
@@ -35,9 +35,16 @@ SC_TOKENIZATION		=	$(addprefix tokenization/, \
 						)
 
 # COMMENT ?
+SRC_EXPANSION		=	$(addprefix expansion/, \
+						expansion.c \
+						\
+						)
+
+# COMMENT ?
 SRC_PARSING			=	$(addprefix parsing/, \
 						$(SRC_MINISHPLIT) \
-						$(SC_TOKENIZATION) \
+						$(SRC_TOKENIZATION) \
+						$(SRC_EXPANSION) \
 						\
 						)
 

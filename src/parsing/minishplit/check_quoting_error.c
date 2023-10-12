@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 16:59:17 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/11 16:32:13 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/12 14:02:44 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
  */
 static int	check_end_single_quotes(char const *str, size_t *i)
 {
+	*i += 1;
 	while (str[*i])
 	{
 		if (str[*i] == '\'')
@@ -40,6 +41,7 @@ static int	check_end_single_quotes(char const *str, size_t *i)
  */
 static int	check_end_double_quotes(char const *str, size_t *i)
 {
+	*i += 1;
 	while (str[*i])
 	{
 		if (str[*i] == '"')

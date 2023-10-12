@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:06:06 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/11 16:33:48 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/12 14:52:06 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ t_token	*tokenization(char **argv)
 		if (!set_tokens(token, argv, &i, &n))
 			return (printf("FREE AND EXIT !\n"), NULL);
 	}
+	token[n].type = -1;
 	debug_token(token);
 	return (token);
 }

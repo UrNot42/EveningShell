@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 13:16:01 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/09 18:10:40 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/12 14:58:46 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	debug_token(t_token *token)
 	int	i;
 
 	i = 0;
-	while (token[i].content != NULL)
+	while (token[i].type != -1)
 	{
 		if (token[i].type == 0)
 			printf("token[%d] type : CMD\n", i);
