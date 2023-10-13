@@ -67,6 +67,7 @@ SRC_BUILTINS		=	$(addprefix builtins/, \
 
 # COMMENT ?
 SRC_EXECUTION		=	$(addprefix execution/, \
+						execution.c \
 						$(SRC_BUILTINS) \
 						$(SRC_ENVIRONMENT) \
 						)
@@ -74,6 +75,7 @@ SRC_EXECUTION		=	$(addprefix execution/, \
 # COMMENT ?
 MINISHELL_SRC		=  $(addprefix $(SRC_DIR), \
 						minishell.c \
+						prompt.c \
 						\
 						$(SRC_PARSING) \
 						$(SRC_EXECUTION) \

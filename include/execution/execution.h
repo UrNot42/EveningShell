@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:20:51 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/13 13:44:13 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/13 21:40:36 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,11 @@
 # include "minishell.h"
 # include "builtins.h"
 # include "environment.h"
+
+// ========================== PROMPT ==========================
+
+void	prompt(char **envp);
+t_token	*parse_line(char *line);
+int		execute(t_token *tokens, char **env);
 
 #endif

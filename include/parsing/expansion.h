@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:41:36 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/13 17:57:16 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/13 21:27:07 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXPANSION_H
 # define EXPANSION_H
+
+# include "minishell.h"
 
 // ========================== EXPANSION ==========================
 
