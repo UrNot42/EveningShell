@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_dstr.c                                     :+:      :+:    :+:   */
+/*   free_token.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/04 17:52:37 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/13 14:25:19 by ulevallo         ###   ########.fr       */
+/*   Created: 2023/10/13 14:20:39 by ulevallo          #+#    #+#             */
+/*   Updated: 2023/10/13 14:35:54 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-// Frees a Double string (char **) safely
-void	ft_free_dstr(char **dstr)
+void	free_token(t_token *command_list)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (dstr && dstr[i])
+	while (command_list && command_list[i])
 	{
-		free(dstr[i]);
+		if (command_list[i]->content)
+			ft_free_dstr(command_list[i]->content);
 		i++;
 	}
-	free(dstr);
+	free(command_list);
 }
