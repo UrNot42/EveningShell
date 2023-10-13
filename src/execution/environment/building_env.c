@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 18:07:46 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/13 12:43:45 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/13 18:08:55 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,12 @@ char	**extend_env(char **old_env, char *new_var)
  * @param var variable we are trying to find inside said env
  * @return the index of the found variable
  */
-// TODO : FINISH
 int	get_env_var_index(char **env, char *var)
 {
 	int	i;
 	int	j;
 
-	if (!env)
+	if (!env || !var)
 		return (-1);
 	i = 0;
 	while (env[i])
@@ -102,7 +101,7 @@ int	get_env_var_index(char **env, char *var)
 		j = 0;
 		while (env[i][j] && var[j] && env[i][j] == var[j])
 			j++;
-		if (env[i][j] && env[i][j] == '=')
+		if (env[i][j] && env[i][j] == '=' && !var[i])
 			return (i);
 		i++;
 	}
@@ -132,7 +131,7 @@ char	**shorten_env(char **env, size_t index_var_to_delete)
 	while (env && env[i] && env[i + 1])
 	{
 		env[i] = env[i + 1];
-		env[i +1] = NULL;
+		env[i + 1] = NULL;
 		i++;
 	}
 	return (env);
