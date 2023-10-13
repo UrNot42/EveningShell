@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 13:53:58 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/12 19:33:15 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/13 11:24:48 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,8 @@ char	*check_one_token(t_token token)
 		{
 			index_dollar -= expand_length;
 			// get_var(token.content[i], index_dollar, expand_length);
+			// if (!var)
+				// return (NULL);
 			// var = get_var_content(NULL, NULL);
 			// if (!var)
 				// return (NULL);
