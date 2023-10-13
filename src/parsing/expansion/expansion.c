@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 13:53:58 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/13 18:03:02 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/13 21:45:31 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	expansion(t_token **token, char **env)
 	i = 0;
 	while ((*token)[i].type != -1)
 	{
-		if (expand_one_token(*token[i], env) == -1)
+		if (expand_one_token((*token)[i], env) == -1)
 		{
 			printf("FREE AND EXIT\n");
 			return ;
