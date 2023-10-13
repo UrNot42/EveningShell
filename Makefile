@@ -13,18 +13,31 @@ DEPS 				=	$(INCLUDES_DIR)minishell.h $(INCLUDES_DIR) Makefile
 RM					=	rm -f
 
 # COMMENT ?
-SRC_MINISHLIPT		=	$(addprefix minishlipt/, \
+SRC_MINISHPLIT		=	$(addprefix minishplit/, \
 						dollars.c \
-						minishlipt.c \
+						minishplit.c \
+						check_error.c \
 						double_quotes.c \
 						single_quotes.c \
 						metacharacters.c \
+						check_syntax_error.c \
+						check_quoting_error.c \
+						\
+						)
+
+# COMMENT ?
+SC_TOKENIZATION		=	$(addprefix tokenization/, \
+						command.c \
+						redir_type.c \
+						tokenization.c \
+						token_creation.c \
 						\
 						)
 
 # COMMENT ?
 SRC_PARSING			=	$(addprefix parsing/, \
-						$(SRC_MINISHLIPT) \
+						$(SRC_MINISHPLIT) \
+						$(SC_TOKENIZATION) \
 						\
 						)
 

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:06:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/11 14:11:02 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/13 13:08:24 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 void	prompt(void)
 {
 	char	*buffer;
+	char	**argv;
+	t_token	*token;
 	bool	error;
 
 	buffer = NULL;
@@ -36,7 +38,15 @@ void	prompt(void)
 		if (buffer[0] == 'q')
 			error = true;
 		add_history(buffer);
-		builtins(0, split_minishell(buffer));
+		argv = split_minishell(buffer);
+		if (!argv)
+			return ;
+		if (check_error(argv))
+			return ;
+		token = tokenization(argv);
+		if (!token)
+			return ;
+		// builtins(0, split_minishell(buffer));
 	}
 }
 /**
@@ -51,6 +61,6 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	(void)envp;
 	prompt();
-	return (0);
+     	return (0);
 }
 */

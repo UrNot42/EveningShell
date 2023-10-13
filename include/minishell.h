@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:07:20 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/11 20:51:54 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/13 13:08:18 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 // -------------------------- TEMPORARY --------------------------
 // -------------------------- DEBUG --------------------------
 
-void	debug_minishplit(char **argv);
+void	debug_token(t_token *token);
+void	debug_double_char(char **argv, char *debug_print);
 
 #endif

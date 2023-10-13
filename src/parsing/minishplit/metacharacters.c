@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 13:05:37 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/06 13:31:23 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/11 14:04:08 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ bool	is_metacharacter(char c)
  */
 size_t	wl_metacharacters(char const *s)
 {
-	if (s[0] == '|' || s[0] == ' ' || s[0] == '\t')
+	if (s[0] == ' ' || s[0] == '\t')
+		return (0);
+	if (s[0] == '|')
 		return (1);
 	if (s[0] == '<')
 	{
