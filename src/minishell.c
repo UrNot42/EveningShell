@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:06:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/13 13:11:22 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/13 15:46:07 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  *        although it is the main loop of Minishell
  *
  */
-void	prompt(void)
+void	prompt(char **envp)
 {
 	char	*buffer;
 	char	**argv;
@@ -46,22 +46,22 @@ void	prompt(void)
 		token = tokenization(argv);
 		if (!token)
 			return ;
-		expansion(&token, NULL);
-		// builtins(0, split_minishell(buffer));
+		expansion(&token, envp);
 	}
+	free(buffer);
+	ft_free_dstr(argv);
 }
 /**
  * @brief Main that is bound to change as it is mainly used to redirect
  * to change funtions
  *
  */
-/*
+
 int	main(int argc, char **argv, char **envp)
 {
 	(void)argc;
 	(void)argv;
 	(void)envp;
-	prompt();
-     	return (0);
+	prompt(envp);
+	return (0);
 }
-*/

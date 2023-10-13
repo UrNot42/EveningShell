@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 14:00:59 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/13 15:56:16 by aoberon          ###   ########.fr       */
+/*   Created: 2023/10/04 10:20:51 by aoberon           #+#    #+#             */
+/*   Updated: 2023/10/13 13:44:13 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef EXECUTION_H
+# define EXECUTION_H
 
-size_t	ft_strlen(const char *s)
-{
-	int	i;
+# include "minishell.h"
+# include "builtins.h"
+# include "environment.h"
 
-	i = 0;
-	while (s && s[i])
-		i++;
-	return (i);
-}
+#endif

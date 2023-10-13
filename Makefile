@@ -9,7 +9,7 @@ SRC_DIR 			=	src/
 OBJ_DIR 			=	.obj/
 LIB_DIR 			=	lib/
 INCLUDES_H			=	-I./$(INCLUDES_DIR) -I./$(LIB_DIR)
-DEPS 				=	$(INCLUDES_DIR)minishell.h $(INCLUDES_DIR) Makefile
+DEPS 				=	$(INCLUDES_DIR)minishell.h $(INCLUDES_DIR) Makefile $(LIB_DIR)libft/Makefile
 RM					=	rm -f
 
 # COMMENT ?
@@ -37,6 +37,8 @@ SRC_TOKENIZATION		=	$(addprefix tokenization/, \
 # COMMENT ?
 SRC_EXPANSION		=	$(addprefix expansion/, \
 						expansion.c \
+						check_for_dollar.c \
+						expand_one_token.c \
 						\
 						)
 

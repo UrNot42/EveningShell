@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 18:59:58 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/11 14:04:34 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/13 15:20:03 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ static size_t	word_length(char const *s)
 		}
 		if (is_metacharacter(s[i]))
 			break ;
-		if (s[i] == '$')
-		{
-			return (wl_dollars(s));
-		}
+		// if (s[i] == '$')
+		// {
+		// 	return (wl_dollars(s));
+		// }
 		i++;
 	}
 	return (i);
