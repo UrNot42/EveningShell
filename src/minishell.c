@@ -6,71 +6,19 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:06:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/12 14:52:04 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/13 13:11:22 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * @brief Copies the inherited env object
- * 			so that the shell can manage it's own environement
+ * @brief prompt of the shell.
+ *        WIP as it uses the highly unstable funtion readline
+ *        unstable in the sense of memory so most testing of funtions
+ *        ought to be done without using the prompt
  *
- * @param old_env
- * @return the copied environment
- */
-char	**copy_env(char **old_env)
-{
-	char	**new_env;
-	size_t	size;
-	size_t	i;
-
-	size = 0;
-	while (old_env && old_env[size])
-		size++;
-	if (size == 0)
-		return (NULL);
-	new_env = ft_calloc(size + 1, sizeof(char *));
-	if (!new_env)
-		return (NULL);
-	i = 0;
-	while (old_env[i])
-	{
-		new_env[i] = ft_strdup(old_env[i]);
-		if (!new_env[i])
-			return (ft_free_dstr(new_env), NULL);
-		i++;
-	}
-	return (new_env);
-}
-
-/**
- * @brief creates a default shell environment creating 3 default variables
- *
- * /!\ UNFINISHED
- *
- * @return returns a brand new allocated env
- */
-char	**create_default_env(void)
-{
-	char		**env;
-	const char	*def_vars[3] = {"PWD=", "SHLVL=", "_="};
-	int			i;
-
-	env = ft_calloc(3 + 1, sizeof(char *));
-	i = 0;
-	while (i < 3)
-	{
-		env[i] = ft_strdup(def_vars[i]);
-		if (!env[i])
-			return (ft_free_dstr(env), NULL);
-		i++;
-	}
-	return (env);
-}
-
-/**
- * @brief prompt of the shell. Don't know what to write here...
+ *        although it is the main loop of Minishell
  *
  */
 void	prompt(void)
@@ -102,15 +50,18 @@ void	prompt(void)
 		// builtins(0, split_minishell(buffer));
 	}
 }
-
 /**
- * @brief It a main...
+ * @brief Main that is bound to change as it is mainly used to redirect
+ * to change funtions
  *
  */
-int	main(int argc, char **argv) //, char **envp)
+/*
+int	main(int argc, char **argv, char **envp)
 {
 	(void)argc;
 	(void)argv;
+	(void)envp;
 	prompt();
      	return (0);
 }
+*/

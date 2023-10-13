@@ -48,6 +48,11 @@ SRC_PARSING			=	$(addprefix parsing/, \
 						\
 						)
 
+SRC_ENVIRONMENT		=	$(addprefix environment/, \
+						building_env.c \
+						\
+						)
+
 # COMMENT ?
 SRC_BUILTINS		=	$(addprefix builtins/, \
 						cd.c \
@@ -61,7 +66,7 @@ SRC_BUILTINS		=	$(addprefix builtins/, \
 # COMMENT ?
 SRC_EXECUTION		=	$(addprefix execution/, \
 						$(SRC_BUILTINS) \
-						\
+						$(SRC_ENVIRONMENT) \
 						)
 
 # COMMENT ?
