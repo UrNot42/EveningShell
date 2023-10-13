@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:20:51 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/13 20:58:12 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/13 21:00:14 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ int		buitlins_pwd(char **argv);
 
 int		unset(char **env, char **args);
 int		ft_export(char **env, char **args);
-int		env(char **env);
+void	env(char **env);
 
 #endif
