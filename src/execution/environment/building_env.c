@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   building_env.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 18:07:46 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/13 20:14:09 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/16 13:25:59 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	get_env_var_index(char **env, char *var)
 		j = 0;
 		while (env[i][j] && var[j] && env[i][j] == var[j])
 			j++;
-		if (env[i][j] && env[i][j] == '=' && !var[i])
+		if (env[i][j] && env[i][j] == '=' && !var[j])
 			return (i);
 		i++;
 	}
