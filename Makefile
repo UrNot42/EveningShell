@@ -12,7 +12,7 @@ INCLUDES_H			=	-I./$(INCLUDES_DIR) -I./$(LIB_DIR)
 DEPS 				=	$(INCLUDES_DIR)minishell.h $(INCLUDES_DIR) Makefile $(LIB_DIR)libft/Makefile
 RM					=	rm -f
 
-# COMMENT ?
+# FIRST STEP OF THE SHELL OPERATIONS BREAKING THE INPUT IN WORDS AND OPERATORS
 SRC_MINISHPLIT		=	$(addprefix minishplit/, \
 						dollars.c \
 						minishplit.c \
@@ -25,7 +25,7 @@ SRC_MINISHPLIT		=	$(addprefix minishplit/, \
 						\
 						)
 
-# COMMENT ?
+# SECOND TO THIRD STEP OF THE SHELL OPERATIONS CREATES TOKENS WITH SPECIFICS
 SRC_TOKENIZATION		=	$(addprefix tokenization/, \
 						command.c \
 						redir_type.c \
@@ -34,7 +34,7 @@ SRC_TOKENIZATION		=	$(addprefix tokenization/, \
 						\
 						)
 
-# COMMENT ?
+# FOURTH STEP  OF THE SHELL OPERATIONS REPLACING THE VARIABLES WITH THEIR VALUE
 SRC_EXPANSION		=	$(addprefix expansion/, \
 						expansion.c \
 						check_for_dollar.c \
@@ -42,7 +42,7 @@ SRC_EXPANSION		=	$(addprefix expansion/, \
 						\
 						)
 
-# COMMENT ?
+# GENERAL WRAPPING OF THE PARSING PROCESS - WORKS ON THE INPUT DIRECTLY
 SRC_PARSING			=	$(addprefix parsing/, \
 						$(SRC_MINISHPLIT) \
 						$(SRC_TOKENIZATION) \
@@ -50,12 +50,13 @@ SRC_PARSING			=	$(addprefix parsing/, \
 						\
 						)
 
+# ENVIRONMENT FUNCTIONS - CREATING AN ENVIROMENT AND FUNCTIONS TO WORK WITH IT
 SRC_ENVIRONMENT		=	$(addprefix environment/, \
 						building_env.c \
 						\
 						)
 
-# COMMENT ?
+# BUILT-INS OF THE SHELL THAT SHALL BE USED DIRECTLY INSTEAD OF THE BINARY FILES
 SRC_BUILTINS		=	$(addprefix builtins/, \
 						cd.c \
 						pwd.c \
@@ -65,14 +66,14 @@ SRC_BUILTINS		=	$(addprefix builtins/, \
 						\
 						)
 
-# COMMENT ?
+# PROCESSING COMMANDS AND DIRECTING INPUTS AND OUTPUTS
 SRC_EXECUTION		=	$(addprefix execution/, \
 						execution.c \
 						$(SRC_BUILTINS) \
 						$(SRC_ENVIRONMENT) \
 						)
 
-# COMMENT ?
+# MAIN MANAGER FILES
 MINISHELL_SRC		=  $(addprefix $(SRC_DIR), \
 						minishell.c \
 						prompt.c \
