@@ -6,16 +6,18 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 13:16:01 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/12 14:58:46 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/24 18:59:40 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	debug_double_char(char **argv, char *debug_print)
+void	debug_double_char(char **argv, char *debug_print, int print_name)
 {
 	int	i;
 
+	if (print_name)
+		printf("\n-- %s --\n", debug_print);
 	i = 0;
 	while (argv[i])
 	{
@@ -24,10 +26,11 @@ void	debug_double_char(char **argv, char *debug_print)
 	}
 }
 
-void	debug_token(t_token *token)
+void	debug_token(t_token *token, char *debug_print)
 {
 	int	i;
 
+	printf("\n-- %s --\n", debug_print);
 	i = 0;
 	while (token[i].type != -1)
 	{
@@ -43,7 +46,7 @@ void	debug_token(t_token *token)
 			printf("token[%d] type : APPEND\n", i);
 		if (token[i].type == 5)
 			printf("token[%d] type : PIPE\n", i);
-		debug_double_char(token[i].content, "	content");
+		debug_double_char(token[i].content, "	content", 0);
 		++i;
 	}
 }

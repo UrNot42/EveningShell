@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:07:20 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/22 17:06:09 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/24 18:59:09 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 // -------------------------- TEMPORARY --------------------------
 // -------------------------- DEBUG --------------------------
 
-void	debug_token(t_token *token);
-void	debug_double_char(char **argv, char *debug_print);
+void	debug_token(t_token *token, char *debug_print);
+void	debug_double_char(char **argv, char *debug_print, int print_name);
 
 #endif
