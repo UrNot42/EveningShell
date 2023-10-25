@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:05:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/24 18:59:17 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/25 13:37:00 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	prompt(char **envp)
 			error = true;
 		add_history(buffer);
 		tokens = parse_line(buffer, envp);
+		if (tokens[0].type == HERE_DOC)
+			heredoc(tokens[0].content[1]);
 		// if (tokens)
 			// execute(tokens, envp);
 	}

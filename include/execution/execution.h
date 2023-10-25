@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:20:51 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/24 18:50:47 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/25 13:32:01 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "minishell.h"
 # include "builtins.h"
 # include "environment.h"
+# include "here_doc.h"
 
 // ========================== PROMPT ==========================
 
