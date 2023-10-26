@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:07:20 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/24 18:59:09 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/26 16:41:31 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 // -------------------------- TEMPORARY --------------------------
 // -------------------------- DEBUG --------------------------
 
+void	debug_heredoc(int fd);
 void	debug_token(t_token *token, char *debug_print);
 void	debug_double_char(char **argv, char *debug_print, int print_name);
 

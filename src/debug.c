@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 13:16:01 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/24 18:59:40 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/26 17:10:14 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,21 @@ void	debug_token(t_token *token, char *debug_print)
 			printf("token[%d] type : PIPE\n", i);
 		debug_double_char(token[i].content, "	content", 0);
 		++i;
+	}
+}
+
+void	debug_heredoc(int fd)
+{
+	ssize_t	read_size;
+	char	buffer[11];
+
+	read_size = read(fd, &buffer, 10);
+	buffer[read_size] = '\0';
+	printf("-- HEREDOC - FD [%d] -- \n", fd);
+	while (read_size && ft_strchr(buffer, '\n'))
+	{
+		printf("%s", buffer);
+		read_size = read(fd, &buffer, 10);
+		buffer[read_size] = '\0';
 	}
 }

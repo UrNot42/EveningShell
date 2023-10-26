@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:05:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/25 13:37:00 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/26 16:52:22 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	prompt(char **envp)
 	char	*buffer;
 	bool	error;
 	t_token	*tokens;
+	int		fd_heredoc;
 
 	buffer = NULL;
 	error = false;
@@ -58,8 +59,14 @@ void	prompt(char **envp)
 			error = true;
 		add_history(buffer);
 		tokens = parse_line(buffer, envp);
+		if (!tokens)
+			break ;
 		if (tokens[0].type == HERE_DOC)
-			heredoc(tokens[0].content[1]);
+		{
+			fd_heredoc = heredoc(tokens[0].content[1]);
+			debug_heredoc(fd_heredoc);
+			close(fd_heredoc);
+		}
 		// if (tokens)
 			// execute(tokens, envp);
 	}
