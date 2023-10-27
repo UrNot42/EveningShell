@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 13:28:17 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/25 13:29:17 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/27 19:06:05 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@
 
 // -------------------------- HERE_DOC --------------------------
 
-int	heredoc(char *end_word);
+int		heredoc(char *keyword);
+
+// -------------------------- KEYWORD_MANAGEMENT --------------------------
+
+char	*get_keyword(char *keyword);
+
+// -------------------------- OPEN_HEREDOC_FILE --------------------------
+
+int		open_heredoc(int *fd_read, int *fd_write, char *filename);
 
 #endif

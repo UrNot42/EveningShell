@@ -52,6 +52,8 @@ SRC_PARSING			=	$(addprefix parsing/, \
 
 SRC_HEREDOC			=	$(addprefix heredocs/, \
 						heredoc.c \
+						open_heredoc_file.c \
+						keyword_management.c \
 						\
 						)
 
