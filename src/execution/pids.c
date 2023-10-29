@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   pids.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/03 17:06:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/27 17:42:03 by ulevallo         ###   ########.fr       */
+/*   Created: 2023/10/28 15:59:53 by ulevallo          #+#    #+#             */
+/*   Updated: 2023/10/28 23:01:57 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * @brief Main that is bound to change as it is mainly used to redirect
- * to change funtions
+ * @brief uses a malloc'ed pid array and waits for every program
  *
+ * @param pids
+ * @return last error code
  */
-
-int	main(int argc, char **argv, char **envp)
+int	wait_pids(int *pids)
 {
-	if (argc == 1)
-		start_interactive(envp);
-	else
-		return (run_single_cmd(argc - 1, &argv[1], envp));
+	int	i;
+	int	status;
+
+	i = 0;
+	while (pids[i] != -1)
+	{
+		waitpid(pids[i], &status, 0);
+		i++;
+	}
+	if (WIFEXITED(status))
+		return (free(pids), WEXITSTATUS(status));
+	free(pids);
 	return (0);
 }

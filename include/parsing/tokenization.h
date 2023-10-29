@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenization.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:41:04 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/13 13:44:04 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/28 15:55:51 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,5 @@ t_token	create_token(char **argv, int type, int size);
 // -------------------------- TOKENIZATION --------------------------
 
 t_token	*tokenization(char **argv);
-
 
 #endif

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/04 10:20:51 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/22 17:05:05 by ulevallo         ###   ########.fr       */
+/*   Created: 2023/10/04 10:20:51 by ulevallo          #+#    #+#             */
+/*   Updated: 2023/10/28 23:05:24 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,23 @@
 # include "minishell.h"
 # include "builtins.h"
 # include "environment.h"
+# include "exec_struct.h"
+# include "files.h"
 
 // ========================== PROMPT ==========================
 
 void	prompt(char **envp);
 t_token	*parse_line(char *line);
 
+// ========================= INIT ========================
+
+int		fill_cmds(t_token *token, t_cmd *cmd, t_file *file);
+int		set_execute_struct(t_token *token, t_exec *ex);
+size_t	get_token_type_size(t_token *token, bool is_cmd);
+
 // ========================= EXECUTION ========================
 
 int		execute(t_token *tokens, char **env);
-
-typedef struct s_pipes	t_pipes;
-
-struct s_pipes
-{
-	int	pids[1024];
-	int	s[2];
-	int	prev;
-};
+int		wait_pids(int *pids);
 
 #endif

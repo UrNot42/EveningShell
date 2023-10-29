@@ -53,6 +53,7 @@ SRC_PARSING			=	$(addprefix parsing/, \
 # ENVIRONMENT FUNCTIONS - CREATING AN ENVIROMENT AND FUNCTIONS TO WORK WITH IT
 SRC_ENVIRONMENT		=	$(addprefix environment/, \
 						building_env.c \
+						default_env.c \
 						\
 						)
 
@@ -68,7 +69,16 @@ SRC_BUILTINS		=	$(addprefix builtins/, \
 
 # PROCESSING COMMANDS AND DIRECTING INPUTS AND OUTPUTS
 SRC_EXECUTION		=	$(addprefix execution/, \
+						pids.c \
+						        \
+								 \
+								  \
+								   \
 						execution.c \
+						             \
+						init_struct.c \
+						init_command.c \
+						file_handling.c \
 						$(SRC_BUILTINS) \
 						$(SRC_ENVIRONMENT) \
 						)
@@ -77,6 +87,7 @@ SRC_EXECUTION		=	$(addprefix execution/, \
 MINISHELL_SRC		=  $(addprefix $(SRC_DIR), \
 						minishell.c \
 						prompt.c \
+						running.c \
 						\
 						$(SRC_PARSING) \
 						$(SRC_EXECUTION) \

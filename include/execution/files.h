@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   files.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/03 17:06:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/27 17:42:03 by ulevallo         ###   ########.fr       */
+/*   Created: 2023/10/28 15:55:26 by ulevallo          #+#    #+#             */
+/*   Updated: 2023/10/28 22:38:19 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef FILES_H
+# define FILES_H
 
-/**
- * @brief Main that is bound to change as it is mainly used to redirect
- * to change funtions
- *
- */
+# include "execution.h"
 
-int	main(int argc, char **argv, char **envp)
-{
-	if (argc == 1)
-		start_interactive(envp);
-	else
-		return (run_single_cmd(argc - 1, &argv[1], envp));
-	return (0);
-}
+// ========================== FILES_INIT ==========================
+
+int		fill_file(t_token *token, t_file *file, int max_file);
+int		open_files(t_file *file);
+void	close_files(t_file *file, int to);
+
+#endif

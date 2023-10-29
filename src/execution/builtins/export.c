@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:19:25 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/13 20:54:33 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/28 20:32:51 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static bool	check_env_var_naming(char *name)
 	return (true);
 }
 
+// TODO CHECK IF VAR ALR EXISTS AND MODIFY IT
 /**
  * @brief export command from shell
  *         using a custom environment
