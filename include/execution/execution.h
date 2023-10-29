@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:20:51 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/28 23:05:24 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/29 14:07:03 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@
 # include "environment.h"
 # include "exec_struct.h"
 # include "files.h"
+# include "here_doc.h"
 
 // ========================== PROMPT ==========================
 
 void	prompt(char **envp);
-t_token	*parse_line(char *line);
+// t_token	*parse_line(char *line);
 
 // ========================= INIT ========================
 

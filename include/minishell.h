@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:07:20 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/27 17:41:11 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/29 14:07:27 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int		run_single_cmd(int argc, char **argv, char **envp);
 // -------------------------- TEMPORARY -------------------------- //
 // ---------------------------- DEBUG ---------------------------- //
 
-void	debug_token(t_token *token);
-void	debug_double_char(char **argv, char *debug_print);
+void	debug_heredoc(int fd);
+void	debug_token(t_token *token, char *debug_print);
+void	debug_double_char(char **argv, char *debug_print, int print_name);
 
 #endif

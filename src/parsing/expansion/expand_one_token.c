@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 17:53:55 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/13 21:45:38 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/24 18:54:41 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ int	expand_one_token(t_token token, char **env)
 			var = get_env_var_content(env, index_env);
 			token.content[i] = expand(token.content[i],
 					index_dollar - 1, expand_length, var);
-			printf("new token.content : %s\n", token.content[i]);
+			// printf("new token.content : %s\n", token.content[i]);
 			if (!token.content[i])
 				return (-1);
 		}

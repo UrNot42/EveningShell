@@ -50,6 +50,13 @@ SRC_PARSING			=	$(addprefix parsing/, \
 						\
 						)
 
+SRC_HEREDOC			=	$(addprefix heredocs/, \
+						heredoc.c \
+						open_heredoc_file.c \
+						keyword_management.c \
+						\
+						)
+
 # ENVIRONMENT FUNCTIONS - CREATING AN ENVIROMENT AND FUNCTIONS TO WORK WITH IT
 SRC_ENVIRONMENT		=	$(addprefix environment/, \
 						building_env.c \
@@ -81,6 +88,8 @@ SRC_EXECUTION		=	$(addprefix execution/, \
 						file_handling.c \
 						$(SRC_BUILTINS) \
 						$(SRC_ENVIRONMENT) \
+						$(SRC_HEREDOC) \
+						\
 						)
 
 # MAIN MANAGER FILES
