@@ -99,6 +99,7 @@ MINISHELL_SRC		=  $(addprefix $(SRC_DIR), \
 						minishell.c \
 						prompt.c \
 						running.c \
+						error_display.c \
 						\
 						$(SRC_PARSING) \
 						$(SRC_EXECUTION) \

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 17:53:55 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/30 14:31:16 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/30 22:22:42 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ static char	*get_env_var_content(char **env, int index)
 	char	*var_content;
 
 	i = 0;
-	if (index == -1)
-		return (NULL);
 	while (env[index][i] != '=')
 		i++;
 	i++;
@@ -97,7 +95,7 @@ char	*expand_var_env(char *src, size_t index_dollar,
 	size = (ft_strlen(src) - expand_length) + ft_strlen(var_content);
 	new_str = ft_calloc(size + 1, sizeof(char));
 	if (!new_str)
-		return (NULL);
+		return (free(src), free(var_content), NULL);
 	i = 0;
 	j = 0;
 	n = 0;
@@ -105,9 +103,12 @@ char	*expand_var_env(char *src, size_t index_dollar,
 	{
 		if (i == index_dollar)
 		{
-			while (var_content && var_content[n])
-				new_str[i++] = var_content[n++];
 			j += expand_length + 1;
+			if (var_content)
+				while (var_content && var_content[n])
+					new_str[i++] = var_content[n++];
+			else
+				new_str[i++] = src[j++];
 		}
 		else
 			new_str[i++] = src[j++];
@@ -134,17 +135,26 @@ int	expand_one_token(t_token token, char **env)
 	while (token.content[i])
 	{
 		expand_length = check_for_dollar(token.content[i], &index_dollar);
-		if (expand_length)
+		while (expand_length)
 		{
 			index_dollar -= expand_length;
 			var = get_var_name(token.content[i], index_dollar, expand_length);
+			if (!var)
+				return (-1);
 			index_env = get_env_var_index(env, var);
 			free(var);
-			var = get_env_var_content(env, index_env);
+			var = NULL;
+			if (index_env != -1)
+			{
+				var = get_env_var_content(env, index_env);
+				if (!var)
+					return (-1);
+			}
 			token.content[i] = expand_var_env(token.content[i],
 					index_dollar - 1, expand_length, var);
 			if (!token.content[i])
 				return (-1);
+			expand_length = check_for_dollar(token.content[i], &index_dollar);
 		}
 		i++;
 	}

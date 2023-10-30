@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 13:48:55 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/30 14:31:30 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/30 20:51:14 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,7 @@ char	*remove_quotes(char *word)
 	length = get_size_word(word);
 	new_word = ft_calloc(length + 1, sizeof(char));
 	if (!new_word)
-	{
-		printf("Error of malloc.\n");
 		return (NULL);
-	}
 	copy_word(&new_word, word, length);
 	return (new_word);
 }

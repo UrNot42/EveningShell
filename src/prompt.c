@@ -6,13 +6,11 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:05:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/30 18:16:09 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/30 22:33:31 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// Malloc Failed
 
 t_token	*parse_line(char *line, char **envp)
 {
@@ -21,7 +19,7 @@ t_token	*parse_line(char *line, char **envp)
 
 	lexed_line = split_minishell(line);
 	if (!lexed_line)
-		exit(EXIT_FAILURE);
+		error_failed_malloc();
 	// debug_double_char(lexed_line, "Minishplit", 1);
 	if (check_error(lexed_line))
 		return (ft_free_dstr(lexed_line), NULL);

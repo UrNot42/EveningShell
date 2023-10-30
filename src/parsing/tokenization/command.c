@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:00:52 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/30 13:25:49 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/30 20:33:43 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	tokenization_command(t_token *token, size_t *i, size_t *n, char **argv)
 		{
 			token[*n + ++n_bis]
 				= create_token(&argv[*i], get_redir_flag(argv[*i]), 2);
-			if (token[*n + n_bis].type == -1)
+			if (!token[*n + n_bis].content || token[*n + n_bis].type == -1)
 				return (0);
 			*i += 2;
 		}
