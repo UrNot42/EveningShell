@@ -40,6 +40,7 @@ SRC_EXPAND			=	$(addprefix expand/, \
 						expand.c \
 						check_for_dollar.c \
 						expand_one_token.c \
+						quotes_management.c \
 						\
 						)
 
@@ -48,14 +49,12 @@ SRC_PARSING			=	$(addprefix parsing/, \
 						$(SRC_MINISHPLIT) \
 						$(SRC_TOKENIZATION) \
 						$(SRC_EXPAND) \
-						quotes_management.c \
 						\
 						)
 
 SRC_HEREDOC			=	$(addprefix heredocs/, \
 						heredoc.c \
 						open_heredoc_file.c \
-						keyword_management.c \
 						\
 						)
 

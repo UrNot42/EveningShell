@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_token.c                                       :+:      :+:    :+:   */
+/*   error_display.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/13 14:20:39 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/30 18:20:09 by aoberon          ###   ########.fr       */
+/*   Created: 2023/10/30 18:16:47 by aoberon           #+#    #+#             */
+/*   Updated: 2023/10/30 18:17:54 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	free_token(t_token *command_list)
+void	error_failed_malloc(void)
 {
-	size_t	i;
-
-	i = 0;
-	if (!command_list)
-		return ;
-	while (command_list[i].type != -1)
-	{
-		if (command_list[i].content)
-		{
-			ft_free_dstr(command_list[i].content);
-			command_list[i].content = NULL;
-		}
-		i++;
-	}
-	free(command_list);
+	printf("minishell: malloc failed\n");
+	exit(1);
 }
