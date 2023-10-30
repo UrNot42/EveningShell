@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expansion.h                                        :+:      :+:    :+:   */
+/*   expand.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:41:36 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/13 21:27:07 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:28:48 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXPANSION_H
-# define EXPANSION_H
+#ifndef EXPAND_H
+# define EXPAND_H
 
 # include "minishell.h"
 
-// ========================== EXPANSION ==========================
+// ========================== EXPAND ==========================
 
 // -------------------------- CHECK_FOR_DOLLAR --------------------------
 
@@ -25,8 +25,12 @@ size_t	check_for_dollar(char const *str, size_t *index_dollar);
 
 int		expand_one_token(t_token token, char **env);
 
-// -------------------------- EXPANSION --------------------------
+// -------------------------- EXPAND --------------------------
 
-void	expansion(t_token **token, char **env);
+void	expand(t_token **token, char **env);
+
+// -------------------------- QUOTES_MANAGEMENT --------------------------
+
+char	*remove_quotes(char *word);
 
 #endif

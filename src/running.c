@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   running.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:28:14 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/29 17:49:59 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:27:39 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	run_single_cmd(int arg_count, char **args, char **env)
 		return (0);
 	line = create_line_from_args(args, arg_count);
 	tokens = parse_line(line, env);
-	expansion(&tokens, env);
+	expand(&tokens, env);
 	if (tokens)
 		return (execute(tokens, env));
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:05:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/29 19:54:32 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:27:24 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ t_token	*parse_line(char *line, char **envp)
 	token = tokenization(parsed_lines);
 	if (!token)
 		return (ft_free_dstr(parsed_lines), NULL);
-	// debug_token(token, "Tokenization");
-	expansion(&token, envp);
-	// debug_token(token, "Expand");
+	debug_token(token, "Tokenization");
+	expand(&token, envp);
+	debug_token(token, "Expand");
 	return (token);
 }
 

@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keyword_management.c                               :+:      :+:    :+:   */
+/*   quotes_management.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/27 18:29:24 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/27 18:48:49 by aoberon          ###   ########.fr       */
+/*   Created: 2023/10/30 13:48:55 by aoberon           #+#    #+#             */
+/*   Updated: 2023/10/30 14:31:30 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static size_t	get_size_keyword(char *keyword)
+static size_t	get_size_word(char *word)
 {
 	size_t	i;
 	size_t	length;
 
 	i = -1;
 	length = 0;
-	while ((keyword[++i]))
+	while ((word[++i]))
 	{
-		if (keyword[i] == '\'')
+		if (word[i] == '\'')
 		{
-			while (keyword[++i] != '\'')
+			while (word[++i] != '\'')
 				++length;
 		}
-		else if (keyword[i] == '"')
+		else if (word[i] == '"')
 		{
-			while (keyword[++i] != '"')
+			while (word[++i] != '"')
 				++length;
 		}
 		else
@@ -37,7 +37,7 @@ static size_t	get_size_keyword(char *keyword)
 	return (length);
 }
 
-static void	copy_keyword(char **new_keyword, char *keyword, size_t length)
+static void	copy_word(char **new_word, char *word, size_t length)
 {
 	size_t	i;
 	size_t	j;
@@ -46,37 +46,37 @@ static void	copy_keyword(char **new_keyword, char *keyword, size_t length)
 	j = 0;
 	while (j <= length)
 	{
-		if (keyword[i] == '\'')
+		if (word[i] == '\'')
 		{
 			++i;
-			while (keyword[i] != '\'')
-				(*new_keyword)[j++] = keyword[i++];
+			while (word[i] != '\'')
+				(*new_word)[j++] = word[i++];
 			++i;
 		}
-		else if (keyword[i] == '"')
+		else if (word[i] == '"')
 		{
 			++i;
-			while (keyword[i] != '"')
-				(*new_keyword)[j++] = keyword[i++];
+			while (word[i] != '"')
+				(*new_word)[j++] = word[i++];
 			++i;
 		}
 		else
-			(*new_keyword)[j++] = keyword[i++];
+			(*new_word)[j++] = word[i++];
 	}
 }
 
-char	*get_keyword(char *keyword)
+char	*remove_quotes(char *word)
 {
 	size_t	length;
-	char	*new_keyword;
+	char	*new_word;
 
-	length = get_size_keyword(keyword);
-	new_keyword = ft_calloc(length + 1, sizeof(char));
-	if (!new_keyword)
+	length = get_size_word(word);
+	new_word = ft_calloc(length + 1, sizeof(char));
+	if (!new_word)
 	{
 		printf("Error of malloc.\n");
 		return (NULL);
 	}
-	copy_keyword(&new_keyword, keyword, length);
-	return (new_keyword);
+	copy_word(&new_word, word, length);
+	return (new_word);
 }

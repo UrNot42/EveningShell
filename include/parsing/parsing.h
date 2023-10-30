@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:20:31 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/13 13:42:05 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/30 14:28:28 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 # include "minishplit.h"
 # include "tokenization.h"
-# include "expansion.h"
+# include "expand.h"
 
 #endif

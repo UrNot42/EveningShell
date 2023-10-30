@@ -36,8 +36,8 @@ SRC_TOKENIZATION		=	$(addprefix tokenization/, \
 						)
 
 # FOURTH STEP  OF THE SHELL OPERATIONS REPLACING THE VARIABLES WITH THEIR VALUE
-SRC_EXPANSION		=	$(addprefix expansion/, \
-						expansion.c \
+SRC_EXPAND			=	$(addprefix expand/, \
+						expand.c \
 						check_for_dollar.c \
 						expand_one_token.c \
 						\
@@ -47,7 +47,8 @@ SRC_EXPANSION		=	$(addprefix expansion/, \
 SRC_PARSING			=	$(addprefix parsing/, \
 						$(SRC_MINISHPLIT) \
 						$(SRC_TOKENIZATION) \
-						$(SRC_EXPANSION) \
+						$(SRC_EXPAND) \
+						quotes_management.c \
 						\
 						)
 

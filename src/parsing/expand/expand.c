@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expansion.c                                        :+:      :+:    :+:   */
+/*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 13:53:58 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/25 13:12:09 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/30 14:27:06 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,15 @@
 /**
  * @brief Expands one by one each content's token, token by token
  * Expand means to replace the environment variables (starting with $) by their
- * content (contained in the char ** env)
+ * content (contained in the char ** env) And remove the quotes
  * 
  * @param token token containing the content to expand
  * @param env char ** of the environment variables
  */
-void	expansion(t_token **token, char **env)
+void	expand(t_token **token, char **env)
 {
 	size_t	i;
+	size_t	j;
 
 	(void)env;
 	i = 0;
@@ -35,6 +36,14 @@ void	expansion(t_token **token, char **env)
 				printf("FREE AND EXIT\n");
 				return ;
 			}
+		}
+		j = 0;
+		while ((*token)[i].content[j])
+		{
+			(*token)[i].content[j] = remove_quotes((*token)[i].content[j]);
+			if (!(*token)[i].content[j])
+				printf("FREE AND EXIT\n");
+			++j;
 		}
 		i++;
 	}
