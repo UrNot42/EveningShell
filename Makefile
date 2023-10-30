@@ -31,6 +31,7 @@ SRC_TOKENIZATION		=	$(addprefix tokenization/, \
 						redir_type.c \
 						tokenization.c \
 						token_creation.c \
+						free_token.c \
 						\
 						)
 
@@ -77,12 +78,12 @@ SRC_BUILTINS		=	$(addprefix builtins/, \
 # PROCESSING COMMANDS AND DIRECTING INPUTS AND OUTPUTS
 SRC_EXECUTION		=	$(addprefix execution/, \
 						pids.c \
-						        \
+						pipes.c \
 								 \
 								  \
-								   \
+						cmd_exec.c \
 						execution.c \
-						             \
+						exec_debug.c \
 						init_struct.c \
 						init_command.c \
 						file_handling.c \

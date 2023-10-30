@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:41:04 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/28 15:55:51 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/29 19:25:03 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,7 @@ t_token	create_token(char **argv, int type, int size);
 // -------------------------- TOKENIZATION --------------------------
 
 t_token	*tokenization(char **argv);
+
+void	free_token(t_token *command_list);
 
 #endif

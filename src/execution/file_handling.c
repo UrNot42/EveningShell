@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 21:06:23 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/28 22:59:59 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/30 09:16:50 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,10 @@ void	close_files(t_file *file, int to)
 	i = 0;
 	while (i < to)
 	{
-		if (file[i].fd != -1)
+		if (file[i].exists && file[i].fd != -1)
+		{
 			close(file[i].fd);
+		}
 		i++;
 	}
 }

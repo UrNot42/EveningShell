@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:28:14 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/28 22:42:14 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/29 17:49:59 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	run_single_cmd(int arg_count, char **args, char **env)
 	if (!args)
 		return (0);
 	line = create_line_from_args(args, arg_count);
-	tokens = parse_line(line);
+	tokens = parse_line(line, env);
 	expansion(&tokens, env);
 	if (tokens)
 		return (execute(tokens, env));

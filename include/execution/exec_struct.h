@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 16:14:47 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/28 22:32:06 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/29 20:50:13 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ struct s_exec
 	t_cmd	*cmd;
 	t_file	*files;
 	t_token	*allocated_content;
+	char	**env;
 };
 
 #endif

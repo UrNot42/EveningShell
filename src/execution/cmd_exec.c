@@ -1,43 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_exec.c                                     :+:      :+:    :+:   */
+/*   cmd_exec.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 21:47:21 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/28 21:58:44 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/30 09:18:42 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	open_fd(t_pipex *pipex, int i)
+int	open_fd(t_cmd *cmd, t_pipe pi)
 {
-	int	fd;
-
-	fd = -1;
-	if (i == 0)
+	if (cmd->in != NULL && cmd->in->exists)
 	{
-		fd = open(pipex->infile, O_RDONLY);
-		if (fd == -1)
-			return (perror(pipex->infile), 1);
-		dup2(fd, STDIN_FILENO);
-		close(fd);
+		if (cmd->in->fd == -1)
+			return (perror(cmd->in->name), 1);
+		dup2(cmd->in->fd, STDIN_FILENO);
+		close(cmd->in->fd);
 	}
 	else
-		dup2(pipex->prev_pipe, STDIN_FILENO);
-	if (i == pipex->size - 1)
+		dup2(pi.pe_prev, STDIN_FILENO);
+	if (cmd->in != NULL && cmd->out->exists)
 	{
-		fd = open(pipex->outfile, O_TRUNC | O_CREAT | O_WRONLY, 0666);
-		if (fd == -1)
-			return (perror(pipex->outfile), 1);
-		dup2(fd, STDOUT_FILENO);
-		close(fd);
+		if (cmd->out->fd == -1)
+			return (perror(cmd->out->name), 1);
+		dup2(cmd->out->fd, STDOUT_FILENO);
+		close(cmd->out->fd);
 	}
 	else
-		dup2(pipex->zelda[1], STDOUT_FILENO);
+		dup2(pi.pe[1], STDOUT_FILENO);
 	return (0);
+}
+/*
+char	*build_cmd(char *path, char *cmd)
+{
+	char	*full_cmd;
+	char	*temp;
+
+	temp = ft_strjoin(path, "/");
+	if (!temp)
+		return (NULL);
+	full_cmd = ft_strjoin(temp, cmd);
+	free(temp);
+	if (!full_cmd)
+		return (NULL);
+	return (full_cmd);
 }
 
 char	*find_path(char **possible_path, char *cmd)
@@ -69,21 +79,6 @@ char	*find_path(char **possible_path, char *cmd)
 		write(2, "' not found\n", 12), NULL);
 }
 
-char	*build_cmd(char *path, char *cmd)
-{
-	char	*full_cmd;
-	char	*temp;
-
-	temp = ft_strjoin(path, "/");
-	if (!temp)
-		return (NULL);
-	full_cmd = ft_strjoin(temp, cmd);
-	free(temp);
-	if (!full_cmd)
-		return (NULL);
-	return (full_cmd);
-}
-
 char	**build_argv(t_pipex *pipex)
 {
 	int		nb_word;
@@ -109,30 +104,25 @@ char	**build_argv(t_pipex *pipex)
 	free_dstr(pipex->cmd.cmd);
 	pipex->cmd.cmd = argv;
 	return (argv);
-}
+}*/
 
 void	child_process(t_exec *exec, int i)
 {
-	if (open_fd(pipex, i))
+	printf("Inside the child\n");
+	if (open_fd(&exec->cmd[i], exec->pi))
 	{
-		(free_dstr(pipex->path), close(pipex->prev_pipe),
-			close(pipex->zelda[0]), close(pipex->zelda[1]));
+		close_files(exec->files, exec->file_size);
+		free_token(exec->allocated_content);
 		exit(127);
 	}
-	if (pipex->prev_pipe != -1)
-		close(pipex->prev_pipe);
-	close(pipex->zelda[0]);
-	close(pipex->zelda[1]);
-	pipex->cmd.cmd = ft_split(cmd, ' ');
-	if (!pipex->cmd.cmd)
-		exit(1);
-	pipex->cmd.path = find_path(pipex->path, pipex->cmd.cmd[0]);
-	free_dstr(pipex->path);
-	if (!pipex->cmd.path)
-		(free_dstr(pipex->cmd.cmd), exit(127));
-	if (!build_argv(pipex))
-		(free_dstr(pipex->cmd.cmd), exit(1));
-	execve(pipex->cmd.path, pipex->cmd.cmd, pipex->env);
-	(free(pipex->cmd.path), free_dstr(pipex->cmd.cmd), perror("execve"));
+	close_files(exec->files, exec->file_size);
+	close_pipe(&exec->pi, 0b111);
+	execve(exec->cmd[i].cmd, exec->cmd[i].args, exec->env);
 	exit(1);
 }
+
+/*
+-> exec
+	(tokens) (env)
+	-> child
+*/

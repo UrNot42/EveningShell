@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 21:05:52 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/29 13:28:19 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/29 20:17:18 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,9 @@ size_t	get_token_type_size(t_token *token, bool is_cmd)
 	return (size);
 }
 
-int	set_execute_struct(t_token *token, t_exec *ex)
+int	set_execute_struct(t_token *token, t_exec *ex, char **env)
 {
+	ex->env = env;
 	if (!token)
 		return (1);
 	ex->allocated_content = token;
