@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:31:47 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/30 09:07:09 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/30 10:53:00 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,12 @@ int	execute(t_token *token_list, char **env)
 		exec.pi.ds[i] = fork();
 		if (exec.pi.ds[i] == 0)
 			child_process(&exec, i);
-		if (exec.pi.pe_prev != -1)
-			close(exec.pi.pe_prev);
+		close_pipe(&exec.pi, 0b100);
 		exec.pi.pe_prev = exec.pi.pe[0];
-			close(exec.pi.pe[1]);
+		close_pipe(&exec.pi, 0b010);
 		i++;
 	}
-	(close(exec.pi.pe[0]), close(exec.pi.pe_prev));
+	close_pipe(&exec.pi, 0b101);
 	free_token(token_list);
 	exec.pi.ds[i] = -1;
 	return (wait_pids(exec.pi.ds));
@@ -51,7 +50,6 @@ int	execute(t_token *token_list, char **env)
 
 	if (set_execute_struct(token_list, &exec, env))
 		return (1);
-	// print_exec_sruct(&exec);
 	open_files(exec.files);
 	i = 0;
 	while (i < exec.cmd_size)
@@ -72,4 +70,5 @@ int	execute(t_token *token_list, char **env)
 	free_token(token_list);
 	exec.pi.ds[i] = -1;
 	return (wait_pids(exec.pi.ds));
-}*/
+}
+*/

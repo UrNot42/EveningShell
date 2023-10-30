@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 13:27:54 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/29 20:50:29 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/30 09:59:25 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	fill_cmds(t_token *token, t_cmd *cmd, t_file *file)
 	{
 		if (token->type == CMD)
 			cmd[c_index] = (t_cmd){token->content[0],
-				&token->content[1], NULL, NULL};
+				&token->content[0], NULL, NULL};
 		if (token->type == REDIR_IN || token->type == HERE_DOC)
 			cmd[c_index].in = file++;
 		if (token->type == REDIR_OUT || token->type == APPEND)

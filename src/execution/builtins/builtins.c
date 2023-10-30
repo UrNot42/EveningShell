@@ -3,21 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 11:36:39 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/05 19:24:52 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/30 10:18:16 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+bool	is_builtin(char *cmd)
+{
+	if (ft_strcmp(cmd, "cd") || ft_strcmp(cmd, "echo") || ft_strcmp(cmd, "env")
+		|| ft_strcmp(cmd, "exit") || ft_strcmp(cmd, "export")
+		|| ft_strcmp(cmd, "pwd") || ft_strcmp(cmd, "unset"))
+		return (true);
+	return (false);
+}
+
 /**
  * @brief Checks if there is a builtins in the arguments
- * 
+ *
  * /!\ Have to change "arguments" to a better word
  * /!\ USE PRINTF FOR NOW /!\
- * 
+ *
  * @param argc number of arguments
  * @param argv char** of the arguments
  */

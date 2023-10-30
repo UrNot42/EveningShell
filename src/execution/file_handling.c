@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 21:06:23 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/30 09:16:50 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/30 09:50:51 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,29 @@ void	close_files(t_file *file, int to)
 		}
 		i++;
 	}
+}
+
+int	open_fd(t_cmd *cmd, t_pipe pi)
+{
+	if (cmd->in != NULL && cmd->in->exists)
+	{
+		if (cmd->in->fd == -1)
+			return (perror(cmd->in->name), 1);
+		dup2(cmd->in->fd, STDIN_FILENO);
+		close(cmd->in->fd);
+	}
+	else
+		dup2(pi.pe_prev, STDIN_FILENO);
+	if (cmd->in != NULL && cmd->out->exists)
+	{
+		if (cmd->out->fd == -1)
+			return (perror(cmd->out->name), 1);
+		dup2(cmd->out->fd, STDOUT_FILENO);
+		close(cmd->out->fd);
+	}
+	else
+		dup2(pi.pe[1], STDOUT_FILENO);
+	return (0);
 }
 
 /*

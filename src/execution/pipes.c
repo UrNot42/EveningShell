@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 09:01:48 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/30 09:18:13 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/30 09:21:50 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	close_pipe(t_pipe *pi, size_t code)
 
 	val = 0;
 	code = code % 8;
-	if ((code == 1 || code == 3 || code == 4 || code == 7) && pi->pe[0] != -1)
+	if ((code == 1 || code == 3 || code == 5 || code == 7) && pi->pe[0] != -1)
 	{
 		val++;
 		close(pi->pe[0]);
@@ -40,7 +40,7 @@ int	close_pipe(t_pipe *pi, size_t code)
 		val++;
 		close(pi->pe[1]);
 	}
-	if ((code == 4 || code == 6 || code == 7) && pi->pe_prev != -1)
+	if ((code == 4 || code == 5 || code == 6 || code == 7) && pi->pe_prev != -1)
 	{
 		val++;
 		close(pi->pe_prev);

@@ -81,7 +81,8 @@ SRC_EXECUTION		=	$(addprefix execution/, \
 						pipes.c \
 								 \
 								  \
-						cmd_exec.c \
+						exec_cmd.c \
+						cmd_build.c \
 						execution.c \
 						exec_debug.c \
 						init_struct.c \

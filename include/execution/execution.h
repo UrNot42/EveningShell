@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:20:51 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/30 09:13:36 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/30 10:18:48 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int		wait_pids(int *pids);
 void	child_process(t_exec *exec, int i);
 
 int		close_pipe(t_pipe *pi, size_t code);
+
+int		create_cmd(t_cmd *cmd, char **env);
 
 // ========================= DEBUG ============================
 
