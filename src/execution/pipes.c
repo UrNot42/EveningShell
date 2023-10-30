@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 09:01:48 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/30 09:21:50 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/30 12:28:06 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,19 @@ int	close_pipe(t_pipe *pi, size_t code)
 	{
 		val++;
 		close(pi->pe[0]);
+		pi->pe[0] = -1;
 	}
 	if ((code == 2 || code == 3 || code == 6 || code == 7) && pi->pe[1] != -1)
 	{
 		val++;
 		close(pi->pe[1]);
+		pi->pe[1] = -1;
 	}
 	if ((code == 4 || code == 5 || code == 6 || code == 7) && pi->pe_prev != -1)
 	{
 		val++;
 		close(pi->pe_prev);
+		pi->pe_prev = -1;
 	}
 	return (val);
 }

@@ -21,6 +21,7 @@ Makefile.gen
 *.ko
 *.obj
 *.elf
+.nfs00000*
 
 # Linker output
 *.ilk

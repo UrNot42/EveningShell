@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:20:51 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/30 10:18:48 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/30 17:55:54 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include "exec_struct.h"
 # include "files.h"
 # include "here_doc.h"
+
+# define
 
 // ========================== PROMPT ==========================
 

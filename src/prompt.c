@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:05:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/29 19:54:32 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/30 13:35:35 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,20 +74,18 @@ char	**history_completion(const char *text, int start, int end)
 void	prompt(char **envp)
 {
 	char	*buffer;
-	bool	error;
 	t_token	*tokens;
 	int		fd_heredoc;
 
 	buffer = NULL;
-	error = false;
 	rl_attempted_completion_function = history_completion;
-	while (!error)
+	while (1)
 	{
 		if (buffer)
 			free(buffer);
 		buffer = readline("minishell-0.1$ ");
-		if (buffer[0] == 'q')
-			error = true;
+		if (!buffer)
+			break ;
 		if (buffer && *buffer)
 			add_history(buffer);
 		tokens = parse_line(buffer, envp);

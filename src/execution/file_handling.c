@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 21:06:23 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/30 09:50:51 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/30 17:44:30 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ int	open_files(t_file *file)
 		if (file[i].type == REDIR_OUT)
 			file[i].fd = open(file->name, O_TRUNC | O_CREAT | O_WRONLY, 0666);
 		else if (file[i].type == APPEND)
-			file[i].fd = open(file->name, O_APPEND | O_CREAT | O_WRONLY);
+			file[i].fd = open(file->name, O_APPEND | O_CREAT | O_WRONLY, 0666);
 		else if (file[i].type == REDIR_IN)
 			file[i].fd = open(file->name, O_RDONLY);
 		else if (file[i].type == HERE_DOC)
-			(void)i; // TODO CHECK WITH ARTHUR HERE_DOCS IMPLEMENTATION
+			file[i].fd = heredoc(file->name);
 		if (file[i].fd == -1)
 		{
 			close_files(file, i);
@@ -64,6 +64,7 @@ void	close_files(t_file *file, int to)
 {
 	int	i;
 
+	// printf("closed_files\n");
 	i = 0;
 	while (i < to)
 	{
@@ -73,29 +74,6 @@ void	close_files(t_file *file, int to)
 		}
 		i++;
 	}
-}
-
-int	open_fd(t_cmd *cmd, t_pipe pi)
-{
-	if (cmd->in != NULL && cmd->in->exists)
-	{
-		if (cmd->in->fd == -1)
-			return (perror(cmd->in->name), 1);
-		dup2(cmd->in->fd, STDIN_FILENO);
-		close(cmd->in->fd);
-	}
-	else
-		dup2(pi.pe_prev, STDIN_FILENO);
-	if (cmd->in != NULL && cmd->out->exists)
-	{
-		if (cmd->out->fd == -1)
-			return (perror(cmd->out->name), 1);
-		dup2(cmd->out->fd, STDOUT_FILENO);
-		close(cmd->out->fd);
-	}
-	else
-		dup2(pi.pe[1], STDOUT_FILENO);
-	return (0);
 }
 
 /*

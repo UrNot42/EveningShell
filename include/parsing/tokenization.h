@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:41:04 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/29 19:25:03 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/30 18:06:13 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,23 @@
 
 enum	e_command_type
 {
+	UNSET,
 	CMD,
-	REDIR_IN, //char *tab[3] = {"<", "fallout", NULL};
-	REDIR_OUT, //char *tab[3] = {">", "fallout", NULL};
-	HERE_DOC, //char *tab[3] = {"<<", "fallout", NULL};
-	APPEND, //char *tab[3] = {">>", "fallout", NULL};
-	PIPE, //char *tab[2] = {"|", NULL};
+	REDIR_IN,
+	REDIR_OUT,
+	HERE_DOC,
+	APPEND,
+	PIPE,
 };
+
+/*
+CMD, char **tab = {"cmd", "arg1", "arg2", .., NULL}
+REDIR_IN, char *tab[3] = {"<", "fallout", NULL};
+REDIR_OUT, char *tab[3] = {">", "fallout", NULL};
+HERE_DOC, char *tab[3] = {"<<", "fallout", NULL};
+APPEND, char *tab[3] = {">>", "fallout", NULL};
+PIPE, char *tab[2] = {"|", NULL};
+*/
 
 typedef struct s_token	t_token;
 

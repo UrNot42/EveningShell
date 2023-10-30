@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 10:15:05 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/30 11:08:11 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/30 13:57:33 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ char	*build_cmd(char *cmd, char *path, int size)
 		return (free(temp), NULL);
 	ft_strlcpy(full_cmd, path, size + 1);
 	ft_strlcat(full_cmd, temp, full_size);
+	// printf("caca boudin %s\n", full_cmd);
 	return (full_cmd);
 }
 
