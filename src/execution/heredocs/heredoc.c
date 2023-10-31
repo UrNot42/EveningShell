@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 13:16:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/30 13:49:15 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/31 15:20:13 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,19 @@ static void	create_heredoc(int fd_write, char *keyword)
 {
 	char	*line;
 
-	line = readline(">");
 	while (1)
 	{
-		write(fd_write, line, ft_strlen(line));
+		line = readline("> ");
 		if (!ft_strcmp(line, keyword))
+		{
+			if (line)
+				write(fd_write, "\0", 1);
+			free(line);
 			break ;
+		}
+		write(fd_write, line, ft_strlen(line));
 		write(fd_write, "\n", 1);
-		line = readline(">");
+		free(line);
 	}
 	close(fd_write);
 }
@@ -45,9 +50,20 @@ int	heredoc(char *keyword)
 {
 	int		fd_read;
 	int		fd_write;
+	int		fork_process;
 
-	if (!open_heredoc(&fd_read, &fd_write, "/tmp/.heredoc"))
-		return (-1);
-	create_heredoc(fd_write, keyword);
+	signal(SIGINT, SIG_IGN);
+	fork_process = fork();
+	if (fork_process == -1)
+		printf("Protector fork\n");
+	if (fork_process == 0)
+	{
+		signal(SIGINT, sig_handler_heredoc);
+		if (!open_heredoc(&fd_read, &fd_write, "/tmp/.heredoc"))
+			return (-1);
+		create_heredoc(fd_write, keyword);
+	}
+	waitpid(fork_process, &fd_read, 0);
+	signal(SIGINT, sig_handler_neutral);
 	return (fd_read);
 }

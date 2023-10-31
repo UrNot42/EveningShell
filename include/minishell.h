@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:07:20 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/30 20:59:13 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/31 13:32:31 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,13 @@
 # include <stdbool.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <signal.h>
 
 # include "parsing/parsing.h"
 # include "execution/execution.h"
 # include "../lib/libft/libft.h"
+
+extern int	g_signal;
 
 // ------------------------- ERROR_DISPLAY ----------------------- //
 

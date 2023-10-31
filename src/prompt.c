@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:05:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/31 13:12:31 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/31 15:40:05 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,12 @@ char	**history_completion(const char *text, int start, int end)
  */
 void	prompt(char **envp)
 {
-	char	*buffer;
-	t_token	*tokens;
+	char				*buffer;
+	t_token				*tokens;
 
+	g_signal = 0;
+	signal(SIGINT, &sig_handler_prompt);
+	signal(SIGQUIT, SIG_IGN);
 	buffer = NULL;
 	rl_attempted_completion_function = history_completion;
 	while (1)

@@ -1,29 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/03 17:06:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/31 13:29:35 by aoberon          ###   ########.fr       */
+/*   Created: 2023/10/31 15:05:52 by aoberon           #+#    #+#             */
+/*   Updated: 2023/10/31 15:32:10 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	g_signal = 0;
-
-/**
- * @brief Main that is bound to change as it is mainly used to redirect
- * to change funtions
- *
- */
-int	main(int argc, char **argv, char **envp)
+void	sig_handler_prompt(int signum)
 {
-	if (argc == 1)
-		start_interactive(envp);
-	else
-		return (run_single_cmd(argc - 1, &argv[1], envp));
-	return (0);
+	(void)signum;
+	g_signal = 130;
+	write(1, "\n", 1);
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
+}
+
+void	sig_handler_heredoc(int signum)
+{
+	(void)signum;
+	g_signal = 130;
+	write(1, "\n", 1);
+	rl_redisplay();
+	exit(130);
+}
+
+void	sig_handler_exec(int signum)
+{
+	if (signum == SIGINT)
+		g_signal = 130;
+	if (signum == SIGQUIT)
+		g_signal = 131;
 }

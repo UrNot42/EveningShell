@@ -28,10 +28,10 @@ SRC_MINISHPLIT		=	$(addprefix minishplit/, \
 # SECOND TO THIRD STEP OF THE SHELL OPERATIONS CREATES TOKENS WITH SPECIFICS
 SRC_TOKENIZATION		=	$(addprefix tokenization/, \
 						command.c \
+						free_token.c \
 						redir_type.c \
 						tokenization.c \
 						token_creation.c \
-						free_token.c \
 						\
 						)
 
@@ -60,8 +60,8 @@ SRC_HEREDOC			=	$(addprefix heredocs/, \
 
 # ENVIRONMENT FUNCTIONS - CREATING AN ENVIROMENT AND FUNCTIONS TO WORK WITH IT
 SRC_ENVIRONMENT		=	$(addprefix environment/, \
-						building_env.c \
 						default_env.c \
+						building_env.c \
 						\
 						)
 
@@ -79,8 +79,7 @@ SRC_BUILTINS		=	$(addprefix builtins/, \
 SRC_EXECUTION		=	$(addprefix execution/, \
 						pids.c \
 						pipes.c \
-								 \
-								  \
+						signal.c \
 						exec_cmd.c \
 						cmd_build.c \
 						execution.c \

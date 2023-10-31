@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:20:51 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/30 19:35:19 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/31 15:32:19 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ void	child_process(t_exec *exec, int i);
 int		close_pipe(t_pipe *pi, size_t code);
 
 int		create_cmd(t_cmd *cmd, char **env);
+
+// ========================== SIGNAL ==========================
+
+void	sig_handler_exec(int signum);
+void	sig_handler_prompt(int signum);
+void	sig_handler_heredoc(int signum);
 
 // ========================= DEBUG ============================
 
