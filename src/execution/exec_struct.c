@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 21:05:52 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/31 11:57:06 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/31 16:43:54 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	free_exec(t_exec *ex, bool env)
 	free(ex->pi.ds);
 	free(ex->cmd);
 	free(ex->files);
+	free_token(ex->allocated_content);
 	if (env)
 		ft_free_dstr(ex->env);
 }

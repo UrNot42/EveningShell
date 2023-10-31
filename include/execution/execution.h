@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:20:51 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/31 15:58:46 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/31 17:24:57 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	child_process(t_exec *exec, int i);
 
 int		close_pipe(t_pipe *pi, size_t code);
 
-int		create_cmd(t_cmd *cmd, char **env);
+int		create_cmd(t_cmd *cmd, char **env, char **n_cmd, char ***n_args);
 void	free_exec(t_exec *ex, bool env);
 
 // ========================== SIGNAL ==========================

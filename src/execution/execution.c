@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:31:47 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/31 11:23:56 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/31 16:57:45 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	execute(t_token *token_list, char **env)
 
 	if (set_execute_struct(token_list, &exec, env))
 		return (1);
-	// print_exec_sruct(&exec);
 	open_files(exec.files);
 	i = 0;
 	while (i < exec.cmd_size)
@@ -44,7 +43,6 @@ int	execute(t_token *token_list, char **env)
 		i++;
 	}
 	close_pipe(&exec.pi, 0b101);
-	free_token(token_list);
 	exec.pi.ds[i] = -1;
 	return (finish_execute(&exec));
 }

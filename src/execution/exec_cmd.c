@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 21:47:21 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/31 15:45:22 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/31 17:54:31 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,20 +45,26 @@ int	open_fd(t_cmd *cmd, t_pipe pi)
 
 void	child_process(t_exec *exec, int i)
 {
+	char	*cmd;
+	char	**args;
+
+	cmd = NULL;
+	args = NULL;
 	if (open_fd(&exec->cmd[i], exec->pi))
 	{
 		close_files(exec->files, exec->file_size);
-		free_token(exec->allocated_content);
+		close_pipe(&exec->pi, 0b111);
+		free_exec(exec, true);
 		exit(127);
 	}
 	close_files(exec->files, exec->file_size);
 	close_pipe(&exec->pi, 0b111);
 	if (is_builtin(exec->cmd[i].cmd))
 		execute_builtin(exec, i);
-	create_cmd(&exec->cmd[i], exec->env);
-	free_token(exec->allocated_content);
-	// execute_command(exec->cmd[i].cmd, exec->cmd[i].args, exec->env);
-	execve(exec->cmd[i].cmd, exec->cmd[i].args, exec->env);
+	if (create_cmd(&exec->cmd[i], exec->env, &cmd, &args))
+		(free_exec(exec, true), exit(127));
+	free_exec(exec, false);
+	execve(cmd, args, exec->env);
 	ft_free_dstr(exec->env);
 	exit(1);
 }
