@@ -85,7 +85,7 @@ SRC_EXECUTION		=	$(addprefix execution/, \
 						cmd_build.c \
 						execution.c \
 						exec_debug.c \
-						init_struct.c \
+						exec_struct.c \
 						init_command.c \
 						file_handling.c \
 						$(SRC_BUILTINS) \

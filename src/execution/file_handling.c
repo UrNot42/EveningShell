@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 21:06:23 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/30 17:44:30 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/31 10:49:13 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,17 @@ int	open_files(t_file *file)
 	while (file[i].name)
 	{
 		if (file[i].type == REDIR_OUT)
-			file[i].fd = open(file->name, O_TRUNC | O_CREAT | O_WRONLY, 0666);
+			file[i].fd = open(file[i].name, O_TRUNC | O_CREAT | O_WRONLY, 0666);
 		else if (file[i].type == APPEND)
-			file[i].fd = open(file->name, O_APPEND | O_CREAT | O_WRONLY, 0666);
+			file[i].fd = open(file[i].name, O_APPEND | O_CREAT | O_WRONLY, 0666);
 		else if (file[i].type == REDIR_IN)
-			file[i].fd = open(file->name, O_RDONLY);
+			file[i].fd = open(file[i].name, O_RDONLY);
 		else if (file[i].type == HERE_DOC)
-			file[i].fd = heredoc(file->name);
+			file[i].fd = heredoc(file[i].name);
 		if (file[i].fd == -1)
 		{
 			close_files(file, i);
-			return (perror(file->name), i);
+			return (perror(file[i].name), i);
 		}
 		i++;
 	}
