@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishplit.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:40:00 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/28 15:06:11 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/31 12:47:11 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,12 @@ int		check_syntax_error(char **argv);
 // -------------------------- DOUBLE_QUOTES --------------------------
 
 size_t	wl_double_quotes(char const *s);
+size_t	get_next_double_quote(char const *s, size_t i);
 
 // -------------------------- SINGLE_QUOTES --------------------------
 
 size_t	wl_single_quotes(char const *s);
+size_t	get_next_single_quote(char const *s, size_t i);	
 
 // -------------------------- MINISHPLIT --------------------------
 

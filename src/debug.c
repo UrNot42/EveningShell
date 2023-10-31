@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 13:16:01 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/26 17:10:14 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/31 12:26:22 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,17 @@ void	debug_token(t_token *token, char *debug_print)
 	i = 0;
 	while (token[i].type != -1)
 	{
-		if (token[i].type == 0)
+		if (token[i].type == CMD)
 			printf("token[%d] type : CMD\n", i);
-		if (token[i].type == 1)
+		if (token[i].type == REDIR_IN)
 			printf("token[%d] type : REDIR_IN\n", i);
-		if (token[i].type == 2)
+		if (token[i].type == REDIR_OUT)
 			printf("token[%d] type : REDIR_OUT\n", i);
-		if (token[i].type == 3)
+		if (token[i].type == HERE_DOC)
 			printf("token[%d] type : HERE_DOC\n", i);
-		if (token[i].type == 4)
+		if (token[i].type == APPEND)
 			printf("token[%d] type : APPEND\n", i);
-		if (token[i].type == 5)
+		if (token[i].type == PIPE)
 			printf("token[%d] type : PIPE\n", i);
 		debug_double_char(token[i].content, "	content", 0);
 		++i;

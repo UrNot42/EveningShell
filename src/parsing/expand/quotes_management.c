@@ -6,11 +6,25 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 13:48:55 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/30 20:51:14 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/31 13:10:48 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static int	is_quotes(char *word)
+{
+	size_t	i;
+
+	i = 0;
+	while (word[i])
+	{
+		if (word[i] == '"' || word[i] == '\'')
+			return (1);
+		++i;
+	}
+	return (0);
+}
 
 static size_t	get_size_word(char *word)
 {
@@ -70,10 +84,13 @@ char	*remove_quotes(char *word)
 	size_t	length;
 	char	*new_word;
 
+	if (!is_quotes(word))
+		return (word);
 	length = get_size_word(word);
 	new_word = ft_calloc(length + 1, sizeof(char));
 	if (!new_word)
 		return (NULL);
 	copy_word(&new_word, word, length);
+	free(word);
 	return (new_word);
 }

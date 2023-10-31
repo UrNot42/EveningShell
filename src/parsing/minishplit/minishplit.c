@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 18:59:58 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/30 21:24:55 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/31 12:40:24 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ static size_t	word_length(char const *s)
 	{
 		if (s[i] == '"')
 		{
-			return (wl_double_quotes(s));
+			return (i + wl_double_quotes(&s[i]));
 		}
 		if (s[i] == '\'')
 		{
-			return (wl_single_quotes(s));
+			return (i + wl_single_quotes(&s[i]));
 		}
 		if (is_metacharacter(s[i]))
 			break ;
