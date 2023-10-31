@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 10:15:05 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/30 13:57:33 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/31 17:46:08 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*build_cmd(char *cmd, char *path, int size)
 		return (free(temp), NULL);
 	ft_strlcpy(full_cmd, path, size + 1);
 	ft_strlcat(full_cmd, temp, full_size);
-	// printf("caca boudin %s\n", full_cmd);
+	free(temp);
 	return (full_cmd);
 }
 
@@ -68,7 +68,7 @@ char	*get_cmd(char *cmd, char *path)
 		write(2, "' not found\n", 12), NULL);
 }
 
-int	create_cmd(t_cmd *cmd, char **env)
+int	create_cmd(t_cmd *cmd, char **env, char **n_cmd, char ***n_args)
 {
 	char	*env_path;
 	int		index;
@@ -78,16 +78,16 @@ int	create_cmd(t_cmd *cmd, char **env)
 		env_path = &env[index][5];
 	else
 		env_path = NULL;
-	cmd->args = ft_dstrdup((const char **)cmd->args);
-	if (!cmd->args)
+	(*n_args) = ft_dstrdup((const char **)cmd->args);
+	if (!(*n_args))
 		return (1);
-	cmd->cmd = get_cmd(cmd->cmd, env_path);
-	if (!cmd->cmd)
-		return (ft_free_dstr(cmd->args), 1);
-	if (ft_strcmp(cmd->cmd, cmd->args[0]))
+	(*n_cmd) = get_cmd(cmd->cmd, env_path);
+	if (!(*n_cmd))
+		return (ft_free_dstr((*n_args)), 1);
+	if (ft_strcmp((*n_cmd), (*n_args)[0]))
 	{
-		free(cmd->args[0]);
-		cmd->args[0] = cmd->cmd;
+		free((*n_args)[0]);
+		(*n_args)[0] = (*n_cmd);
 	}
 	return (0);
 }
