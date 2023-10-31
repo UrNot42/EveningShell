@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:07:20 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/29 14:13:47 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/30 20:59:13 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,11 @@
 # include "execution/execution.h"
 # include "../lib/libft/libft.h"
 
-// ------------------------- RUNNING SHELL ----------------------- //
+// ------------------------- ERROR_DISPLAY ----------------------- //
+
+void	error_failed_malloc(void);
+
+// ------------------------- RUNNING_SHELL ----------------------- //
 
 void	start_interactive(char **env);
 int		run_single_cmd(int argc, char **argv, char **envp);

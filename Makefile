@@ -36,10 +36,11 @@ SRC_TOKENIZATION		=	$(addprefix tokenization/, \
 						)
 
 # FOURTH STEP  OF THE SHELL OPERATIONS REPLACING THE VARIABLES WITH THEIR VALUE
-SRC_EXPANSION		=	$(addprefix expansion/, \
-						expansion.c \
+SRC_EXPAND			=	$(addprefix expand/, \
+						expand.c \
 						check_for_dollar.c \
 						expand_one_token.c \
+						quotes_management.c \
 						\
 						)
 
@@ -47,14 +48,13 @@ SRC_EXPANSION		=	$(addprefix expansion/, \
 SRC_PARSING			=	$(addprefix parsing/, \
 						$(SRC_MINISHPLIT) \
 						$(SRC_TOKENIZATION) \
-						$(SRC_EXPANSION) \
+						$(SRC_EXPAND) \
 						\
 						)
 
 SRC_HEREDOC			=	$(addprefix heredocs/, \
 						heredoc.c \
 						open_heredoc_file.c \
-						keyword_management.c \
 						\
 						)
 
@@ -99,6 +99,7 @@ MINISHELL_SRC		=  $(addprefix $(SRC_DIR), \
 						minishell.c \
 						prompt.c \
 						running.c \
+						error_display.c \
 						\
 						$(SRC_PARSING) \
 						$(SRC_EXECUTION) \

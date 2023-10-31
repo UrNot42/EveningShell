@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_token.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 14:20:39 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/29 19:29:59 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/30 18:20:09 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	free_token(t_token *command_list)
 	i = 0;
 	if (!command_list)
 		return ;
-	while (command_list[i].content)
+	while (command_list[i].type != -1)
 	{
 		if (command_list[i].content)
 		{

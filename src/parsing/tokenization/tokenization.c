@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:06:06 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/24 18:52:55 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/30 18:34:32 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ static int	set_tokens(t_token *token, char **argv, size_t *i, size_t *n)
 	if (get_redir_type(argv[*i]))
 	{
 		token[*n] = create_token(&argv[*i], get_redir_flag(argv[*i]), 2);
+		if (!token[*n].content)
+			return (0);
 		if (argv[*i + 1])
 			*i += 2;
 		else
@@ -96,6 +98,8 @@ static int	set_tokens(t_token *token, char **argv, size_t *i, size_t *n)
 	else if (!ft_strcmp(argv[*i], "|"))
 	{
 		token[*n] = create_token(&argv[*i], PIPE, 1);
+		if (!token[*n].content)
+			return (0);
 		*i += 1;
 		*n += 1;
 	}
@@ -126,7 +130,7 @@ t_token	*tokenization(char **argv)
 	while (argv[i])
 	{
 		if (!set_tokens(token, argv, &i, &n))
-			return (printf("FREE AND EXIT !\n"), NULL);
+			return (free_token(token), NULL);
 	}
 	token[n].type = -1;
 	return (token);
@@ -134,3 +138,5 @@ t_token	*tokenization(char **argv)
 
 // cmd1 op arg1 arg2 > file arg3 | cmd2 arg1 arg2 < file arg3 | cmd3 arg1 >> file arg2 arg3 | cmd4 << file arg1 arg2 arg3
 // cmd1 op arg1 arg2 > file arg3 | cmd2 arg1 arg2 < file arg3 | cmd3 arg1 >> file arg2 arg3 | cmd4 << file arg1 arg2 arg3 | cmd5 > file | >> file < file
+
+// ls cmdjdkf and so em no >> filehere > true file < infile < infiletwo | cat oui oui oui

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:01:47 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/11 14:24:13 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/30 20:42:01 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	**doublecharncpy(char **src, size_t n)
 			break ;
 		dest[i] = ft_strdup(src[i]);
 		if (!dest[i])
-			return (printf("FREE AND EXIT !\n"), NULL);
+			return (free(dest), NULL);
 		i++;
 	}
 	return (dest);
@@ -55,7 +55,5 @@ t_token	create_token(char **argv, int type, int size)
 
 	token.type = type;
 	token.content = doublecharncpy(argv, size);
-	if (!token.content)
-		return (printf("FREE AND EXIT !\n"), token);
 	return (token);
 }

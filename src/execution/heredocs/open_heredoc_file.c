@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 19:05:19 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/27 19:05:34 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/30 17:45:17 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	open_heredoc(int *fd_read, int *fd_write, char *filename)
 			return (printf("Error of malloc.\n"), 0);
 		++i;
 	}
-	*fd_write = open(filename, O_CREAT | O_WRONLY);
+	*fd_write = open(filename, O_CREAT | O_WRONLY, 0666);
 	if (*fd_write == -1)
 		return (printf("protect fd_write !\n"), 0);
 	*fd_read = open(filename, O_RDONLY);

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:05:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/30 13:35:35 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/31 09:31:50 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,21 @@
 
 t_token	*parse_line(char *line, char **envp)
 {
-	char	**parsed_lines;
+	char	**lexed_line;
 	t_token	*token;
 
-	parsed_lines = split_minishell(line);
-	if (!parsed_lines)
-		return (NULL);
-	// debug_double_char(parsed_lines, "Minishplit", 1);
-	if (check_error(parsed_lines))
-		return (ft_free_dstr(parsed_lines), NULL);
-	token = tokenization(parsed_lines);
+	lexed_line = split_minishell(line);
+	if (!lexed_line)
+		error_failed_malloc();
+	// debug_double_char(lexed_line, "Minishplit", 1);
+	if (check_error(lexed_line))
+		return (ft_free_dstr(lexed_line), NULL);
+	token = tokenization(lexed_line);
+	ft_free_dstr(lexed_line);
 	if (!token)
-		return (ft_free_dstr(parsed_lines), NULL);
+		exit(EXIT_FAILURE);
 	// debug_token(token, "Tokenization");
-	expansion(&token, envp);
+	expand(&token, envp);
 	// debug_token(token, "Expand");
 	return (token);
 }
@@ -75,7 +76,6 @@ void	prompt(char **envp)
 {
 	char	*buffer;
 	t_token	*tokens;
-	int		fd_heredoc;
 
 	buffer = NULL;
 	rl_attempted_completion_function = history_completion;
@@ -89,14 +89,6 @@ void	prompt(char **envp)
 		if (buffer && *buffer)
 			add_history(buffer);
 		tokens = parse_line(buffer, envp);
-		if (!tokens)
-			break ;
-		if (tokens[0].type == HERE_DOC)
-		{
-			fd_heredoc = heredoc(tokens[0].content[1]);
-			// debug_heredoc(fd_heredoc);
-			close(fd_heredoc);
-		}
 		if (tokens)
 			execute(tokens, envp);
 	}

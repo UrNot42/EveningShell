@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 13:16:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/27 19:06:38 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/30 13:49:15 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,6 @@ int	heredoc(char *keyword)
 	int		fd_read;
 	int		fd_write;
 
-	keyword = get_keyword(keyword);
-	if (!keyword)
-		printf("FREE AND EXIT\n");
 	if (!open_heredoc(&fd_read, &fd_write, "/tmp/.heredoc"))
 		return (-1);
 	create_heredoc(fd_write, keyword);
