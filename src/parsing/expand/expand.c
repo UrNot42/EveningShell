@@ -6,15 +6,11 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 13:53:58 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/31 16:01:34 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/31 22:25:55 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/**
-
- */
 
 /**
  * @brief Expands one by one each content's token, token by token
