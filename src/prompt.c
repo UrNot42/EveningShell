@@ -6,13 +6,13 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:05:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/31 15:44:31 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/31 16:01:09 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_token	*parse_line(char *line, char **envp)
+t_token	*parse_line(char *line, char **envp, int exit_status)
 {
 	char	**lexed_line;
 	t_token	*token;
@@ -28,7 +28,7 @@ t_token	*parse_line(char *line, char **envp)
 	if (!token)
 		exit(EXIT_FAILURE);
 	// debug_token(token, "Tokenization");
-	expand(&token, envp);
+	expand(&token, envp, exit_status);
 	// debug_token(token, "Expand");
 	return (token);
 }
@@ -76,8 +76,8 @@ void	prompt(char **env)
 {
 	char				*buffer;
 	t_token				*tokens;
+	int					exit_status;
 
-	g_signal = 0;
 	signal(SIGINT, &sig_handler_prompt);
 	signal(SIGQUIT, SIG_IGN);
 	buffer = NULL;
@@ -91,9 +91,9 @@ void	prompt(char **env)
 			break ;
 		if (buffer && *buffer)
 			add_history(buffer);
-		tokens = parse_line(buffer, env);
+		tokens = parse_line(buffer, env, exit_status);
 		if (tokens)
-			execute(tokens, env);
+			exit_status = execute(tokens, env);
 	}
 	ft_free_dstr(env);
 	free(buffer);

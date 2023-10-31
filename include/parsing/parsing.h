@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:20:31 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/30 14:28:28 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/31 15:59:03 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,10 @@
 # include "minishplit.h"
 # include "tokenization.h"
 # include "expand.h"
+
+// ========================== PROMPT ==========================
+
+void	prompt(char **envp);
+t_token	*parse_line(char *line, char **envp, int exit_status);
 
 #endif

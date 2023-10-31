@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 13:16:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/31 15:20:13 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/31 16:02:01 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,6 @@ int	heredoc(char *keyword)
 		create_heredoc(fd_write, keyword);
 	}
 	waitpid(fork_process, &fd_read, 0);
-	signal(SIGINT, sig_handler_neutral);
+	signal(SIGINT, sig_handler_prompt);
 	return (fd_read);
 }

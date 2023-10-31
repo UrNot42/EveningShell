@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:20:51 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/31 15:45:34 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/31 15:58:46 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@
 # include "exec_struct.h"
 # include "files.h"
 # include "here_doc.h"
-
-// ========================== PROMPT ==========================
-
-void	prompt(char **envp);
-t_token	*parse_line(char *line, char **envp);
 
 // ========================= INIT ========================
 

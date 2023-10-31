@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 17:53:55 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/30 22:22:42 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/31 15:57:24 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,9 +121,10 @@ char	*expand_var_env(char *src, size_t index_dollar,
  * 
  * @param token token containing the content to expand
  * @param env char ** of the environment variables
+ * @param exit_status int contains the exit status of the last command
  * @return int 1 if success, -1 if there was an error of malloc
  */
-int	expand_one_token(t_token token, char **env)
+int	expand_one_token(t_token token, char **env, int exit_status)
 {
 	size_t	i;
 	size_t	index_dollar;
@@ -141,14 +142,22 @@ int	expand_one_token(t_token token, char **env)
 			var = get_var_name(token.content[i], index_dollar, expand_length);
 			if (!var)
 				return (-1);
-			index_env = get_env_var_index(env, var);
-			free(var);
-			var = NULL;
-			if (index_env != -1)
+			if (!ft_strcmp(var, "?"))
 			{
-				var = get_env_var_content(env, index_env);
-				if (!var)
-					return (-1);
+				free(var);
+				var = ft_itoa(exit_status);
+			}
+			else
+			{
+				index_env = get_env_var_index(env, var);
+				free(var);
+				var = NULL;
+				if (index_env != -1)
+				{
+					var = get_env_var_content(env, index_env);
+					if (!var)
+						return (-1);
+				}
 			}
 			token.content[i] = expand_var_env(token.content[i],
 					index_dollar - 1, expand_length, var);
