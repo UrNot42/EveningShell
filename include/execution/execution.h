@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:20:51 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/31 15:32:19 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/31 15:45:34 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	child_process(t_exec *exec, int i);
 int		close_pipe(t_pipe *pi, size_t code);
 
 int		create_cmd(t_cmd *cmd, char **env);
+void	free_exec(t_exec *ex, bool env);
 
 // ========================== SIGNAL ==========================
 

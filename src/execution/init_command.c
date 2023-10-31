@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 13:27:54 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/30 09:59:25 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/31 11:58:32 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	fill_cmds(t_token *token, t_cmd *cmd, t_file *file)
 			cmd[c_index].out = file++;
 		if (token->type == PIPE)
 		{
-			ft_free_dstr(token->content);
 			token->content = NULL;
 			c_index++;
 		}

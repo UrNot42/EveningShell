@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:05:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/31 15:40:05 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/10/31 15:44:31 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char	**history_completion(const char *text, int start, int end)
  *        although it is the main loop of Minishell
  *
  */
-void	prompt(char **envp)
+void	prompt(char **env)
 {
 	char				*buffer;
 	t_token				*tokens;
@@ -91,9 +91,10 @@ void	prompt(char **envp)
 			break ;
 		if (buffer && *buffer)
 			add_history(buffer);
-		tokens = parse_line(buffer, envp);
+		tokens = parse_line(buffer, env);
 		if (tokens)
-			execute(tokens, envp);
+			execute(tokens, env);
 	}
+	ft_free_dstr(env);
 	free(buffer);
 }
