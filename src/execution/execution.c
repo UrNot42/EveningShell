@@ -6,11 +6,20 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:31:47 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/30 17:05:30 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/31 11:23:56 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	finish_execute(t_exec *exec)
+{
+	int	error_code;
+
+	error_code = wait_pids(exec->pi.ds);
+	free_exec(exec, false);
+	return (error_code);
+}
 
 int	execute(t_token *token_list, char **env)
 {
@@ -37,7 +46,7 @@ int	execute(t_token *token_list, char **env)
 	close_pipe(&exec.pi, 0b101);
 	free_token(token_list);
 	exec.pi.ds[i] = -1;
-	return (wait_pids(exec.pi.ds));
+	return (finish_execute(&exec));
 }
 
 /*

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_struct.c                                      :+:      :+:    :+:   */
+/*   exec_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 21:05:52 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/29 20:17:18 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/10/31 11:57:06 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,15 @@ size_t	get_token_type_size(t_token *token, bool is_cmd)
 		i++;
 	}
 	return (size);
+}
+
+void	free_exec(t_exec *ex, bool env)
+{
+	free(ex->pi.ds);
+	free(ex->cmd);
+	free(ex->files);
+	if (env)
+		ft_free_dstr(ex->env);
 }
 
 int	set_execute_struct(t_token *token, t_exec *ex, char **env)
