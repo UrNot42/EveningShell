@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 14:20:39 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/01 15:18:47 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/01 16:53:03 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,10 @@ void	free_compound(t_compound *command_list)
 	i = 0;
 	if (!command_list)
 		return ;
-	debug_compound(command_list, "freeing");
 	while (command_list[i].type != -1)
 	{
-		printf("freeing ? %d\n", command_list[i].type);
 		if (command_list[i].content)
 		{
-			printf("	! freeing %s\n", command_list[i].content[0]);
 			ft_free_dstr(command_list[i].content);
 			command_list[i].content = NULL;
 		}

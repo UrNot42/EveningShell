@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 19:05:19 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/30 17:45:17 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/01 18:24:59 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,36 +57,39 @@ static void	ft_itoa_no_malloc(int n, char result[10])
 		result[0] = '-';
 }
 
-/**
- * @brief Create and open the file use for the heredoc.
- * 
- * @param fd_read fd to read the file, use later in the execution.
- * @param fd_write fd to write in the file, use to save the heredoc input.
- * @param filename name of the name to create and open.
- * Called .heredoc if the file doesn't exist,
- * the name is change if the file exist.
- * @return int return 1 if there is no error, 0 otherwise.
- */
-int	open_heredoc(int *fd_read, int *fd_write, char *filename)
+int	open_heredoc_read(char **filename, char *filename_std)
 {
 	int		i;
 	char	str_itoa[10];
+	int		fd_read;
 
 	i = 0;
-	while (!access(filename, F_OK))
+	*filename = NULL;
+	while (!access(filename_std, F_OK))
 	{
 		ft_itoa_no_malloc(i, str_itoa);
-		filename = ft_strjoin("/tmp/.heredoc", str_itoa);
-		if (!filename)
-			return (printf("Error of malloc.\n"), 0);
+		*filename = ft_strjoin(filename_std, str_itoa);
+		printf("filename = %s\n", *filename);
+		if (!*filename)
+			return (printf("Error of malloc.\n"), -42);
 		++i;
 	}
-	*fd_write = open(filename, O_CREAT | O_WRONLY, 0666);
-	if (*fd_write == -1)
-		return (printf("protect fd_write !\n"), 0);
-	*fd_read = open(filename, O_RDONLY);
-	if (*fd_read == -1)
-		return (printf("protect fd_read !\n"), 0);
+	if (*filename == NULL)
+		*filename = ft_strdup(filename_std);
+	fd_read = open(*filename, O_CREAT | O_RDONLY, 0666);
+	if (fd_read == -1)
+		return (printf("protect fd_read !\n"), -1);
+	return (fd_read);
+}
+
+int	open_heredoc_write(char *filename)
+{
+	int	fd_write;
+
+	fd_write = open(filename, O_WRONLY);
+	if (fd_write == -1)
+		return (printf("protect fd_write !\n"), -1);
 	unlink(filename);
-	return (1);
+	free(filename);
+	return (fd_write);
 }

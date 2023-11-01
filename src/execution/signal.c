@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:05:52 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/31 15:32:10 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/01 16:51:09 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	sig_handler_heredoc(int signum)
 	g_signal = 130;
 	write(1, "\n", 1);
 	rl_redisplay();
+	exit_heredoc(0, NULL, NULL, NULL);
 	exit(130);
 }
 

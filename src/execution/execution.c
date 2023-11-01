@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:31:47 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/01 15:23:50 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/01 17:41:25 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	execute(t_compound *token_list, char **env)
 
 	if (set_execute_struct(token_list, &exec, env))
 		return (1);
-	open_files(exec.files);
+	open_files(exec.files, &exec);
 	i = 0;
 	while (i < exec.cmd_size)
 	{

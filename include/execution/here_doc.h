@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 13:28:17 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/30 13:50:06 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/01 18:28:25 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,13 @@
 
 // -------------------------- HERE_DOC --------------------------
 
-int		heredoc(char *keyword);
+int		heredoc(t_exec *exec, char *keyword);
+
+void	exit_heredoc(bool boolean, char **keyword, int *fd_write);
 
 // -------------------------- OPEN_HEREDOC_FILE --------------------------
 
-int		open_heredoc(int *fd_read, int *fd_write, char *filename);
+int		open_heredoc_write(char *filename);
+int		open_heredoc_read(char **filename, char *filename_std);
 
 #endif
