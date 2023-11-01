@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 21:06:23 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/01 17:41:35 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/01 18:32:59 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	fill_file(t_compound *token, t_file *file, int max_file)
 	return (0);
 }
 
-int	open_files(t_file *file, t_exec *exec)
+int	open_files(t_file *file)
 {
 	int	i;
 
@@ -49,7 +49,7 @@ int	open_files(t_file *file, t_exec *exec)
 		else if (file[i].type == REDIR_IN)
 			file[i].fd = open(file[i].name, O_RDONLY);
 		else if (file[i].type == HERE_DOC)
-			file[i].fd = heredoc(exec, file[i].name);
+			// file[i].fd = heredoc(exec, file[i].name);
 		if (file[i].fd == -1)
 		{
 			close_files(file, i);
