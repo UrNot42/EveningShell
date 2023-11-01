@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_token.c                                       :+:      :+:    :+:   */
+/*   free_compound.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 14:20:39 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/31 16:44:15 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/01 15:18:47 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	free_token(t_token *command_list)
+void	free_compound(t_compound *command_list)
 {
 	size_t	i;
 
 	i = 0;
 	if (!command_list)
 		return ;
+	debug_compound(command_list, "freeing");
 	while (command_list[i].type != -1)
 	{
+		printf("freeing ? %d\n", command_list[i].type);
 		if (command_list[i].content)
 		{
+			printf("	! freeing %s\n", command_list[i].content[0]);
 			ft_free_dstr(command_list[i].content);
 			command_list[i].content = NULL;
 		}

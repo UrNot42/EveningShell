@@ -25,13 +25,13 @@ SRC_LEXER			=	$(addprefix lexer/, \
 						\
 						)
 
-# SECOND TO THIRD STEP OF THE SHELL OPERATIONS CREATES TOKENS WITH SPECIFICS
+# SECOND TO THIRD STEP OF THE SHELL OPERATIONS CREATES COMPOUNDS WITH SPECIFICS
 SRC_PARSER			=	$(addprefix parser/, \
 						command.c \
-						free_token.c \
+						parsing.c \
 						redir_type.c \
-						tokenization.c \
-						token_creation.c \
+						free_compound.c \
+						compound_creation.c \
 						\
 						)
 
@@ -39,7 +39,7 @@ SRC_PARSER			=	$(addprefix parser/, \
 SRC_EXPAND			=	$(addprefix expand/, \
 						expand.c \
 						check_for_dollar.c \
-						expand_one_token.c \
+						expand_one_compound.c \
 						quotes_management.c \
 						variable_environement_functions.c \
 						\

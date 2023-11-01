@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_one_token.c                                 :+:      :+:    :+:   */
+/*   expand_one_compound.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 21:05:17 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/31 22:30:18 by aoberon          ###   ########.fr       */
+/*   Created: 2023/11/01 15:23:20 by aoberon           #+#    #+#             */
+/*   Updated: 2023/11/01 15:23:30 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,14 @@ static int	expand_one_content(char **content, char **env, int exit_status)
 	return (1);
 }
 
-int	expand_one_token(t_token token, char **env, int exit_status)
+int	expand_one_compound(t_compound compound, char **env, int exit_status)
 {
 	int	i;
 
 	i = -1;
-	while (token.content[++i])
+	while (compound.content[++i])
 	{
-		if (expand_one_content(&token.content[i], env, exit_status) == -1)
+		if (expand_one_content(&compound.content[i], env, exit_status) == -1)
 			return (-1);
 	}
 	return (1);

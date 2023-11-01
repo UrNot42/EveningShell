@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:06:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/01 14:25:17 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/01 14:41:55 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,9 @@ int	main(int argc, char **argv, char **envp)
 /*
 /SRC
 	/EXECUTION (=> ?)
-	/PARSING (==> DELETED)
-	/PARSING/MINISHPLIT (=> /LEXER)
-	/PARSING/TOKENIZATION (=> /PARSER)
-	/PARISNG/EXPAND (=> /EXPAND)
+	/LEXER
+	/PARSER
+	/EXPAND
 	/NONE (=> ?)
 		ERROR_DISPLAY
 		SIGNAL

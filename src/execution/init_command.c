@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 13:27:54 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/31 11:58:32 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/01 14:42:04 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	fill_cmds(t_token *token, t_cmd *cmd, t_file *file)
+int	fill_cmds(t_compound *token, t_cmd *cmd, t_file *file)
 {
 	int	c_index;
 

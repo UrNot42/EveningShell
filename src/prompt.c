@@ -6,16 +6,16 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:05:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/31 19:21:40 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/01 15:25:53 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_token	*parse_line(char *line, char **envp, int exit_status)
+t_compound	*parse_line(char *line, char **envp, int exit_status)
 {
-	char	**lexed_line;
-	t_token	*token;
+	char		**lexed_line;
+	t_compound	*coumpound_command;
 
 	lexed_line = split_minishell(line);
 	if (!lexed_line)
@@ -23,14 +23,14 @@ t_token	*parse_line(char *line, char **envp, int exit_status)
 	// debug_double_char(lexed_line, "Minishplit", 1);
 	if (check_error(lexed_line))
 		return (ft_free_dstr(lexed_line), NULL);
-	token = tokenization(lexed_line);
+	coumpound_command = parsing(lexed_line);
 	ft_free_dstr(lexed_line);
-	if (!token)
+	if (!coumpound_command)
 		exit(EXIT_FAILURE);
-	// debug_token(token, "Tokenization");
-	expand(&token, envp, exit_status);
-	// debug_token(token, "Expand");
-	return (token);
+	// debug_compound(coumpound_command, "Parsing");
+	expand(&coumpound_command, envp, exit_status);
+	// debug_compound(coumpound_command, "Expand");
+	return (coumpound_command);
 }
 
 // TEST FUNCTION FOR COMPLETETION IMPLEMENTATION
@@ -75,7 +75,7 @@ char	**history_completion(const char *text, int start, int end)
 void	prompt(char **env)
 {
 	char				*buffer;
-	t_token				*tokens;
+	t_compound			*compound_command;
 	int					exit_status;
 
 	signal(SIGINT, &sig_handler_prompt);
@@ -92,9 +92,9 @@ void	prompt(char **env)
 			break ;
 		if (buffer && *buffer)
 			add_history(buffer);
-		tokens = parse_line(buffer, env, exit_status);
-		if (tokens)
-			exit_status = execute(tokens, env);
+		compound_command = parse_line(buffer, env, exit_status);
+		if (compound_command)
+			exit_status = execute(compound_command, env);
 	}
 	ft_free_dstr(env);
 	free(buffer);

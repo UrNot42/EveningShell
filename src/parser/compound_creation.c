@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_creation.c                                   :+:      :+:    :+:   */
+/*   compound_creation.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:01:47 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/31 13:11:06 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/01 15:20:59 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,19 @@ char	**doublecharncpy(char **src, size_t n)
 }
 
 /**
- * @brief Create a token
+ * @brief Create a compound
  * 
- * @param argv array of strings used to create the token
- * @param type type of the token (CMD, REDIR_IN, REDIR_OUT, HERE_DOC, APPEND,
+ * @param argv array of strings used to create the compound
+ * @param type type of the compound (CMD, REDIR_IN, REDIR_OUT, HERE_DOC, APPEND,
  * PIPE)
- * @param size size of the token (number of strings in the token)
- * @return t_token token created
+ * @param size size of the compound (number of strings in the compound)
+ * @return t_compound compound created
  */
-t_token	create_token(char **argv, int type, int size)
+t_compound	create_compound(char **argv, int type, int size)
 {
-	t_token	token;
+	t_compound	compound;
 
-	token.type = type;
-	token.content = doublecharncpy(argv, size);
-	return (token);
+	compound.type = type;
+	compound.content = doublecharncpy(argv, size);
+	return (compound);
 }

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishplit.h                                       :+:      :+:    :+:   */
+/*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:40:00 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/31 12:47:11 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/01 14:47:26 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHPLIT_H
-# define MINISHPLIT_H
+#ifndef LEXER_H
+# define LEXER_H
 
 # include "minishell.h"
 

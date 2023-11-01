@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_struct.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 16:14:47 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/29 20:50:13 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/01 14:52:20 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ struct s_cmd
 
 struct s_exec
 {
-	int		cmd_size;
-	int		file_size;
-	t_pipe	pi;
-	t_cmd	*cmd;
-	t_file	*files;
-	t_token	*allocated_content;
-	char	**env;
+	int			cmd_size;
+	int			file_size;
+	t_pipe		pi;
+	t_cmd		*cmd;
+	t_file		*files;
+	t_compound	*allocated_content;
+	char		**env;
 };
 
 #endif

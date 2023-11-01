@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:07:20 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/31 13:32:31 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/01 14:54:20 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,33 @@
 # include <readline/history.h>
 # include <signal.h>
 
-# include "parsing/parsing.h"
+# include "lexer.h"
+# include "parser.h"
+# include "expand.h"
 # include "execution/execution.h"
 # include "../lib/libft/libft.h"
 
 extern int	g_signal;
 
+// ========================== PROMPT ==========================
+
+void		prompt(char **envp);
+t_compound	*parse_line(char *line, char **envp, int exit_status);
+
 // ------------------------- ERROR_DISPLAY ----------------------- //
 
-void	error_failed_malloc(void);
+void		error_failed_malloc(void);
 
 // ------------------------- RUNNING_SHELL ----------------------- //
 
-void	start_interactive(char **env);
-int		run_single_cmd(int argc, char **argv, char **envp);
+void		start_interactive(char **env);
+int			run_single_cmd(int argc, char **argv, char **envp);
 
 // -------------------------- TEMPORARY -------------------------- //
 // ---------------------------- DEBUG ---------------------------- //
 
-void	debug_heredoc(int fd);
-void	debug_token(t_token *token, char *debug_print);
-void	debug_double_char(char **argv, char *debug_print, int print_name);
+void		debug_heredoc(int fd);
+void		debug_compound(t_compound *compound, char *debug_print);
+void		debug_double_char(char **argv, char *debug_print, int print_name);
 
 #endif

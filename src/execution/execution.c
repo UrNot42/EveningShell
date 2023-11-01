@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:31:47 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/31 16:57:45 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/01 15:23:50 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	finish_execute(t_exec *exec)
 	return (error_code);
 }
 
-int	execute(t_token *token_list, char **env)
+int	execute(t_compound *token_list, char **env)
 {
 	t_exec	exec;
 	int		i;
@@ -50,7 +50,7 @@ int	execute(t_token *token_list, char **env)
 /*
 commented version of the code
 
-int	execute(t_token *token_list, char **env)
+int	execute(t_compound *token_list, char **env)
 {
 	t_exec	exec;
 	int		i;

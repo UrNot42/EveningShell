@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:00:52 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/30 20:33:43 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/01 15:10:20 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /**
  * @brief Get the number of string in the command type
  * 
- * @param argv array of strings used to create tokens
+ * @param argv array of strings used to create compounds
  * @return size_t count of strings
  */
 static size_t	get_number_str_in_cmd(char **argv)
@@ -45,20 +45,21 @@ static size_t	get_number_str_in_cmd(char **argv)
 }
 
 /**
- * @brief Set one string in the token content (of cmd type)
+ * @brief Set one string in the compound content (of cmd type)
  * 
- * @param token array of tokens
- * @param argv array of strings used to create tokens
+ * @param compound array of compounds
+ * @param argv array of strings used to create compounds
  * @param i size_t pointer to the index of argv
  * @param k size_t index of the string to be set
  * @return int returns 0 if malloc fails, 1 otherwise
  */
-static int	set_one_str_in_cmd(t_token token, char **argv, size_t *i, size_t k)
+static int	set_one_str_in_cmd(t_compound compound, char **argv,
+	size_t *i, size_t k)
 {
 	if (argv[*i])
 	{
-		token.content[k] = ft_strdup(argv[*i]);
-		if (!token.content[k])
+		compound.content[k] = ft_strdup(argv[*i]);
+		if (!compound.content[k])
 			return (0);
 		*i += 1;
 	}
@@ -66,39 +67,39 @@ static int	set_one_str_in_cmd(t_token token, char **argv, size_t *i, size_t k)
 }
 
 /**
- * @brief Tokenization a command type
+ * @brief parsing a command type
  * 
- * @param token array of tokens
+ * @param compound array of compounds
  * @param i size_t pointer to the index of argv
- * @param n size_t pointer to the index of token
- * @param argv array of strings used to create tokens
+ * @param n size_t pointer to the index of compound
+ * @param argv array of strings used to create compounds
  * @return int returns 0 if malloc fails, 1 otherwise
  */
-int	tokenization_command(t_token *token, size_t *i, size_t *n, char **argv)
+int	parsing_command(t_compound *compound, size_t *i, size_t *n, char **argv)
 {
 	size_t	limiter[2];
-	size_t	n_bis;
+	size_t	nbis;
 
-	token[*n].type = CMD;
+	compound[*n].type = CMD;
 	limiter[0] = get_number_str_in_cmd(&argv[*i]);
-	token[*n].content = ft_calloc(limiter[0] + 1, sizeof(char *));
-	if (!token[*n].content)
+	compound[*n].content = ft_calloc(limiter[0] + 1, sizeof(char *));
+	if (!compound[*n].content)
 		return (0);
 	limiter[1] = -1;
-	n_bis = 0;
+	nbis = 0;
 	while (++limiter[1] < limiter[0])
 	{
 		while (get_redir_type(argv[*i]))
 		{
-			token[*n + ++n_bis]
-				= create_token(&argv[*i], get_redir_flag(argv[*i]), 2);
-			if (!token[*n + n_bis].content || token[*n + n_bis].type == -1)
+			compound[*n + ++nbis]
+				= create_compound(&argv[*i], get_redir_flag(argv[*i]), 2);
+			if (!compound[*n + nbis].content || compound[*n + nbis].type == -1)
 				return (0);
 			*i += 2;
 		}
-		if (!set_one_str_in_cmd(token[*n], argv, i, limiter[1]))
+		if (!set_one_str_in_cmd(compound[*n], argv, i, limiter[1]))
 			return (0);
 	}
-	*n += n_bis + 1;
+	*n += nbis + 1;
 	return (1);
 }

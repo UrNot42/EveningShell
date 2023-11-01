@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   file_handling.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 21:06:23 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/31 10:49:13 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/01 15:24:03 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	fill_file(t_token *token, t_file *file, int max_file)
+int	fill_file(t_compound *token, t_file *file, int max_file)
 {
 	size_t	i;
 	int		f;
