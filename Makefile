@@ -13,7 +13,7 @@ DEPS 				=	$(INCLUDES_DIR)minishell.h $(INCLUDES_DIR) Makefile $(LIB_DIR)libft/M
 RM					=	rm -f
 
 # FIRST STEP OF THE SHELL OPERATIONS BREAKING THE INPUT IN WORDS AND OPERATORS
-SRC_MINISHPLIT		=	$(addprefix minishplit/, \
+SRC_LEXER			=	$(addprefix lexer/, \
 						dollars.c \
 						minishplit.c \
 						check_error.c \
@@ -26,7 +26,7 @@ SRC_MINISHPLIT		=	$(addprefix minishplit/, \
 						)
 
 # SECOND TO THIRD STEP OF THE SHELL OPERATIONS CREATES TOKENS WITH SPECIFICS
-SRC_TOKENIZATION		=	$(addprefix tokenization/, \
+SRC_PARSER			=	$(addprefix parser/, \
 						command.c \
 						free_token.c \
 						redir_type.c \
@@ -42,14 +42,6 @@ SRC_EXPAND			=	$(addprefix expand/, \
 						expand_one_token.c \
 						quotes_management.c \
 						variable_environement_functions.c \
-						\
-						)
-
-# GENERAL WRAPPING OF THE PARSING PROCESS - WORKS ON THE INPUT DIRECTLY
-SRC_PARSING			=	$(addprefix parsing/, \
-						$(SRC_MINISHPLIT) \
-						$(SRC_TOKENIZATION) \
-						$(SRC_EXPAND) \
 						\
 						)
 
@@ -101,7 +93,9 @@ MINISHELL_SRC		=  $(addprefix $(SRC_DIR), \
 						running.c \
 						error_display.c \
 						\
-						$(SRC_PARSING) \
+						$(SRC_LEXER) \
+						$(SRC_EXPAND) \
+						$(SRC_PARSER) \
 						$(SRC_EXECUTION) \
 						\
 						debug.c \

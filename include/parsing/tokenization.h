@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenization.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:41:04 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/30 18:06:13 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/01 14:26:28 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ APPEND, char *tab[3] = {">>", "fallout", NULL};
 PIPE, char *tab[2] = {"|", NULL};
 */
 
-typedef struct s_token	t_token;
+typedef struct s_token	t_token;	// => t_compound
 
 struct s_token
 {

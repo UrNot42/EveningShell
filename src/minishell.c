@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:06:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/31 13:29:35 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/01 14:25:17 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,3 +27,15 @@ int	main(int argc, char **argv, char **envp)
 		return (run_single_cmd(argc - 1, &argv[1], envp));
 	return (0);
 }
+/*
+/SRC
+	/EXECUTION (=> ?)
+	/PARSING (==> DELETED)
+	/PARSING/MINISHPLIT (=> /LEXER)
+	/PARSING/TOKENIZATION (=> /PARSER)
+	/PARISNG/EXPAND (=> /EXPAND)
+	/NONE (=> ?)
+		ERROR_DISPLAY
+		SIGNAL
+
+*/
