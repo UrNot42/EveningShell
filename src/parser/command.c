@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:00:52 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/01 15:10:20 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/02 12:04:03 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ static size_t	get_number_str_in_cmd(char **argv)
 /**
  * @brief Set one string in the compound content (of cmd type)
  * 
- * @param compound array of compounds
- * @param argv array of strings used to create compounds
+ * @param compound one compound containing a array of strings
+ * @param argv array of strings used to create compound array of strings
  * @param i size_t pointer to the index of argv
  * @param k size_t index of the string to be set
  * @return int returns 0 if malloc fails, 1 otherwise
  */
-static int	set_one_str_in_cmd(t_compound compound, char **argv,
+static int	set_one_str_in_cmd_type(t_compound compound, char **argv,
 	size_t *i, size_t k)
 {
 	if (argv[*i])
@@ -97,7 +97,7 @@ int	parsing_command(t_compound *compound, size_t *i, size_t *n, char **argv)
 				return (0);
 			*i += 2;
 		}
-		if (!set_one_str_in_cmd(compound[*n], argv, i, limiter[1]))
+		if (!set_one_str_in_cmd_type(compound[*n], argv, i, limiter[1]))
 			return (0);
 	}
 	*n += nbis + 1;

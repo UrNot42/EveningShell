@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:40:00 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/01 14:47:26 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/02 17:43:54 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ size_t	get_next_single_quote(char const *s, size_t i);
 
 // -------------------------- MINISHPLIT --------------------------
 
-char	**split_minishell(char const *s);
+char	**minishplit(char const *s);
 
 // -------------------------- DOLLARS --------------------------
 
