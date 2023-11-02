@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:31:47 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/02 09:15:21 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/02 10:27:16 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	execute(t_compound *elemt_list, char **env)
 
 	if (set_execute_struct(elemt_list, &exec, env))
 		return (1);
+	open_here_documents(exec.files, &exec);
 	open_files(exec.files);
 	i = 0;
 	while (i < exec.cmd_size)

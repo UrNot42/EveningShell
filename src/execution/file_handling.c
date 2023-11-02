@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 21:06:23 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/02 09:12:24 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/02 09:34:44 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,25 @@ int	open_here_documments(t_file *file, t_exec *exec)
 	return (0);
 }
 
+int	open_here_documents(t_file *file, t_exec *exec)
+{
+	int	i;
+
+	i = 0;
+	while (file[i].name)
+	{
+		if (file[i].type == HERE_DOC)
+			file[i].fd = heredoc(exec, file[i].name);
+		if (file[i].fd == -1)
+		{
+			close_files(file, i);
+			return (perror(file[i].name), i);
+		}
+		i++;
+	}
+	return (0);
+}
+
 int	open_files(t_file *file)
 {
 	int	i;
@@ -64,11 +83,10 @@ int	open_files(t_file *file)
 		if (file[i].type == REDIR_OUT)
 			file[i].fd = open(file[i].name, O_TRUNC | O_CREAT | O_WRONLY, 0666);
 		else if (file[i].type == APPEND)
-			file[i].fd = open(file[i].name, O_APPEND | O_CREAT | O_WRONLY, 0666);
+			file[i].fd = open(file[i].name,
+					O_APPEND | O_CREAT | O_WRONLY, 0666);
 		else if (file[i].type == REDIR_IN)
 			file[i].fd = open(file[i].name, O_RDONLY);
-		else if (file[i].type == HERE_DOC)
-			// file[i].fd = heredoc(exec, file[i].name);
 		if (file[i].fd == -1)
 		{
 			close_files(file, i);
@@ -83,7 +101,6 @@ void	close_files(t_file *file, int to)
 {
 	int	i;
 
-	// printf("closed_files\n");
 	i = 0;
 	while (i < to)
 	{
