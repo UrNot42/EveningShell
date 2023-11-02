@@ -137,7 +137,11 @@ t_compound	*parsing(char **argv)
 	return (compound);
 }
 
-// cmd1 op arg1 arg2 > file arg3 | cmd2 arg1 arg2 < file arg3 | cmd3 arg1 >> file arg2 arg3 | cmd4 << file arg1 arg2 arg3
-// cmd1 op arg1 arg2 > file arg3 | cmd2 arg1 arg2 < file arg3 | cmd3 arg1 >> file arg2 arg3 | cmd4 << file arg1 arg2 arg3 | cmd5 > file | >> file < file
+// cmd1 op arg1 arg2 > file arg3 | cmd2 arg1 arg2 < file arg3 |
+// 		cmd3 arg1 >> file arg2 arg3 | cmd4 << file arg1 arg2 arg3
 
-// ls cmdjdkf and so em no >> filehere > true file < infile < infiletwo | cat oui oui oui
+// cmd1 op arg1 arg2 > file arg3 | cmd2 arg1 arg2 < file arg3 | cmd3 arg1 >>
+// 	file arg2 arg3 | cmd4 << file arg1 arg2 arg3 | cmd5 > file | >> file < file
+
+// ls cmdjdkf and so em no >> filehere > true file < infile < infiletwo
+//		| cat oui oui oui

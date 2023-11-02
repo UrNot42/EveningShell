@@ -6,24 +6,15 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 18:59:58 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/31 12:40:24 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/02 10:59:53 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// " -> "
-// ' -> "
-// sapce + tab -> cut
-// < -> cut
-// > -> cut
-// | -> cut
-// $ -> sapce + tab
-
 /**
  * @brief Count the length of a word. A word is delimited by metacharacters,
- * double quotes, single quotes and dollars.
- * /!\ BRIEF IS BAD /!\
+ * double quotes, single quotes.
  * 
  * @param s string to count in
  * @return size_t size of the word
@@ -47,10 +38,6 @@ static size_t	word_length(char const *s)
 		}
 		if (is_metacharacter(s[i]))
 			break ;
-		// if (s[i] == '$')
-		// {
-		// 	return (wl_dollars(s));
-		// }
 		i++;
 	}
 	return (i);
@@ -172,5 +159,6 @@ char	**split_minishell(char const *s)
 // "a"sss"f"f|fdf>fd<$$$HOME
 // "a  1	2"bbb"c"d|efg>hi<<$$$HOME$USER
 // "a  1        2"bbb"c"d|efg>hi<<$$$HOME$$USER || $PW|
-// "a  1        2"bbb"c"d| e          fg>hi<<$$$HOME$$USER || $PW|	'zyx'5'wvuts' "rq'po'nmlk" 'jihg"fed"cba'
+// "a  1        2"bbb"c"d| e          fg>hi<<$$$HOME$$USER
+//		 || $PW|	'zyx'5'wvuts' "rq'po'nmlk" 'jihg"fed"cba'
 // DELETE COMMENT AT THE START OF THE FILE \/!\/!\/!\/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:05:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/02 10:55:28 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/02 11:00:48 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_compound	*parse_line(char *line, char **envp, int exit_status)
 	tokens = split_minishell(line);
 	if (!tokens)
 		error_failed_malloc();
-	// debug_double_char(tokens, "Minishplit", 1);
+	// debug_double_char(tokens, "Minishplit", 1);	
 	if (check_error(tokens))
 		return (ft_free_dstr(tokens), NULL);
 	coumpound_command = parsing(tokens);
@@ -70,7 +70,7 @@ char	**history_completion(const char *text, int start, int end)
  *        ought to be done without using the prompt
  *
  *        although it is the main loop of Minishell
- *2
+ *2	
  */
 void	prompt(char **env)
 {
