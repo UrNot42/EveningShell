@@ -3,35 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   init_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 13:27:54 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/01 14:42:04 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/02 09:14:46 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	fill_cmds(t_compound *token, t_cmd *cmd, t_file *file)
+int	fill_cmds(t_compound *element, t_cmd *cmd, t_file *file)
 {
 	int	c_index;
 
 	c_index = 0;
-	while (token->content)
+	while (element->content)
 	{
-		if (token->type == CMD)
-			cmd[c_index] = (t_cmd){token->content[0],
-				&token->content[0], NULL, NULL};
-		if (token->type == REDIR_IN || token->type == HERE_DOC)
+		if (element->type == CMD)
+			cmd[c_index] = (t_cmd){element->content[0],
+				&element->content[0], NULL, NULL};
+		if (element->type == REDIR_IN || element->type == HERE_DOC)
 			cmd[c_index].in = file++;
-		if (token->type == REDIR_OUT || token->type == APPEND)
+		if (element->type == REDIR_OUT || element->type == APPEND)
 			cmd[c_index].out = file++;
-		if (token->type == PIPE)
+		if (element->type == PIPE)
 		{
-			token->content = NULL;
+			element->content = NULL;
 			c_index++;
 		}
-		token++;
+		element++;
 	}
 	return (0);
 }

@@ -3,32 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   file_handling.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 21:06:23 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/01 18:32:59 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/02 09:12:24 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	fill_file(t_compound *token, t_file *file, int max_file)
+int	fill_file(t_compound *element, t_file *file, int max_file)
 {
 	size_t	i;
 	int		f;
 
 	i = 0;
 	f = 0;
-	while (token[i].content && f < max_file)
+	while (element[i].content && f < max_file)
 	{
-		if (token[i].type == REDIR_IN || token[i].type == REDIR_OUT
-			|| token[i].type == APPEND || token[i].type == HERE_DOC)
+		if (element[i].type == REDIR_IN || element[i].type == REDIR_OUT
+			|| element[i].type == APPEND || element[i].type == HERE_DOC)
 		{
 			file[f].exists = true;
-			file[f].type = token[i].type;
+			file[f].type = element[i].type;
 			file[f].fd = -1;
-			file[f].name = token[i].content[1];
+			file[f].name = element[i].content[1];
 			f++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+int	open_here_documments(t_file *file, t_exec *exec)
+{
+	int	i;
+
+	i = 0;
+	while (file[i].name)
+	{
+		if (file[i].type == HERE_DOC)
+			file[i].fd = heredoc(exec, file[i].name);
+		if (file[i].fd == -1)
+		{
+			close_files(file, i);
+			return (perror(file[i].name), i);
 		}
 		i++;
 	}
