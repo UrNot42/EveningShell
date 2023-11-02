@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 18:07:46 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/27 17:26:24 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/02 17:32:01 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	get_env_var_index(char **env, char *var)
 	int	i;
 	int	j;
 
-	if (!env || !var)
+	if (!env || !var || !*env)
 		return (-1);
 	i = 0;
 	while (env[i])

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:25:20 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/29 13:30:25 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/02 17:12:09 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,25 @@
 /**
  * @brief creates a default shell environment creating 3 default variables
  *
- * /!\ UNFINISHED TODO
  *
  * @return returns a brand new allocated env
  */
 char	**create_default_env(void)
 {
 	char		**env;
-	const char	*def_vars[3] = {"PWD=", "SHLVL=1", "_="};
+	const char	*def_vars[3] = {"PWD=", "SHLVL=1", "_=/usr/bin/env"};
+	char		*tmp;
 	int			i;
 
 	env = ft_calloc(3 + 1, sizeof(char *));
-	i = 0;
+	tmp = getcwd(NULL, 0);
+	if (!tmp)
+		(ft_free_dstr(env), error_failed_malloc());
+	env[0] = ft_strjoin(def_vars[0], tmp);
+	free(tmp);
+	if (!env[0])
+		(ft_free_dstr(env), error_failed_malloc());
+	i = 1;
 	while (i < 3)
 	{
 		env[i] = ft_strdup(def_vars[i]);

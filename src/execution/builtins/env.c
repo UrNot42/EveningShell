@@ -6,13 +6,13 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 20:25:28 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/13 21:05:25 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/02 16:47:02 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	env(char **env)
+int	env(char **env)
 {
 	int	i;
 
@@ -22,4 +22,5 @@ void	env(char **env)
 		printf("%s\n", env[i]);
 		i++;
 	}
+	return (0);
 }

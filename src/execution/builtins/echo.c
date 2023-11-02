@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:28:19 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/05 21:26:20 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/02 16:42:11 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 /**
  * @brief Detects if the option -n is present in the arguments
- * 
- * /!\ Have to change "arguments" to a better word
- * 
+ *
+ *
  * @param str string to check
  * @return int 1 if the option is present, 0 otherwise
  */
@@ -41,42 +40,25 @@ static int	detect_option_n(char *str)
 
 /**
  * @brief Builtins of the command echo
- * 
+ *
  * /!\ Have to change "arguments" to a better word
- * 
+ *
  * @param argv char** of the arguments
  */
-void	builtins_echo(char **argv)
+int	builtins_echo(char **args)
 {
 	int	i;
 	int	new_line;
 
-	new_line = detect_option_n(argv[1]);
+	new_line = detect_option_n(args[1]);
 	i = 1 + new_line;
-	while (argv[i] != NULL)
+	while (args[i] != NULL)
 	{
-		printf("%s", argv[i]);
+		printf("%s", args[i]);
 		printf(" ");
 		++i;
 	}
 	if (!new_line)
 		printf("\n");
-}
-
-/**
- * @brief Detects if the command is echo
- * 
- * /!\ Have to change "arguments" to a better word
- * 
- * @param argv char** of the arguments to check
- * @return int 1 if the command is echo, 0 otherwise
- */
-int	detect_echo(char **argv)
-{
-	if (!ft_strcmp(argv[0], "echo"))
-	{
-		printf("A builtins detected : echo\n");
-		return (1);
-	}
 	return (0);
 }
