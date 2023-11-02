@@ -10,7 +10,9 @@ Makefile.gen
 ## Other
 .DS_STORE
 ignore.txt
-
+minishell
+file
+out
 
 ## Template from https://github.com/github/gitignore
 # Prerequisites

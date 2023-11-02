@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:20:51 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/02 09:06:25 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/02 16:37:13 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,31 @@
 # include "files.h"
 # include "here_doc.h"
 
+# define PIP_ZERO 0b001
+# define PIP_ONE  0b010
+# define PIP_PREV 0b100
+# define PIP_BOTH 0b011
+# define PIP_ALL  0b111
+# define PIP_READ 0b101
+
 // ========================= INIT ========================
 
 int		fill_cmds(t_compound *comp, t_cmd *cmd, t_file *file);
 int		set_execute_struct(t_compound *comp, t_exec *ex, char **env);
 size_t	get_compound_type_size(t_compound *comp, bool is_cmd);
+char	*ft_safe_strjoin(char *to_free_str, char *str_2);
+int		create_cmd(t_cmd *cmd, char **env, char **n_cmd, char ***n_args);
 
 // ========================= EXECUTION ========================
 
-int		execute(t_compound *comp, char **env);
-int		wait_pids(int *pids);
-void	child_process(t_exec *exec, int i);
+int		execute(t_compound *comp, char **env, int last_err);
+int		execute_builtin(t_exec *ex, int i, int last_err);
+void	free_exec(t_exec *ex, bool env);
+void	child_process(t_exec *exec, int i, int last_err);
 
 int		close_pipe(t_pipe *pi, size_t code);
 
-int		create_cmd(t_cmd *cmd, char **env, char **n_cmd, char ***n_args);
-void	free_exec(t_exec *ex, bool env);
+int		wait_pids(int *pids);
 
 // ========================== SIGNAL ==========================
 

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:31:47 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/02 10:27:16 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/02 16:41:47 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,22 @@ int	finish_execute(t_exec *exec)
 	return (error_code);
 }
 
-int	execute(t_compound *elemt_list, char **env)
+void	start_cmd(t_exec *exec, int i, int last_err)
+{
+	if (is_builtin(exec->cmd[i].cmd) && exec->cmd_size == 1)
+	{
+		dup_fd(&exec->cmd[i], exec->pi);
+		execute_builtin(exec, i, last_err);
+	}
+	else
+	{
+		exec->pi.ds[i] = fork();
+		if (exec->pi.ds[i] == 0)
+			child_process(exec, i, last_err);
+	}
+}
+
+int	execute(t_compound *elemt_list, char **env, int last_err)
 {
 	t_exec	exec;
 	int		i;
@@ -35,15 +50,13 @@ int	execute(t_compound *elemt_list, char **env)
 	{
 		if (i < exec.cmd_size - 1)
 			pipe(exec.pi.pe);
-		exec.pi.ds[i] = fork();
-		if (exec.pi.ds[i] == 0)
-			child_process(&exec, i);
-		close_pipe(&exec.pi, 0b100);
+		start_cmd(&exec, i, last_err);
+		close_pipe(&exec.pi, PIP_PREV);
 		exec.pi.pe_prev = exec.pi.pe[0];
-		close_pipe(&exec.pi, 0b010);
+		close_pipe(&exec.pi, PIP_ONE);
 		i++;
 	}
-	close_pipe(&exec.pi, 0b101);
+	close_pipe(&exec.pi, PIP_READ);
 	exec.pi.ds[i] = -1;
 	return (finish_execute(&exec));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:05:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/01 15:25:53 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/02 16:31:23 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,11 @@ void	prompt(char **env)
 			free(buffer);
 		buffer = readline("minishell-0.1$ ");
 		if (!buffer)
-			break ;
+			(ft_free_dstr(env), exit(exit_status));
 		if (buffer && *buffer)
 			add_history(buffer);
 		compound_command = parse_line(buffer, env, exit_status);
 		if (compound_command)
-			exit_status = execute(compound_command, env);
+			exit_status = execute(compound_command, env, exit_status);
 	}
-	ft_free_dstr(env);
-	free(buffer);
 }
