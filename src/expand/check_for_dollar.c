@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 17:35:53 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/31 22:09:26 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/02 10:45:45 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static size_t	dollar_alone(char const *str, size_t *index_dollar)
 		return (1);
 	}
 	else if (!ft_isalpha(str[*index_dollar]) && str[*index_dollar] != '_'
-		&& !ft_isdigit(str[*index_dollar]))
+		&& str[*index_dollar] != '?' && !ft_isdigit(str[*index_dollar]))
 	{
 		return (0);
 	}

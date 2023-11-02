@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:05:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/01 15:25:53 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/02 10:39:50 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 t_compound	*parse_line(char *line, char **envp, int exit_status)
 {
-	char		**lexed_line;
+	char		**tokens;
 	t_compound	*coumpound_command;
 
-	lexed_line = split_minishell(line);
-	if (!lexed_line)
+	tokens = split_minishell(line);
+	if (!tokens)
 		error_failed_malloc();
-	// debug_double_char(lexed_line, "Minishplit", 1);
-	if (check_error(lexed_line))
-		return (ft_free_dstr(lexed_line), NULL);
-	coumpound_command = parsing(lexed_line);
-	ft_free_dstr(lexed_line);
+	// debug_double_char(tokens, "Minishplit", 1);	
+	if (check_error(tokens))
+		return (ft_free_dstr(tokens), NULL);
+	coumpound_command = parsing(tokens);
+	ft_free_dstr(tokens);
 	if (!coumpound_command)
 		exit(EXIT_FAILURE);
 	// debug_compound(coumpound_command, "Parsing");
@@ -70,7 +70,7 @@ char	**history_completion(const char *text, int start, int end)
  *        ought to be done without using the prompt
  *
  *        although it is the main loop of Minishell
- *2
+ *2	
  */
 void	prompt(char **env)
 {
