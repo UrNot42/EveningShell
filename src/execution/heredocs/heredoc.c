@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 13:16:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/01 18:28:04 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/02 10:47:28 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /**
  * @brief Create a heredoc.
- * 
+ *
  * @param fd_write fd to write in the file, use to save the heredoc input.
  * @param keyword char * use to stop the heredoc if the input is equal.
  */
@@ -25,7 +25,13 @@ static void	create_heredoc(int fd_write, char *keyword)
 	while (1)
 	{
 		line = readline("> ");
-		if (!line || !ft_strcmp(line, keyword))
+		if (!line)
+		{
+			printf("minishell: warning: here-document delimited by end-of-file\
+ (wanted `%s')\n", keyword);
+			break ;
+		}
+		if (!ft_strcmp(line, keyword))
 		{
 			free(line);
 			break ;
