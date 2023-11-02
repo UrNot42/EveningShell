@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:20:51 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/01 14:42:04 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/02 09:06:25 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@
 
 // ========================= INIT ========================
 
-int		fill_cmds(t_compound *token, t_cmd *cmd, t_file *file);
-int		set_execute_struct(t_compound *token, t_exec *ex, char **env);
-size_t	get_compound_type_size(t_compound *token, bool is_cmd);
+int		fill_cmds(t_compound *comp, t_cmd *cmd, t_file *file);
+int		set_execute_struct(t_compound *comp, t_exec *ex, char **env);
+size_t	get_compound_type_size(t_compound *comp, bool is_cmd);
 
 // ========================= EXECUTION ========================
 
-int		execute(t_compound *tokens, char **env);
+int		execute(t_compound *comp, char **env);
 int		wait_pids(int *pids);
 void	child_process(t_exec *exec, int i);
 
