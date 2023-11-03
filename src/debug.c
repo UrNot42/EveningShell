@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 13:16:01 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/01 14:54:04 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/03 13:40:09 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	debug_compound(t_compound *compound, char *debug_print)
 
 	printf("\n-- %s --\n", debug_print);
 	i = 0;
-	while (compound[i].type != -1)
+	while (compound[i].type != UNSET && compound[i].type != -1)
 	{
 		if (compound[i].type == CMD)
 			printf("compound[%d] type : CMD\n", i);

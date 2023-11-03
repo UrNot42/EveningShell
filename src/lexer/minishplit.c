@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 18:59:58 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/02 10:59:53 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/02 17:43:54 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ static char	**ft_rewind_free(char **argv, size_t y)
  * @param s string returned by readline
  * @return char** array of strings splitted by bash rules
  */
-char	**split_minishell(char const *s)
+char	**minishplit(char const *s)
 {
 	size_t	i;
 	size_t	count;

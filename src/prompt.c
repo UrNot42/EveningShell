@@ -3,21 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:05:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/03 12:30:24 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/03 13:08:55 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief Take a line (char *) and convert it to a array of compound.
+ * 
+ * @param line char * line to be parsed
+ * @param envp array of strings containing the environment variables
+ * @param exit_status int exit status of the last command
+ * @return t_compound* array of compounds created from the line
+ */
 t_compound	*parse_line(char *line, char **envp, int exit_status)
 {
 	char		**tokens;
 	t_compound	*coumpound_command;
 
-	tokens = split_minishell(line);
+	tokens = minishplit(line);
 	if (!tokens)
 		error_failed_malloc();
 	// debug_double_char(tokens, "Minishplit", 1);

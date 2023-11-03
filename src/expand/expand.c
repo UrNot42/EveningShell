@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 13:53:58 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/01 15:05:20 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/03 13:35:10 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	expand(t_compound **compound, char **env, int exit_status)
 	size_t	j;
 
 	i = -1;
-	while ((*compound)[++i].type != -1)
+	while ((*compound)[++i].type != UNSET && (*compound)[++i].type != -1)
 	{
 		if ((*compound)[i].type != HERE_DOC)
 		{
