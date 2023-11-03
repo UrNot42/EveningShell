@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 21:05:52 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/01 15:10:54 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/03 12:28:52 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ void	free_exec(t_exec *ex, bool env)
 	free(ex->files);
 	free_compound(ex->allocated_content);
 	if (env)
-		ft_free_dstr(ex->env);
+		ft_free_dstr(*ex->env);
 }
 
-int	set_execute_struct(t_compound *compound, t_exec *ex, char **env)
+int	set_execute_struct(t_compound *compound, t_exec *ex, char ***env)
 {
 	ex->env = env;
 	if (!compound)

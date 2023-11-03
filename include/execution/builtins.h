@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:20:51 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/30 10:17:52 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/03 12:29:34 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,35 +15,28 @@
 
 # include "minishell.h"
 
+enum	e_bt_commands
+{
+	NOT_A_BT,
+	BT_CD,
+	BT_ECHO,
+	BT_ENV,
+	BT_EXIT,
+	BT_EXPORT,
+	BT_PWD,
+	BT_UNSET,
+};
+
 // -------------------------- BUILTINS --------------------------
 
-void	builtins(int argc, char **argv);
-bool	is_builtin(char *cmd);
+int	is_builtin(char *cmd);
 
-// -------------------------- BUILTINS_CD --------------------------
-
-int		detect_cd(char **argv);
-int		builtins_cd(char **argv);
-
-// -------------------------- BUILTINS_ECHO --------------------------
-
-int		detect_echo(char **argv);
-
-void	builtins_echo(char **argv);
-
-// -------------------------- BUILTINS_EXIT --------------------------
-
-int		detect_exit(char **argv);
-
-void	builtins_exit(void);
-
-// -------------------------- BUILTINS_PWD --------------------------
-
-int		detect_pwd(char **argv);
-int		buitlins_pwd(char **argv);
-
-int		unset(char **env, char **args);
-int		ft_export(char **env, char **args);
-void	env(char **env);
+int	builtins_cd(char **args, char **env);
+int	builtins_echo(char **args);
+int	builtins_exit(int code);
+int	buitlins_pwd(char **args);
+int	unset(char **env, char **args);
+int	ft_export(char ***env, char **args);
+int	env(char **env);
 
 #endif

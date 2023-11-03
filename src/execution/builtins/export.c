@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:19:25 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/28 20:32:51 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/03 12:35:54 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ static bool	check_env_var_naming(char *name)
 
 	i = 0;
 	if (!name || !name[i]
-		|| (!ft_isapha(name[i]) && name[i != '_']))
+		|| (!ft_isalpha(name[i]) && name[i] != '_'))
 		return (false);
 	while (name[i]
-		&& (ft_isapha(name[i]) || ft_isdigit(name[i]) || name[i] == '_'))
+		&& (ft_isalpha(name[i]) || ft_isdigit(name[i]) || name[i] == '_'))
 		i++;
 	if (name[i] && name[i] != '=')
 		return (false);
@@ -53,7 +53,7 @@ static bool	check_env_var_naming(char *name)
  *
  * @return int as the error value
  */
-int	ft_export(char **env, char **args)
+int	ft_export(char ***env, char **args)
 {
 	int	i;
 	int	err;
@@ -62,8 +62,12 @@ int	ft_export(char **env, char **args)
 	i = 0;
 	while (args && args[i])
 	{
+		printf("var exporting %s\n", args[i]);
 		if (check_env_var_naming(args[i]))
-			extend_env(env, args[i]);
+		{
+			*env = extend_env(*env, args[i]);
+			printf("exported!\n");
+		}
 		else
 			err++;
 		i++;

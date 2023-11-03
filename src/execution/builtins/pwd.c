@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 09:45:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/13 21:17:09 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/02 17:01:33 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,4 @@ int	buitlins_pwd(char **argv)
 	printf("%s\n", pwd);
 	free(pwd);
 	return (1);
-}
-
-/**
- * @brief Detects if the command is pwd
- *
- * /!\ Have to change "arguments" to a better word
- *
- * @param argv char** of the arguments to check
- * @return int 1 if the command is pwd, 0 otherwise
- */
-int	detect_pwd(char **argv)
-{
-	if (!ft_strcmp(argv[0], "pwd"))
-	{
-		printf("A builtins detected : pwd\n");
-		return (1);
-	}
-	return (0);
 }
