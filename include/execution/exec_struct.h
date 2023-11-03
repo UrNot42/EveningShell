@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_struct.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 16:14:47 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/01 14:52:20 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/03 12:16:28 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ struct s_exec
 	t_cmd		*cmd;
 	t_file		*files;
 	t_compound	*allocated_content;
-	char		**env;
+	char		***env;
 };
 
 #endif

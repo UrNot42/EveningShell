@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:07:20 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/01 14:54:20 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/03 12:34:03 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ extern int	g_signal;
 
 // ========================== PROMPT ==========================
 
-void		prompt(char **envp);
+void		prompt(char ***env);
 t_compound	*parse_line(char *line, char **envp, int exit_status);
 
 // ------------------------- ERROR_DISPLAY ----------------------- //

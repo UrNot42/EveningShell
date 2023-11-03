@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:20:51 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/02 17:15:23 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/03 12:29:34 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	builtins_echo(char **args);
 int	builtins_exit(int code);
 int	buitlins_pwd(char **args);
 int	unset(char **env, char **args);
-int	ft_export(char **env, char **args);
+int	ft_export(char ***env, char **args);
 int	env(char **env);
 
 #endif

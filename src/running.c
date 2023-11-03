@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:28:14 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/02 17:12:06 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/03 12:34:30 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	start_interactive(char **env)
 		env_cpy = create_default_env();
 	else
 		env_cpy = copy_env(env);
-	prompt(env_cpy);
+	prompt(&env_cpy);
 }
 
 char	*ft_safe_strjoin(char *to_free_str, char *str_2)
@@ -64,17 +64,22 @@ char	*create_line_from_args(char **argv, int argc)
 	return (line);
 }
 
-int	run_single_cmd(int arg_count, char **args, char **env)
+int	run_single_cmd(int arg_count, char **args, char **envp)
 {
 	t_compound	*compounds;
 	char		*line;
+	char		**env;
 
+	if (!envp || !*envp)
+		env = create_default_env();
+	else
+		env = copy_env(envp);
 	if (!args)
 		return (0);
 	line = create_line_from_args(args, arg_count);
 	compounds = parse_line(line, env, 0);
 	free(line);
 	if (compounds)
-		return (execute(compounds, env, 0));
+		return (execute(compounds, &env, 0));
 	return (0);
 }

@@ -6,11 +6,21 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 18:07:46 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/02 17:32:01 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/03 12:11:16 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+// TODO REMOVE
+void	print_env(char **env)
+{
+	for (int i = 0; env && env[i]; i++)
+	{
+		printf("%p\n", env[i]);
+		printf("%s\n", env[i]);
+	}
+}
 
 /**
  * @brief Copies the inherited env object
@@ -56,28 +66,28 @@ char	**extend_env(char **old_env, char *new_var)
 {
 	char	**new_env;
 	char	*var_copy;
-	size_t	i;
+	size_t	i[2];
 
-	i = 0;
-	while (old_env && old_env[i])
-		i++;
-	if (i == 0)
-		return (NULL);
-	new_env = ft_calloc(i + 2, sizeof(char *));
+	i[0] = 0;
+	if (!new_var)
+		return (old_env);
+	while (old_env && old_env[i[0]])
+		i[0]++;
+	new_env = ft_calloc(i[0] + 2, sizeof(char *));
 	if (!new_env)
-		return (ft_free_dstr(old_env), NULL);
+		return (old_env);
 	var_copy = ft_strdup(new_var);
 	if (!var_copy)
-		return (ft_free_dstr(old_env), free(new_env), NULL);
-	i = 0;
-	while (old_env && old_env[i])
+		return (free(new_env), old_env);
+	i[1] = 0;
+	while (i[1] < i[0])
 	{
-		new_env[i] = old_env[i];
-		old_env[i] = NULL;
-		i++;
+		new_env[i[1]] = old_env[i[1]];
+		old_env[i[1]] = NULL;
+		i[1]++;
 	}
 	ft_free_dstr(old_env);
-	new_env[i] = var_copy;
+	new_env[i[1]] = var_copy;
 	return (new_env);
 }
 
@@ -136,3 +146,31 @@ char	**shorten_env(char **env, size_t index_var_to_delete)
 	}
 	return (env);
 }
+
+/*
+// test of exort functions
+int	main(int ac, char **av, char **envb)
+{
+	char	**env;
+
+	if (ac == 1 && envb && *envb)
+		env = copy_env(envb);
+	else
+		env = NULL;
+	print_env(env);
+	if (ac < 2)
+	{
+		printf("\nAdding a=456\n\n");
+		env = extend_env(env, "a=456");
+		print_env(env);
+		printf("\nRemoving a\n\n");
+		shorten_env(env, get_env_var_index(env, "a"));
+	}
+	else
+	{
+		printf("\nAdding %s\n\n", av[1]);
+		env = extend_env(env, av[1]);
+	}
+	print_env(env);
+}
+*/
