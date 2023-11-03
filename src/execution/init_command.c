@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 13:27:54 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/02 09:14:46 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/03 12:56:06 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@ int	fill_cmds(t_compound *element, t_cmd *cmd, t_file *file)
 		if (element->type == REDIR_OUT || element->type == APPEND)
 			cmd[c_index].out = file++;
 		if (element->type == PIPE)
-		{
-			element->content = NULL;
 			c_index++;
-		}
 		element++;
 	}
 	return (0);
