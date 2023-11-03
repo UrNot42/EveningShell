@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:00:52 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/02 12:04:03 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/03 13:33:21 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,10 @@ int	parsing_command(t_compound *compound, size_t *i, size_t *n, char **argv)
 			*i += 2;
 		}
 		if (!set_one_str_in_cmd_type(compound[*n], argv, i, limiter[1]))
+		{
+			*n += nbis + 1;
 			return (0);
+		}
 	}
 	*n += nbis + 1;
 	return (1);

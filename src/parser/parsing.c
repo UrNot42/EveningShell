@@ -131,7 +131,10 @@ t_compound	*parsing(char **argv)
 	while (argv[i])
 	{
 		if (!set_compounds(compound, argv, &i, &n))
+		{
+			printf("compound[%zu].type = %d\n", n - 1, compound[n - 1].type);
 			return (free_compound(compound), NULL);
+		}
 	}
 	compound[n].type = -1;
 	return (compound);
