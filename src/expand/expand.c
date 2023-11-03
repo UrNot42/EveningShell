@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 13:53:58 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/03 17:44:21 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/03 18:52:04 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
  * @brief Expands one by one each content's compound, compound by compound
  * Expand means to replace the environment variables (starting with $) by their
  * content (contained in the char ** env) And remove the quotes
- * 
+ *
  * @param compound compound containing the content to expand
  * @param env char ** of the environment variables
  * @param exit_status int containing the exit status of the last command
@@ -26,8 +26,8 @@ void	expand(t_compound **compound, char **env, int exit_status)
 	size_t	i;
 	size_t	j;
 
-	i = -1;
-	while ((*compound)[++i].type != UNSET && (*compound)[i].type != -1)
+	i = 0;
+	while ((*compound)[i].type != UNSET && (*compound)[i].type != -1)
 	{
 		if ((*compound)[i].type != HERE_DOC)
 		{
@@ -46,5 +46,6 @@ void	expand(t_compound **compound, char **env, int exit_status)
 				(free_compound(*compound), error_failed_malloc());
 			}
 		}
+		i++;
 	}
 }

@@ -6,13 +6,13 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 21:47:21 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/03 15:25:05 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/03 17:49:40 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	execute_builtin(t_exec *ex, int last_err)
+int	execute_builtin(t_exec *ex, int last_err, int fd)
 {
 	int	code;
 
@@ -29,7 +29,7 @@ int	execute_builtin(t_exec *ex, int last_err)
 			code = ft_atoi(ex->cmd->args[1]);
 		else
 			code = last_err;
-		free_exec(ex, true);
+		(free_exec(ex, true), fd != -1 && close(fd));
 		code = builtins_exit(code);
 	}
 	else if (code == BT_EXPORT)
@@ -46,7 +46,10 @@ int	dup_fd(t_cmd *cmd, t_pipe pi)
 	if (cmd->in != NULL && cmd->in->exists)
 	{
 		if (cmd->in->fd == -1)
+		{
+			printf("Here 1\n");
 			return (perror(cmd->in->name), 1);
+		}
 		dup2(cmd->in->fd, STDIN_FILENO);
 		close(cmd->in->fd);
 	}
@@ -55,7 +58,10 @@ int	dup_fd(t_cmd *cmd, t_pipe pi)
 	if (cmd->out != NULL && cmd->out->exists)
 	{
 		if (cmd->out->fd == -1)
+		{
+			printf("Here 2 \n");
 			return (perror(cmd->out->name), 1);
+		}
 		dup2(cmd->out->fd, STDOUT_FILENO);
 		close(cmd->out->fd);
 	}
@@ -70,7 +76,7 @@ void	exec_cmd(t_exec *exec, int i, int last_err)
 
 	if (is_builtin(exec->cmd[i].cmd))
 	{
-		code = execute_builtin(exec, last_err);
+		code = execute_builtin(exec, last_err, -1);
 		close_files(exec->files, exec->file_size);
 		free_exec(exec, true);
 		exit(code);
