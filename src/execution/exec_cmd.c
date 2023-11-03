@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 21:47:21 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/03 12:51:57 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/03 15:25:05 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	execute_builtin(t_exec *ex, int last_err)
 		code = buitlins_pwd(ex->cmd->args);
 	else if (code == BT_UNSET)
 		code = unset(*ex->env, ex->cmd->args);
-	return (close_files(ex->files, ex->file_size), code);
+	return (code);
 }
 
 int	dup_fd(t_cmd *cmd, t_pipe pi)
@@ -71,6 +71,7 @@ void	exec_cmd(t_exec *exec, int i, int last_err)
 	if (is_builtin(exec->cmd[i].cmd))
 	{
 		code = execute_builtin(exec, last_err);
+		close_files(exec->files, exec->file_size);
 		free_exec(exec, true);
 		exit(code);
 	}

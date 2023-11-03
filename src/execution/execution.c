@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:31:47 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/03 12:16:45 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/03 15:25:42 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,17 @@ void	start_cmd(t_exec *exec, int i, int last_err)
 		child_process(exec, i, last_err);
 }
 
+int	run_one_builtin(t_exec *exec, int last_err)
+{
+	int	code;
+
+	dup_fd(&exec->cmd[0], exec->pi);
+	code = execute_builtin(exec, last_err);
+	close_files(exec->files, exec->file_size);
+	free_exec(exec, false);
+	return (code);
+}
+
 int	execute(t_compound *elemt_list, char ***env, int last_err)
 {
 	t_exec	exec;
@@ -38,8 +49,7 @@ int	execute(t_compound *elemt_list, char ***env, int last_err)
 	open_here_documents(exec.files, &exec);
 	open_files(exec.files);
 	if (exec.cmd_size == 1 && is_builtin(exec.cmd[0].cmd))
-		return (dup_fd(&exec.cmd[0], exec.pi),
-			execute_builtin(&exec, last_err));
+		return (run_one_builtin(&exec, last_err));
 	i = 0;
 	while (i < exec.cmd_size)
 	{
