@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 17:35:53 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/03 18:50:53 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/03 19:07:46 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,9 @@ static size_t	dollar_alone(char const *str, size_t *index_dollar)
 	{
 		return (0);
 	}
-	while (str[*index_dollar] && !is_special_character(str[*index_dollar]))
+	while (str[*index_dollar]
+		&& ((*index_dollar == 1 && str[*index_dollar] == '?')
+			|| !is_special_character(str[*index_dollar])))
 	{
 		*index_dollar += 1;
 		expand_length++;

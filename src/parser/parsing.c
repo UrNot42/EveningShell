@@ -87,7 +87,7 @@ static int	set_compounds(t_compound *compound, char **argv,
 {
 	if (get_redir_type(argv[*i]))
 	{
-		compound[*n] = create_compound(&argv[*i], get_redir_flag(argv[*i]), 2);
+		compound[*n] = create_compound(&argv[*i], get_redir_type(argv[*i]), 2);
 		if (!compound[*n].content)
 			return (0);
 		if (argv[*i + 1])

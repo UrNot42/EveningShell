@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:26:18 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/11 16:24:40 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/03 19:52:34 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ int	check_syntax_pipe(char **argv, size_t n)
 		printf("minishell$: syntax error near unexpected token `|'\n");
 		return (1);
 	}
-	if (!argv[n + 1] || get_redir_type(argv[n + 1]))
-	{
-		printf("minishell$: syntax error near unexpected token `|'\n");
-		return (1);
-	}
+	// if (!argv[n + 1] || get_redir_type(argv[n + 1]))
+	// {
+	// 	printf("minishell$: syntax error near unexpected token `|'\n");
+	// 	return (1);
+	// }
 	if (argv[n + 1][0] == '|')
 	{
 		printf("minishell$: syntax error near unexpected token `|'\n");
@@ -80,7 +80,7 @@ int	check_syntax_error(char **argv)
 	i = 0;
 	while (argv[i])
 	{
-		if (get_redir_flag(argv[i]) != -1)
+		if (get_redir_type(argv[i]))
 		{
 			if (check_syntax_redir(argv, i))
 				return (1);

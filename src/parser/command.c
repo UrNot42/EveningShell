@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:00:52 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/03 13:33:21 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/03 19:41:36 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	parsing_command(t_compound *compound, size_t *i, size_t *n, char **argv)
 		while (get_redir_type(argv[*i]))
 		{
 			compound[*n + ++nbis]
-				= create_compound(&argv[*i], get_redir_flag(argv[*i]), 2);
+				= create_compound(&argv[*i], get_redir_type(argv[*i]), 2);
 			if (!compound[*n + nbis].content || compound[*n + nbis].type == -1)
 				return (0);
 			*i += 2;

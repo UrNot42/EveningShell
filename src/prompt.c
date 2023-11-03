@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:05:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/03 13:08:55 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/03 19:18:03 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,12 @@ void	prompt(char ***env)
 	rl_attempted_completion_function = history_completion;
 	while (1)
 	{
+		g_signal = 0;
 		if (buffer)
 			free(buffer);
 		buffer = readline("minishell-0.1$ ");
+		if (g_signal != 0)
+			exit_status = g_signal;
 		if (!buffer)
 			(ft_free_dstr(*env), builtins_exit(exit_status));
 		if (buffer && *buffer)
