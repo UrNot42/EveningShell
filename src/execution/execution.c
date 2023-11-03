@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:31:47 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/03 15:25:42 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/03 18:07:58 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,15 @@ void	start_cmd(t_exec *exec, int i, int last_err)
 int	run_one_builtin(t_exec *exec, int last_err)
 {
 	int	code;
+	int	fd;
 
+	fd = dup(STDOUT_FILENO);
 	dup_fd(&exec->cmd[0], exec->pi);
-	code = execute_builtin(exec, last_err);
+	code = execute_builtin(exec, last_err, fd);
 	close_files(exec->files, exec->file_size);
 	free_exec(exec, false);
+	dup2(fd, STDOUT_FILENO);
+	close(fd);
 	return (code);
 }
 

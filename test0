@@ -1,0 +1,4 @@
+a 
+[?2004hminishell-0.1$ echo a > test0[K^C[?2004l
+minishell-0.1$ [?2004h[?2004l
+exit

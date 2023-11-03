@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 21:06:23 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/02 09:34:44 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/03 16:44:34 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,25 +35,6 @@ int	fill_file(t_compound *element, t_file *file, int max_file)
 	return (0);
 }
 
-int	open_here_documments(t_file *file, t_exec *exec)
-{
-	int	i;
-
-	i = 0;
-	while (file[i].name)
-	{
-		if (file[i].type == HERE_DOC)
-			file[i].fd = heredoc(exec, file[i].name);
-		if (file[i].fd == -1)
-		{
-			close_files(file, i);
-			return (perror(file[i].name), i);
-		}
-		i++;
-	}
-	return (0);
-}
-
 int	open_here_documents(t_file *file, t_exec *exec)
 {
 	int	i;
@@ -63,8 +44,10 @@ int	open_here_documents(t_file *file, t_exec *exec)
 	{
 		if (file[i].type == HERE_DOC)
 			file[i].fd = heredoc(exec, file[i].name);
-		if (file[i].fd == -1)
+		if (file[i].type == HERE_DOC && file[i].fd == -1)
 		{
+			printf("type: %d\n", file[i].type);
+			printf("hehe muahaha 1 \n");
 			close_files(file, i);
 			return (perror(file[i].name), i);
 		}
@@ -89,6 +72,7 @@ int	open_files(t_file *file)
 			file[i].fd = open(file[i].name, O_RDONLY);
 		if (file[i].fd == -1)
 		{
+			printf("hehe muahaha 2\n");
 			close_files(file, i);
 			return (perror(file[i].name), i);
 		}
