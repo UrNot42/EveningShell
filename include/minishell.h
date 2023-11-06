@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:07:20 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/03 12:34:03 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/06 18:28:40 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,17 @@ extern int	g_signal;
 void		prompt(char ***env);
 t_compound	*parse_line(char *line, char **envp, int exit_status);
 
-// ------------------------- ERROR_DISPLAY ----------------------- //
+// ------------------------- ERROR_DISPLAY -----------------------
 
 void		error_failed_malloc(void);
 
-// ------------------------- RUNNING_SHELL ----------------------- //
+// ------------------------- RUNNING_SHELL -----------------------
 
 void		start_interactive(char **env);
 int			run_single_cmd(int argc, char **argv, char **envp);
 
-// -------------------------- TEMPORARY -------------------------- //
-// ---------------------------- DEBUG ---------------------------- //
+// -------------------------- TEMPORARY --------------------------
+// ---------------------------- DEBUG ----------------------------
 
 void		debug_heredoc(int fd);
 void		debug_compound(t_compound *compound, char *debug_print);

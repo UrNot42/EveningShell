@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 13:16:01 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/03 13:40:09 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/06 17:41:49 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	debug_double_char(char **argv, char *debug_print, int print_name)
 	i = 0;
 	while (argv[i])
 	{
-		printf("%s[%d] : %s\n", debug_print, i, argv[i]);
+		printf("%s[%d] : `%s`\n", debug_print, i, argv[i]);
 		++i;
 	}
 }

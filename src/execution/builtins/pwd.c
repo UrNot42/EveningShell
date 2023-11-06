@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 09:45:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/02 17:01:33 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/06 18:27:31 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,12 @@
  *
  * /!\ Have to change "arguments" to a better word
  *
- * @param argv char** of the arguments
  * @return int 1 getcwd() success, 0 otherwise
  */
-int	buitlins_pwd(char **argv)
+int	buitlins_pwd(void)
 {
 	char	*pwd;
 
-	if (argv[1] != NULL)
-	{
-		printf("pwd: too many arguments\n");
-		return (0);
-	}
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
 	{

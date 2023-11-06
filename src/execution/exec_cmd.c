@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 21:47:21 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/03 17:49:40 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/06 18:30:52 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	execute_builtin(t_exec *ex, int last_err, int fd)
 	else if (code == BT_EXPORT)
 		code = ft_export(ex->env, &ex->cmd->args[1]);
 	else if (code == BT_PWD)
-		code = buitlins_pwd(ex->cmd->args);
+		code = buitlins_pwd();
 	else if (code == BT_UNSET)
 		code = unset(*ex->env, ex->cmd->args);
 	return (code);

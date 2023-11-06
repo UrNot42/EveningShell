@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:20:51 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/03 12:29:34 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/06 18:30:27 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,40 @@ enum	e_bt_commands
 	BT_UNSET,
 };
 
+// ========================== BUILTINS ==========================
+
 // -------------------------- BUILTINS --------------------------
 
 int	is_builtin(char *cmd);
 
+// -------------------------- CD --------------------------
+
 int	builtins_cd(char **args, char **env);
+
+// -------------------------- ECHO --------------------------
+
 int	builtins_echo(char **args);
-int	builtins_exit(int code);
-int	buitlins_pwd(char **args);
-int	unset(char **env, char **args);
-int	ft_export(char ***env, char **args);
+
+// -------------------------- ENV --------------------------
+
 int	env(char **env);
+
+// -------------------------- EXIT --------------------------
+
+int	builtins_exit(int code);
+
+// -------------------------- EXPORT --------------------------
+
+int	ft_export(char ***env, char **args);
+
+// -------------------------- PWD --------------------------
+
+int	buitlins_pwd(void);
+
+// -------------------------- UNSET --------------------------
+
+int	unset(char **env, char **args);
+
+
 
 #endif
