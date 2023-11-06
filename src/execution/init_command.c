@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 13:27:54 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/06 19:39:52 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/06 20:04:05 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@ int	fill_cmd_files(t_compound *element, t_cmd *cmd, t_file *file)
 	int	e_id;
 
 	e_id = 0;
-	printf("cmd: 1 %p\n", cmd);
 	while (element[e_id].content)
 	{
-		printf("cmd: 2 %p\n", cmd);
 		if (cmd != NULL
 			&& (element[e_id].type == REDIR_IN
 				|| element[e_id].type == HERE_DOC))
