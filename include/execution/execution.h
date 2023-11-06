@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:20:51 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/03 17:47:19 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/06 21:19:39 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		create_cmd(t_cmd *cmd, char **env, char **n_cmd, char ***n_args);
 // ========================= EXECUTION ========================
 
 int		execute(t_compound *comp, char ***env, int last_err);
-int		execute_builtin(t_exec *ex, int last_err, int fd);
+int		execute_builtin(t_exec *ex, int last_err, int i, int fd);
 void	free_exec(t_exec *ex, bool env);
 void	child_process(t_exec *exec, int i, int last_err);
 
@@ -54,6 +54,6 @@ void	sig_handler_heredoc(int signum);
 
 // ========================= DEBUG ============================
 
-void	print_exec_sruct(t_exec *exec); // TODO REMOVE
+void	print_exec_struct(t_exec *exec); // TODO REMOVE
 
 #endif

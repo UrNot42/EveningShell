@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 16:14:47 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/03 12:16:28 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/06 20:04:59 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ struct s_cmd
 struct s_exec
 {
 	int			cmd_size;
+	int			pipe_size;
 	int			file_size;
 	t_pipe		pi;
 	t_cmd		*cmd;

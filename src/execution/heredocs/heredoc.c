@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 13:16:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/02 10:47:28 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/06 21:01:54 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,5 @@ int	heredoc(t_exec *exec, char *keyword)
 	waitpid(fork_process, NULL, 0);
 	free(filename);
 	signal(SIGINT, sig_handler_prompt);
-	close(fd_read);
 	return (fd_read);
 }

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:36:57 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/02 17:28:04 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/06 12:34:03 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ int	builtins_cd(char **args, char **env)
 	else if (access(args[1], F_OK) == -1)
 		printf("minishell: cd: %s: No such file or directory\n", args[++err]);
 	else if (args[2] == NULL)
-		(printf("cd to %s\n", args[1]), chdir(args[1]));
+		chdir(args[1]);
 	return (err);
 }

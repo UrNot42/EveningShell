@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 21:05:52 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/03 12:28:52 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/06 20:07:02 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int	set_execute_struct(t_compound *compound, t_exec *ex, char ***env)
 		return (free(ex->cmd), 1);
 	if (fill_file(compound, ex->files, ex->file_size))
 		return (1);
-	if (fill_cmds(compound, ex->cmd, ex->files))
-		return (1);
+	ex->pipe_size = fill_cmds(compound, ex->cmd, ex->files);
 	return (0);
 }

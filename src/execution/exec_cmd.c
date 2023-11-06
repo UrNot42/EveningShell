@@ -3,41 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 21:47:21 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/06 18:30:52 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/06 21:23:17 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	execute_builtin(t_exec *ex, int last_err, int fd)
+int	execute_builtin(t_exec *ex, int last_err, int i, int fd)
 {
 	int	code;
 
-	code = is_builtin(ex->cmd->cmd);
+	code = is_builtin(ex->cmd[i].cmd);
 	if (code == BT_CD)
-		code = builtins_cd(ex->cmd->args, *ex->env);
+		code = builtins_cd(ex->cmd[i].args, *ex->env);
 	else if (code == BT_ECHO)
-		code = builtins_echo(ex->cmd->args);
+		code = builtins_echo(ex->cmd[i].args);
 	else if (code == BT_ENV)
 		code = env(*ex->env);
 	else if (code == BT_EXIT)
 	{
-		if (ex->cmd->args && ex->cmd->args[0] && ex->cmd->args[1])
-			code = ft_atoi(ex->cmd->args[1]);
+		if (ex->cmd[i].args && ex->cmd[i].args[0] && ex->cmd[i].args[1])
+			code = ft_atoi(ex->cmd[i].args[1]);
 		else
 			code = last_err;
 		(free_exec(ex, true), fd != -1 && close(fd));
 		code = builtins_exit(code);
 	}
 	else if (code == BT_EXPORT)
-		code = ft_export(ex->env, &ex->cmd->args[1]);
+		code = ft_export(ex->env, &ex->cmd[i].args[1]);
 	else if (code == BT_PWD)
 		code = buitlins_pwd();
 	else if (code == BT_UNSET)
-		code = unset(*ex->env, ex->cmd->args);
+		code = unset(*ex->env, ex->cmd[i].args);
 	return (code);
 }
 
@@ -46,10 +46,7 @@ int	dup_fd(t_cmd *cmd, t_pipe pi)
 	if (cmd->in != NULL && cmd->in->exists)
 	{
 		if (cmd->in->fd == -1)
-		{
-			printf("Here 1\n");
 			return (perror(cmd->in->name), 1);
-		}
 		dup2(cmd->in->fd, STDIN_FILENO);
 		close(cmd->in->fd);
 	}
@@ -58,10 +55,7 @@ int	dup_fd(t_cmd *cmd, t_pipe pi)
 	if (cmd->out != NULL && cmd->out->exists)
 	{
 		if (cmd->out->fd == -1)
-		{
-			printf("Here 2 \n");
 			return (perror(cmd->out->name), 1);
-		}
 		dup2(cmd->out->fd, STDOUT_FILENO);
 		close(cmd->out->fd);
 	}
@@ -76,7 +70,7 @@ void	exec_cmd(t_exec *exec, int i, int last_err)
 
 	if (is_builtin(exec->cmd[i].cmd))
 	{
-		code = execute_builtin(exec, last_err, -1);
+		code = execute_builtin(exec, last_err, i, -1);
 		close_files(exec->files, exec->file_size);
 		free_exec(exec, true);
 		exit(code);

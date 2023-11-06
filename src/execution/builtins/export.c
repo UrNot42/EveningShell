@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:19:25 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/03 12:35:54 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/06 17:22:55 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,7 @@ int	ft_export(char ***env, char **args)
 	{
 		printf("var exporting %s\n", args[i]);
 		if (check_env_var_naming(args[i]))
-		{
 			*env = extend_env(*env, args[i]);
-			printf("exported!\n");
-		}
 		else
 			err++;
 		i++;

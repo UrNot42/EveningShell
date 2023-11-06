@@ -8,7 +8,7 @@ void	print_file(t_file *file, char *s, char c)
 	printf("%c	type: %d\n", c, file->type);
 }
 
-void	print_exec_sruct(t_exec *exec)
+void	print_exec_struct(t_exec *exec)
 {
 	printf("Recap after init of the exec structure\n");
 	printf("	size of commands: %d\n", exec->cmd_size);
