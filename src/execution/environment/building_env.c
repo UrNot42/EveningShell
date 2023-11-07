@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   building_env.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 18:07:46 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/03 12:11:16 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/07 14:37:44 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ char	**extend_env(char **old_env, char *new_var)
 }
 
 /**
- * @brief Get the env var object
+ * @brief Get the env var
  *
  * @param env curent env that we are working with
  * @param var variable we are trying to find inside said env

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:19:25 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/06 17:22:55 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/07 14:49:21 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,24 @@ static bool	check_env_var_naming(char *name)
 	return (true);
 }
 
-// TODO CHECK IF VAR ALR EXISTS AND MODIFY IT
+static int	check_env_var_exist(char **env, char *var)
+{
+	int	env_index;
+	int	varname_len;
+
+	varname_len = 0;
+	while (var[varname_len] && var[varname_len] != '=')
+		++varname_len;
+	env_index = 0;
+	while (env[env_index])
+	{
+		if (!ft_strncmp(env[env_index], var, varname_len))
+			return (env_index);
+		++env_index;
+	}
+	return (-1);
+}
+
 /**
  * @brief export command from shell
  *         using a custom environment
@@ -57,13 +74,19 @@ int	ft_export(char ***env, char **args)
 {
 	int	i;
 	int	err;
+	int	env_index;
 
 	err = 0;
 	i = 0;
 	while (args && args[i])
 	{
-		printf("var exporting %s\n", args[i]);
-		if (check_env_var_naming(args[i]))
+		env_index = check_env_var_exist(*env, args[i]);
+		if (env_index != -1)
+		{
+			free((*env)[env_index]);
+			(*env)[env_index] = ft_strdup(args[i]);
+		}
+		else if (check_env_var_naming(args[i]))
 			*env = extend_env(*env, args[i]);
 		else
 			err++;
