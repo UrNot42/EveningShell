@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:41:36 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/01 15:04:36 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/07 20:37:32 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ size_t	check_for_dollar(char const *str, size_t *index_dollar);
 
 // -------------------------- EXPAND_ONE_COMPOUND --------------------------
 
+int		expand_one_content(char **content, char **env, int exit_status);
 int		expand_one_compound(t_compound compound, char **env, int exit_status);
 
 // -------------------------- EXPAND --------------------------

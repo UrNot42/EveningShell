@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:19:25 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/07 14:49:21 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/07 14:52:05 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,13 @@ static bool	check_env_var_naming(char *name)
 	return (true);
 }
 
+/**
+ * @brief Check if the variable already exists in the environment
+ * 
+ * @param env char ** of the environment
+ * @param var variable to check
+ * @return int return the index of the variable if it exists, -1 otherwise
+ */
 static int	check_env_var_exist(char **env, char *var)
 {
 	int	env_index;

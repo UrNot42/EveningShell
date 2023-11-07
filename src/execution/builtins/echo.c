@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:28:19 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/06 18:26:32 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/07 19:12:46 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	detect_option_n(char **argv)
 	int	j;
 	int	new_line;
 
-	if (argv == NULL || argv[1][0] != '-')
+	if (!argv || !argv[1] || argv[1][0] != '-')
 		return (0);
 	new_line = 0;
 	i = 1;

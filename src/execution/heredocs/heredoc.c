@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 13:16:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/07 09:31:38 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/07 15:19:36 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,9 @@ void	exit_heredoc(bool assignment, char **keyword, int *fd_write)
 
 void	heredoc_child(t_exec *exec, char *keyword, char *filename, int fd_read)
 {
-	int		fd_write;
-	char	*keyword_copy;
+	int					fd_write;
+	char				*keyword_copy;
+	struct sigaction	sa;
 
 	close(fd_read);
 	keyword_copy = ft_strdup(keyword);
@@ -71,7 +72,10 @@ void	heredoc_child(t_exec *exec, char *keyword, char *filename, int fd_read)
 	if (!keyword_copy)
 		exit(-42);
 	exit_heredoc(1, &keyword_copy, &fd_write);
-	signal(SIGINT, sig_handler_heredoc);
+	sa.sa_flags = 0;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_handler = sig_handler_heredoc;
+	// signal(SIGINT, sig_handler_heredoc);
 	fd_write = open_heredoc_write(filename);
 	if (fd_write == -1)
 	{
@@ -85,11 +89,14 @@ void	heredoc_child(t_exec *exec, char *keyword, char *filename, int fd_read)
 
 int	heredoc(t_exec *exec, char *keyword)
 {
-	int		fd_read;
-	int		fork_process;
-	char	*filename;
+	int					fd_read;
+	int					fork_process;
+	char				*filename;
+	struct sigaction	sa;
 
-	signal(SIGINT, SIG_IGN);
+	sa.sa_flags = 0;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_handler = SIG_IGN;
 	fd_read = open_heredoc_read(&filename, "/tmp/.heredoc");
 	fork_process = fork();
 	if (fork_process == -1)
@@ -100,6 +107,6 @@ int	heredoc(t_exec *exec, char *keyword)
 	}
 	waitpid(fork_process, NULL, 0);
 	free(filename);
-	signal(SIGINT, sig_handler_prompt);
+	sa.sa_handler = &sig_handler_prompt;
 	return (fd_read);
 }

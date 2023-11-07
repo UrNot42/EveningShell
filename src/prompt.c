@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:05:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/03 19:18:03 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/07 18:08:54 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,14 @@ void	prompt(char ***env)
 	char				*buffer;
 	t_compound			*compound_command;
 	int					exit_status;
+	struct sigaction	sa;
 
-	signal(SIGINT, &sig_handler_prompt);
-	signal(SIGQUIT, SIG_IGN);
+	sa.sa_flags = 0;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_handler = SIG_IGN;
+	sigaction(SIGQUIT, &sa, NULL);
+	sa.sa_handler = &sig_handler_prompt;
+	sigaction(SIGINT, &sa, NULL);
 	buffer = NULL;
 	exit_status = 0;
 	rl_attempted_completion_function = history_completion;

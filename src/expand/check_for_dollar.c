@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 17:35:53 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/03 19:07:46 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/07 20:51:20 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,11 @@ static size_t	dollar_in_double_quotes(char const *str, size_t *index_dollar)
 		if (str[*index_dollar] == '$')
 		{
 			*index_dollar += 1;
+			if (str[*index_dollar] == '?')
+			{
+				*index_dollar += 1;
+				return (1);
+			}
 			while (str[*index_dollar]
 				&& !is_special_character(str[*index_dollar])
 				&& str[*index_dollar] != '|'

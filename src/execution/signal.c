@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:05:52 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/07 14:29:40 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/07 15:00:53 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,5 @@ void	sig_handler_heredoc(int signum)
 
 void	sig_handler_exec(int signum)
 {
-	if (signum == SIGINT)
-		g_signal = 130;
-	if (signum == SIGQUIT)
-		g_signal = 131;
+	(void)signum;
 }

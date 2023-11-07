@@ -40,7 +40,7 @@ SRC_EXPAND			=	$(addprefix expand/, \
 						expand.c \
 						check_for_dollar.c \
 						expand_one_compound.c \
-						quotes_management.c \
+						quotes_management_copy.c \
 						variable_environement_functions.c \
 						\
 						)

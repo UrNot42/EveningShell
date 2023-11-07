@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 15:23:20 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/02 10:42:24 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/07 21:19:26 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static	char	*merge_var_content(char *src, t_expand_params params)
 	return (free(src), free(params.var), new_content);
 }
 
-static int	expand_one_content(char **content, char **env, int exit_status)
+int	expand_one_content(char **content, char **env, int exit_status)
 {
 	t_expand_params	params;
 
@@ -85,3 +85,4 @@ int	expand_one_compound(t_compound compound, char **env, int exit_status)
 }
 
 // echo $HOME"$USER"'$PATH'"'$?'"$TOTO'"$PATH"'
+// /mnt/nfs/homes/aoberonaoberon$PATH'0'"$PATH"
