@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 11:36:39 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/02 17:00:51 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/07 09:31:30 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
  */
 int	is_builtin(char *cmd)
 {
+	if (!cmd)
+		return (NOT_A_BT);
 	if (!ft_strcmp(cmd, "cd"))
 		return (BT_CD);
 	if (!ft_strcmp(cmd, "echo"))
