@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:05:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/03 19:18:03 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/08 16:53:02 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /**
  * @brief Take a line (char *) and convert it to a array of compound.
- * 
+ *
  * @param line char * line to be parsed
  * @param envp array of strings containing the environment variables
  * @param exit_status int exit status of the last command
@@ -100,7 +100,7 @@ void	prompt(char ***env)
 		if (g_signal != 0)
 			exit_status = g_signal;
 		if (!buffer)
-			(ft_free_dstr(*env), builtins_exit(exit_status));
+			(ft_free_dstr(*env), write(2, "exit\n", 5), exit(exit_status));
 		if (buffer && *buffer)
 			add_history(buffer);
 		compound_command = parse_line(buffer, *env, exit_status);

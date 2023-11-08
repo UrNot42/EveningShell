@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:20:51 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/06 18:30:27 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/08 16:53:39 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define BUILTINS_H
 
 # include "minishell.h"
+# include "exec_struct.h"
 
 enum	e_bt_commands
 {
@@ -47,7 +48,8 @@ int	env(char **env);
 
 // -------------------------- EXIT --------------------------
 
-int	builtins_exit(int code);
+int	check_exit_args(char **args);
+int	builtins_exit(t_exec *ex, int i, int last_err, int fd_stdout);
 
 // -------------------------- EXPORT --------------------------
 
@@ -55,7 +57,7 @@ int	ft_export(char ***env, char **args);
 
 // -------------------------- PWD --------------------------
 
-int	buitlins_pwd(void);
+int	builtins_pwd(void);
 
 // -------------------------- UNSET --------------------------
 
