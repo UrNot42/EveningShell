@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:41:36 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/07 20:37:32 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/08 15:56:34 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 typedef struct s_expand_params
 {
 	size_t	index_dollar;
-	size_t	expand_length;
+	size_t	var_name_length;
+	size_t	var_content_length;
+	// size_t	expand_length;
 	int		index_env;
 	char	*var;
 }	t_expand_params;

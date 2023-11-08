@@ -39,7 +39,7 @@ SRC_PARSER			=	$(addprefix parser/, \
 SRC_EXPAND			=	$(addprefix expand/, \
 						expand.c \
 						check_for_dollar.c \
-						expand_one_compound.c \
+						expand_one_compound_new.c \
 						quotes_management_copy.c \
 						variable_environement_functions.c \
 						\
