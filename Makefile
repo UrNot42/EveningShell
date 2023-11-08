@@ -63,7 +63,7 @@ SRC_BUILTINS		=	$(addprefix builtins/, \
 						cd.c \
 						pwd.c \
 						echo.c \
-						exit.c \
+						exit.c  \
 						builtins.c \
 						export.c \
 						unset.c \
