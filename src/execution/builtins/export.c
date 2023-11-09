@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:19:25 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/09 10:07:46 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/09 11:13:03 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,28 @@ static int	check_env_var_exist(char **env, char *var)
 
 int	print_solo_export(char **env)
 {
-	(void)env;
+	int	i;
+	int	j;
+
+	if (!env)
+		return (0);
+	i = 0;
+	while (env[i])
+	{
+		printf("export ");
+		j = 0;
+		while (env[i][j])
+		{
+			if (env[i][j] == '\"')
+				printf("\\");
+			printf("%c", env[i][j]);
+			if (env[i][j] == '=')
+				printf("\"");
+			j++;
+		}
+		printf("\"\n");
+		i++;
+	}
 	return (0);
 }
 
@@ -85,7 +106,7 @@ int	ft_export(char ***env, char **args)
 	err = 0;
 	i = 0;
 	if (!args || !*args)
-		return (print_solo_export(env));
+		return (print_solo_export(*env));
 	while (args && args[i])
 	{
 		env_index = check_env_var_exist(*env, args[i]);
