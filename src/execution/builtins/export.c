@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:19:25 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/09 11:14:59 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/09 11:22:19 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	print_solo_export(char **env)
 {
 	int	i;
 	int	j;
+	int	check;
 
 	if (!env)
 		return (0);
@@ -69,12 +70,13 @@ int	print_solo_export(char **env)
 	{
 		printf("export ");
 		j = 0;
+		check = 0;
 		while (env[i][j])
 		{
 			if (env[i][j] == '\"')
 				printf("\\");
 			printf("%c", env[i][j]);
-			if (env[i][j] == '=')
+			if (env[i][j] == '=' && !check++)
 				printf("\"");
 			j++;
 		}
