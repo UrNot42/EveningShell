@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:19:25 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/07 14:49:21 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/09 10:07:46 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,12 @@ static int	check_env_var_exist(char **env, char *var)
 	return (-1);
 }
 
+int	print_solo_export(char **env)
+{
+	(void)env;
+	return (0);
+}
+
 /**
  * @brief export command from shell
  *         using a custom environment
@@ -78,6 +84,8 @@ int	ft_export(char ***env, char **args)
 
 	err = 0;
 	i = 0;
+	if (!args || !*args)
+		return (print_solo_export(env));
 	while (args && args[i])
 	{
 		env_index = check_env_var_exist(*env, args[i]);

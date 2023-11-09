@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   building_env.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 18:07:46 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/07 14:37:44 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/09 09:59:36 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// TODO REMOVE
-void	print_env(char **env)
-{
-	for (int i = 0; env && env[i]; i++)
-	{
-		printf("%p\n", env[i]);
-		printf("%s\n", env[i]);
-	}
-}
 
 /**
  * @brief Copies the inherited env object
