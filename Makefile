@@ -75,7 +75,6 @@ SRC_TOOL_LAYER		=	$(addprefix overlay/, \
 						pids.c \
 						pipes.c \
 						signal.c \
-						cmd_build.c \
 						exec_struct.c \
 						init_command.c \
 						file_handling.c \
@@ -86,6 +85,7 @@ SRC_TOOL_LAYER		=	$(addprefix overlay/, \
 SRC_EXECUTION		=	$(addprefix execution/, \
 						exec_cmd.c \
 						execution.c \
+						cmd_build.c \
 						exec_debug.c \
 						$(SRC_BUILTINS) \
 						$(SRC_ENVIRONMENT) \

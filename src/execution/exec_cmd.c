@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 21:47:21 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/08 16:54:18 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/09 11:38:01 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	dup_fd(t_cmd *cmd, t_pipe pi)
 	if (cmd->in != NULL && cmd->in->exists)
 	{
 		if (cmd->in->fd == -1)
-			return (perror(cmd->in->name), 1);
+			return (1);
 		dup2(cmd->in->fd, STDIN_FILENO);
 		close(cmd->in->fd);
 	}
@@ -48,7 +48,7 @@ int	dup_fd(t_cmd *cmd, t_pipe pi)
 	if (cmd->out != NULL && cmd->out->exists)
 	{
 		if (cmd->out->fd == -1)
-			return (perror(cmd->out->name), 1);
+			return (1);
 		dup2(cmd->out->fd, STDOUT_FILENO);
 		close(cmd->out->fd);
 	}
@@ -82,7 +82,7 @@ void	child_process(t_exec *exec, int i, int last_err)
 		close_files(exec->files, exec->file_size);
 		close_pipe(&exec->pi, PIP_ALL);
 		free_exec(exec, true);
-		exit(127);
+		exit(1);
 	}
 	close_files(exec->files, exec->file_size);
 	close_pipe(&exec->pi, PIP_ALL);
