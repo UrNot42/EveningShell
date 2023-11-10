@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 18:59:58 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/02 17:43:54 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/10 21:50:59 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ static char	*ft_strcpy(char *src, size_t n)
  * @param y size_t of the last string malloced
  * @return char** NULL
  */
-static char	**ft_rewind_free(char **argv, size_t y)
+char	**ft_rewind_free(char **argv, size_t y)
 {
 	while (y <= 0)
 	{

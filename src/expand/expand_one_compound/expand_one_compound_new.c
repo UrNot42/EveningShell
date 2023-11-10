@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 15:23:20 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/09 14:05:13 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/10 18:30:59 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,15 @@
 // 	while (content[i])
 // 	{
 // 		if (i == index)
-// 		{
-// 			if (content[i] == '"' || content[i] == '\'')
-// 				printf("\033[0;31m%c\033[0;37m", content[i]);
-// 			else if (content[i] == '$')
-// 				printf("\033[0;32m%c\033[0;37m", content[i]);
-// 			else
-// 				printf("\033[0;36m%c\033[0;37m", content[i]);
-// 		}
-// 		else
+		// {
+		// 	if (content[i] == '"' || content[i] == '\'')
+		// 		printf("\033[0;31m%c\033[0;37m", content[i]);
+		// 	else if (content[i] == '$')
+		// 		printf("\033[0;32m%c\033[0;37m", content[i]);
+		// 	else
+		// 		printf("\033[0;36m%c\033[0;37m", content[i]);
+		// }
+		// else
 // 			printf("%c", content[i]);
 // 		++i;
 // 	}
@@ -173,7 +173,7 @@ static	int	retrieve_var_name(char **var, char *str,
 	return (1);
 }
 
-int	expand_dollar(char **env, char *content, int *index, int exit_status, int *count)
+int	expand_dollar(char **env, char *content, int *index, int exit_status, int *count, int *size_word)
 {
 	char	*var_name;
 	size_t	var_name_length;
@@ -192,10 +192,13 @@ int	expand_dollar(char **env, char *content, int *index, int exit_status, int *c
 	}
 	if (!ft_strcmp(var_name, "?"))
 	{
+		*size_word += 1;
 		printf("%d", exit_status);
+		free(var_name);
 		return (1);
 	}
 	index_env = get_env_var_index(env, var_name);
+	free(var_name);
 	i = 0;
 	if (index_env != -1)
 	{
@@ -205,13 +208,19 @@ int	expand_dollar(char **env, char *content, int *index, int exit_status, int *c
 		flag = '\0';
 		while (env[index_env][i])
 		{
-			printf("%c", env[index_env][i]);
-			if ((env[index_env][i] == ' ' || env[index_env][i] == '\t'))
+			if (((env[index_env][i] != ' ' && env[index_env][i] != '\t')))
 			{
+				*size_word += 1;
+				printf("%c", env[index_env][i]);
+			}
+			else if ((env[index_env][i] == ' ' || env[index_env][i] == '\t'))
+			{
+				printf("	|	size_word : [%d]\n", *size_word);
+				*size_word = 0;
 				*count += 1;
 				printf("\n");
 			}
-			if (env[index_env][i] == '\'')
+			else if (env[index_env][i] == '\'')
 			{
 				if (flag == '\0')
 				{
@@ -220,6 +229,8 @@ int	expand_dollar(char **env, char *content, int *index, int exit_status, int *c
 				else if (flag == '\'')
 				{
 					flag = '\0';
+					printf("	|	size_word : [%d]\n", *size_word);
+					*size_word = 0;
 					*count += 1;
 					printf("\n");
 				}
@@ -233,6 +244,8 @@ int	expand_dollar(char **env, char *content, int *index, int exit_status, int *c
 				else if (flag == '"')
 				{
 					flag = '\0';
+					printf("	|	size_word : [%d]\n", *size_word);
+					*size_word = 0;
 					*count += 1;
 					printf("\n");
 				}
@@ -249,21 +262,23 @@ int	expand_one_content(char **content, char **env, int exit_status)
 {
 	int				index;
 	int				count;
+	int				size_word;
 	char			flag;
 	// t_expand_params	params;
 
 	index = 0;
-	count = 0;
+	count = 1;
+	size_word = 0;
 	flag = '\0';
 	while ((*content)[index])
 	{
 		// debug_expand(*content, index);
-		if (((*content)[index] == ' ' || (*content)[index] == '\t'))
-		{
-			++count;
-			printf("\n");
-		}
-		else if ((*content)[index] == '\'')
+		// if (((*content)[index] == ' ' || (*content)[index] == '\t'))
+		// {
+			// ++count;
+			// printf("\n");
+		// }
+		if ((*content)[index] == '\'')
 		{
 			if (flag == '\0')
 			{
@@ -272,11 +287,12 @@ int	expand_one_content(char **content, char **env, int exit_status)
 			else if (flag == '\'')
 			{
 				flag = '\0';
-				++count;
-				printf("\n");
+				// ++count;
+				// printf("\n");
 			}
 			else if (flag == '"')
 			{
+				++size_word;
 				printf("%c", (*content)[index]);
 			}
 		}
@@ -288,31 +304,37 @@ int	expand_one_content(char **content, char **env, int exit_status)
 			}
 			else if (flag == '\'')
 			{
+				++size_word;
 				printf("%c", (*content)[index]);
 			}
 			else if (flag == '"')
 			{
 				flag = '\0';
-				++count;
-				printf("\n");
+				// ++count;
+				// printf("\n");
 			}
 		}
 		else if ((*content)[index] == '$')
 		{
 			if (flag == '\'')
 			{
+				++size_word;
 				printf("%c", (*content)[index]);
 			}
 			else if (flag == 0 || flag == '"')
 			{
-				if (expand_dollar(env, *content, &index, exit_status, &count) == -1)
+				if (expand_dollar(env, *content, &index, exit_status, &count, &size_word) == -1)
 					return (-1);
 			}
 		}
 		else
+		{
+			++size_word;
 			printf("%c", (*content)[index]);
+		}
 		++index;
 	}
+	printf("	|	size_word : [%d]\n", size_word);
 	printf("\ncount : [%d]\n", count);
 	printf("------------------------------\n");
 	return (1);
@@ -346,3 +368,6 @@ int	expand_one_compound(t_compound compound, char **env, int exit_status)
 // count : [1]
 // ------------------------------
 // Command ''$HOME'$USER' not found
+
+
+// $HOME"$USER"'$PATH'"'$?'"

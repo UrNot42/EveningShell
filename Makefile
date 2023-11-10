@@ -38,12 +38,15 @@ SRC_PARSER			=	$(addprefix parser/, \
 # FOURTH STEP  OF THE SHELL OPERATIONS REPLACING THE VARIABLES WITH THEIR VALUE
 SRC_EXPAND			=	$(addprefix expand/, \
 						expand.c \
-						check_for_dollar.c \
-						expand_one_compound_new.c \
+						new_expand_one_compound.c \
 						quotes_management_copy.c \
-						variable_environement_functions.c \
 						\
+						common.c \
+						total_length.c \
+						word_length.c \
 						)
+# variable_environement_functions.c
+# check_for_dollar.c
 
 SRC_HEREDOC			=	$(addprefix heredocs/, \
 						heredoc.c \

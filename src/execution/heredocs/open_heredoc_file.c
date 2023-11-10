@@ -6,26 +6,26 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 19:05:19 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/01 18:24:59 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/10 21:42:12 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/**
- * @brief Get a length of a number.
- * 
- * @param n number to get the length.
- * @return int return the length.
- */
-static int	ft_nbrlen(int n)
-{
-	if (n < 0)
-		n = -n;
-	if (n < 10)
-		return (1);
-	return (1 + ft_nbrlen(n / 10));
-}
+// /**
+//  * @brief Get a length of a number.
+//  * 
+//  * @param n number to get the length.
+//  * @return int return the length.
+//  */
+// static int	ft_nbrlen(int n)
+// {
+// 	if (n < 0)
+// 		n = -n;
+// 	if (n < 10)
+// 		return (1);
+// 	return (1 + ft_nbrlen(n / 10));
+// }
 
 /**
  * @brief Converts an integer to a string without malloc.
@@ -33,7 +33,7 @@ static int	ft_nbrlen(int n)
  * @param n integer to convert.
  * @param result string to store the result.
  */
-static void	ft_itoa_no_malloc(int n, char result[10])
+void	ft_itoa_no_malloc(int n, char result[12])
 {
 	unsigned int	tmp;
 	size_t			size;
@@ -60,7 +60,7 @@ static void	ft_itoa_no_malloc(int n, char result[10])
 int	open_heredoc_read(char **filename, char *filename_std)
 {
 	int		i;
-	char	str_itoa[10];
+	char	str_itoa[12];
 	int		fd_read;
 
 	i = 0;

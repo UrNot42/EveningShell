@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 13:53:58 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/07 21:05:53 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/10 22:17:30 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,53 @@ bool	is_dollar_expand(char *word)
 	return (false);
 }
 
+char	**expand_new_content(t_compound *compound, char **env, int exit_status, int i, int j)
+{
+	int		current_content_size;
+	int		new_one_content_size;
+	int		new_size;
+	char	**new_one_content;
+	char	**new_content;
+
+	new_one_content = expand_one_content(compound[i].content[j], env, exit_status);
+	if (!new_one_content)
+		return (NULL);
+	new_one_content_size = 0;
+	while (new_one_content[new_one_content_size])
+		++new_one_content_size;
+	current_content_size = 0;
+	while (compound[i].content[current_content_size])
+		++current_content_size;
+	new_size = (current_content_size -1) + new_one_content_size + 1;
+	new_content = malloc(sizeof(char *) * new_size);
+	if (!new_content)
+		return (NULL);
+	int		k;
+	k = 0;
+	while (k < j)
+	{
+		new_content[k] = compound[i].content[k];
+		++k;
+	}
+	int		l;
+	l = 0;
+	while (l < new_one_content_size)
+	{
+		new_content[k] = new_one_content[l];
+		++k;
+		++l;
+	}
+	++j;
+	while (k < new_size)
+	{
+		new_content[k] = compound[i].content[j];
+		++k;
+		++j;
+	}
+	ft_free_dstr(compound[i].content);
+	return (new_content);
+}
+
 /**
  * @brief Expands one by one each content's compound, compound by compound
  * Expand means to replace the environment variables (starting with $) by their
@@ -70,8 +117,12 @@ void	expand(t_compound **compound, char **env, int exit_status)
 		{
 			if ((*compound)[i].type != HERE_DOC && is_dollar_expand((*compound)[i].content[j]))
 			{
-				if (expand_one_content(&(*compound)[i].content[j], env, exit_status) == -1)
+				(*compound)[i].content = expand_new_content(*compound, env, exit_status, i, j);
+				if (!(*compound)[i].content)
 					(free_compound(*compound), error_failed_malloc());
+				// expand_one_content((*compound)[i].content[j], env, exit_status);
+				// if (!expand_one_content(&(*compound)[i].content[j], env, exit_status))
+					// (free_compound(*compound), error_failed_malloc());
 			}
 			else
 			{
