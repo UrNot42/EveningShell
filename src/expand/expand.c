@@ -6,45 +6,11 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 13:53:58 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/12 19:50:47 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/12 21:34:48 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-bool	is_expand_dollar(char *word)
-{
-	size_t	i;
-
-	i = 0;
-	while (word[i])
-	{
-		if (word[i] == '\'')
-		{
-			++i;
-			while (word[i] && word[i] != '\'')
-				++i;
-			if (!word[i])
-				return (false);
-		}
-		if (word[i] == '"')
-		{
-			++i;
-			while (word[i] && word[i] != '"')
-			{
-				if (word[i] == '$')
-					return (true);
-				++i;
-			}
-			if (!word[i])
-				return (0);
-		}
-		if (word[i] == '$')
-			return (true);
-		++i;
-	}
-	return (false);
-}
 
 static int	expand_one_compound(t_compound *compound,
 	char **env, int exit_status)

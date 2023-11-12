@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:41:36 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/12 21:17:12 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/12 21:37:20 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct s_expand_new_content
 	t_expand_dollar	t_ed;
 }	t_expand_new_content;
 
-
 // ========================== EXPAND ==========================
 
 // -------------------------- EXPAND_ONE_CONTENT --------------------------
@@ -42,6 +41,10 @@ int		expand_one_content(t_compound **compound, int *index,
 // -------------------------- EXPAND --------------------------
 
 void	expand(t_compound **compound, char **env, int exit_status);
+
+// -------------------------- IS_EXPAND_DOLLAR --------------------------
+
+bool	is_expand_dollar(char *word);
 
 // -------------------------- QUOTES_MANAGEMENT --------------------------
 

@@ -35,24 +35,34 @@ SRC_PARSER			=	$(addprefix parser/, \
 						\
 						)
 
-# FOURTH STEP  OF THE SHELL OPERATIONS REPLACING THE VARIABLES WITH THEIR VALUE
+SRC_EXPAND_CHAR		= $(addprefix char_management/, \
+						char2d_management.c \
+						string_add_one_char.c \
+						)
+
+SRC_EXPAND_NEW_CONT	= $(addprefix create_new_content/, \
+						create_new_content.c \
+						create_new_content_on_one_char.c \
+						)
+
+SRC_EXPAND_DOLLAR	= $(addprefix expand_dollar/, \
+						ft_itoa_no_malloc.c \
+						expand_dollar.c \
+						environment_variables.c \
+						expand_one_environment_variable.c \
+						expand_on_one_environment_variable_character.c \
+						)
+
+# FOURTH STEP OF THE SHELL OPERATIONS REPLACING THE VARIABLES WITH THEIR VALUE
 SRC_EXPAND			=	$(addprefix expand/, \
 						expand.c \
+						is_expand_dollar.c \
 						quotes_management.c \
 						expand_one_content.c \
 						\
-						char_management/char2d_management.c \
-						char_management/string_add_one_char.c \
-						\
-						create_new_content/create_new_content.c \
-						create_new_content/create_new_content_on_one_char.c \
-						\
-						expand_dollar/ft_itoa_no_malloc.c \
-						expand_dollar/expand_dollar.c \
-						expand_dollar/environment_variables.c \
-						expand_dollar/expand_one_environment_variable.c \
-						expand_dollar/expand_on_one_environment_variable_character.c \
-						\
+						$(SRC_EXPAND_CHAR) \
+						$(SRC_EXPAND_DOLLAR) \
+						$(SRC_EXPAND_NEW_CONT) \
 						)
 
 SRC_HEREDOC			=	$(addprefix heredocs/, \
@@ -71,13 +81,13 @@ SRC_ENVIRONMENT		=	$(addprefix environment/, \
 # BUILT-INS OF THE SHELL THAT SHALL BE USED DIRECTLY INSTEAD OF THE BINARY FILES
 SRC_BUILTINS		=	$(addprefix builtins/, \
 						cd.c \
+						env.c \
 						pwd.c \
 						echo.c \
 						exit.c \
-						builtins.c \
-						export.c \
 						unset.c \
-						env.c \
+						export.c \
+						builtins.c \
 						\
 						)
 
@@ -93,6 +103,7 @@ SRC_EXECUTION		=	$(addprefix execution/, \
 						exec_struct.c \
 						init_command.c \
 						file_handling.c \
+						\
 						$(SRC_BUILTINS) \
 						$(SRC_ENVIRONMENT) \
 						$(SRC_HEREDOC) \
@@ -101,9 +112,9 @@ SRC_EXECUTION		=	$(addprefix execution/, \
 
 # MAIN MANAGER FILES
 MINISHELL_SRC		=  $(addprefix $(SRC_DIR), \
-						minishell.c \
 						prompt.c \
 						running.c \
+						minishell.c \
 						error_display.c \
 						\
 						$(SRC_LEXER) \
