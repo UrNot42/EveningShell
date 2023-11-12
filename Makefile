@@ -84,29 +84,33 @@ SRC_BUILTINS		=	$(addprefix builtins/, \
 						env.c \
 						pwd.c \
 						echo.c \
-						exit.c \
+						exit.c  \
 						unset.c \
 						export.c \
 						builtins.c \
 						\
 						)
 
-# PROCESSING COMMANDS AND DIRECTING INPUTS AND OUTPUTS
-SRC_EXECUTION		=	$(addprefix execution/, \
+SRC_TOOL_LAYER		=	$(addprefix overlay/, \
 						pids.c \
 						pipes.c \
 						signal.c \
-						exec_cmd.c \
 						cmd_build.c \
-						execution.c \
-						exec_debug.c \
 						exec_struct.c \
 						init_command.c \
 						file_handling.c \
 						\
+						)
+
+# PROCESSING COMMANDS AND DIRECTING INPUTS AND OUTPUTS
+SRC_EXECUTION		=	$(addprefix execution/, \
+						exec_cmd.c \
+						execution.c \
+						exec_debug.c \
 						$(SRC_BUILTINS) \
 						$(SRC_ENVIRONMENT) \
 						$(SRC_HEREDOC) \
+						$(SRC_TOOL_LAYER) \
 						\
 						)
 

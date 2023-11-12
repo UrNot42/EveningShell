@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 09:45:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/06 21:24:50 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/08 16:51:28 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  *
  * @return int 1 getcwd() success, 0 otherwise
  */
-int	buitlins_pwd(void)
+int	builtins_pwd(void)
 {
 	char	*pwd;
 

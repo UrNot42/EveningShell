@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 21:47:21 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/06 21:23:17 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/08 16:54:18 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,11 @@ int	execute_builtin(t_exec *ex, int last_err, int i, int fd)
 	else if (code == BT_ENV)
 		code = env(*ex->env);
 	else if (code == BT_EXIT)
-	{
-		if (ex->cmd[i].args && ex->cmd[i].args[0] && ex->cmd[i].args[1])
-			code = ft_atoi(ex->cmd[i].args[1]);
-		else
-			code = last_err;
-		(free_exec(ex, true), fd != -1 && close(fd));
-		code = builtins_exit(code);
-	}
+		code = builtins_exit(ex, i, last_err, fd);
 	else if (code == BT_EXPORT)
 		code = ft_export(ex->env, &ex->cmd[i].args[1]);
 	else if (code == BT_PWD)
-		code = buitlins_pwd();
+		code = builtins_pwd();
 	else if (code == BT_UNSET)
 		code = unset(*ex->env, ex->cmd[i].args);
 	return (code);
@@ -97,6 +90,7 @@ void	child_process(t_exec *exec, int i, int last_err)
 	if (create_cmd(&exec->cmd[i], *exec->env, &cmd, &args))
 		(free_exec(exec, true), exit(127));
 	free_exec(exec, false);
+
 	execve(cmd, args, *exec->env);
 	ft_free_dstr(*exec->env);
 	exit(127);

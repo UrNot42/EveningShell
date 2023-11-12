@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:20:51 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/06 21:19:39 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/12 21:48:25 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int		wait_pids(int *pids);
 void	sig_handler_exec(int signum);
 void	sig_handler_prompt(int signum);
 void	sig_handler_heredoc(int signum);
+void	set_signal(int signum, void (*handler)(int));
 
 // ========================= DEBUG ============================
 

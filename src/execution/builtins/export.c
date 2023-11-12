@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:19:25 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/07 14:52:05 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/12 21:51:43 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,35 @@ static int	check_env_var_exist(char **env, char *var)
 	return (-1);
 }
 
+int	print_solo_export(char **env)
+{
+	int	i;
+	int	j;
+	int	check;
+
+	if (!env)
+		return (0);
+	i = 0;
+	while (env[i])
+	{
+		printf("export ");
+		j = 0;
+		check = 0;
+		while (env[i][j])
+		{
+			if (env[i][j] == '\"')
+				printf("\\");
+			printf("%c", env[i][j]);
+			if (env[i][j] == '=' && !check++)
+				printf("\"");
+			j++;
+		}
+		printf("\"\n");
+		i++;
+	}
+	return (0);
+}
+
 /**
  * @brief export command from shell
  *         using a custom environment
@@ -85,6 +114,8 @@ int	ft_export(char ***env, char **args)
 
 	err = 0;
 	i = 0;
+	if (!args || !*args)
+		return (print_solo_export(*env));
 	while (args && args[i])
 	{
 		env_index = check_env_var_exist(*env, args[i]);

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:05:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/07 18:08:54 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/12 21:49:52 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /**
  * @brief Take a line (char *) and convert it to a array of compound.
- * 
+ *
  * @param line char * line to be parsed
  * @param envp array of strings containing the environment variables
  * @param exit_status int exit status of the last command
@@ -85,14 +85,9 @@ void	prompt(char ***env)
 	char				*buffer;
 	t_compound			*compound_command;
 	int					exit_status;
-	struct sigaction	sa;
 
-	sa.sa_flags = 0;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_handler = SIG_IGN;
-	sigaction(SIGQUIT, &sa, NULL);
-	sa.sa_handler = &sig_handler_prompt;
-	sigaction(SIGINT, &sa, NULL);
+	set_signal(SIGQUIT, SIG_IGN);
+	set_signal(SIGINT, sig_handler_prompt);
 	buffer = NULL;
 	exit_status = 0;
 	rl_attempted_completion_function = history_completion;
@@ -105,7 +100,7 @@ void	prompt(char ***env)
 		if (g_signal != 0)
 			exit_status = g_signal;
 		if (!buffer)
-			(ft_free_dstr(*env), builtins_exit(exit_status));
+			(ft_free_dstr(*env), write(2, "exit\n", 5), exit(exit_status));
 		if (buffer && *buffer)
 			add_history(buffer);
 		compound_command = parse_line(buffer, *env, exit_status);
