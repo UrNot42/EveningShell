@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:31:47 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/12 21:51:08 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/12 22:08:06 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,22 @@ int	finish_execute(t_exec *exec)
 	int					error_code;
 
 	error_code = wait_pids(exec->pi.ds);
-	set_signal(SIGINT, sig_handler_prompt);
-	set_signal(SIGQUIT, SIG_IGN);
-	// signal(SIGINT, sig_handler_prompt);
-	// signal(SIGQUIT, SIG_IGN);
+	// set_signal(SIGINT, sig_handler_prompt);
+	// set_signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, sig_handler_prompt);
+	signal(SIGQUIT, SIG_IGN);
 	free_exec(exec, false);
 	return (error_code);
 }
 
 void	start_cmd(t_exec *exec, int i, int last_err)
 {
-	struct sigaction	sa;
 
 	exec->pi.ds[i] = fork();
 	if (exec->pi.ds[i] == 0)
 	{
-		sa.sa_flags = 0;
-		sigemptyset(&sa.sa_mask);
-		sa.sa_handler = SIG_IGN;
-		// signal(SIGINT, SIG_IGN);
+		// set_signal(SIGINT, SIG_IGN);
+		signal(SIGINT, SIG_IGN);
 		child_process(exec, i, last_err);
 	}
 }

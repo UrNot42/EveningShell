@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:05:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/12 21:49:52 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/12 22:04:00 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,10 @@ void	prompt(char ***env)
 	t_compound			*compound_command;
 	int					exit_status;
 
-	set_signal(SIGQUIT, SIG_IGN);
-	set_signal(SIGINT, sig_handler_prompt);
+	// set_signal(SIGQUIT, SIG_IGN);
+	// set_signal(SIGINT, sig_handler_prompt);
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, sig_handler_prompt);
 	buffer = NULL;
 	exit_status = 0;
 	rl_attempted_completion_function = history_completion;
