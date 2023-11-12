@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:07:20 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/06 18:28:40 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/12 15:33:57 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int			run_single_cmd(int argc, char **argv, char **envp);
 // ---------------------------- DEBUG ----------------------------
 
 void		debug_heredoc(int fd);
+void		debug_expand(char *content, int index);
 void		debug_compound(t_compound *compound, char *debug_print);
 void		debug_double_char(char **argv, char *debug_print, int print_name);
 

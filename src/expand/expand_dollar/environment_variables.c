@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   common.c                                           :+:      :+:    :+:   */
+/*   environment_variables.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 17:17:15 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/10 17:18:00 by aoberon          ###   ########.fr       */
+/*   Created: 2023/11/12 15:35:32 by aoberon           #+#    #+#             */
+/*   Updated: 2023/11/12 21:28:28 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// ====================================================================
 
 static int	is_special_character(int c)
 {
@@ -25,7 +23,7 @@ static int	is_special_character(int c)
 	return (0);
 }
 
-int	get_varname_length(char const *str, int index)
+int	get_var_name_length(char const *str, int index)
 {
 	int	length;
 
@@ -71,17 +69,3 @@ int	retrieve_var_name(char **var, char *str,
 	}
 	return (1);
 }
-
-
-int	ft_nbrlen(long n)
-{
-	if (n < 0)
-	{
-		n = -n;
-	}
-	if (n < 10)
-		return (1);
-	return (1 + ft_nbrlen(n / 10));
-}
-
-// ====================================================================

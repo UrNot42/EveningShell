@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 13:16:01 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/06 17:41:49 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/12 15:33:34 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,28 @@ void	debug_heredoc(int fd)
 		read_size = read(fd, &buffer, 10);
 		buffer[read_size] = '\0';
 	}
+}
+
+void	debug_expand(char *content, int index)
+{
+	int	i;
+
+	i = 0;
+	printf("content: ");
+	while (content[i])
+	{
+		if (i == index)
+		{
+			if (content[i] == '"' || content[i] == '\'')
+				printf("\033[0;31m%c\033[0;37m", content[i]);
+			else if (content[i] == '$')
+				printf("\033[0;32m%c\033[0;37m", content[i]);
+			else
+				printf("\033[0;36m%c\033[0;37m", content[i]);
+		}
+		else
+			printf("%c", content[i]);
+		++i;
+	}
+	printf("\n");
 }

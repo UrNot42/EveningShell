@@ -38,15 +38,22 @@ SRC_PARSER			=	$(addprefix parser/, \
 # FOURTH STEP  OF THE SHELL OPERATIONS REPLACING THE VARIABLES WITH THEIR VALUE
 SRC_EXPAND			=	$(addprefix expand/, \
 						expand.c \
-						new_expand_one_compound.c \
-						quotes_management_copy.c \
+						quotes_management.c \
+						expand_one_content.c \
 						\
-						common.c \
-						total_length.c \
-						word_length.c \
+						char_management/char2d_management.c \
+						char_management/string_add_one_char.c \
+						\
+						create_new_content/create_new_content.c \
+						create_new_content/create_new_content_on_one_char.c \
+						\
+						expand_dollar/ft_itoa_no_malloc.c \
+						expand_dollar/expand_dollar.c \
+						expand_dollar/environment_variables.c \
+						expand_dollar/expand_one_environment_variable.c \
+						expand_dollar/expand_on_one_environment_variable_character.c \
+						\
 						)
-# variable_environement_functions.c
-# check_for_dollar.c
 
 SRC_HEREDOC			=	$(addprefix heredocs/, \
 						heredoc.c \
