@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 16:24:55 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/12 21:32:32 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/13 16:55:37 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@ static int	expand_exit_status(char ***new_content, int count, int exit_status)
 	char	str_itoa[12];
 
 	ft_itoa_no_malloc(exit_status, str_itoa);
+	if (!(*new_content)[count])
+	{
+		(*new_content)[count] = ft_calloc(1, sizeof(char));
+		if (!(*new_content)[count])
+			return (-1);
+	}
 	(*new_content)[count] = ft_safe_strjoin((*new_content)[count], str_itoa);
 	if (!(*new_content))
 		return (-1);

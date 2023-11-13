@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:05:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/12 22:04:00 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/13 16:54:55 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,18 +78,17 @@ char	**history_completion(const char *text, int start, int end)
  *        ought to be done without using the prompt
  *
  *        although it is the main loop of Minishell
- *2
+ *
  */
+
 void	prompt(char ***env)
 {
 	char				*buffer;
 	t_compound			*compound_command;
 	int					exit_status;
 
-	// set_signal(SIGQUIT, SIG_IGN);
-	// set_signal(SIGINT, sig_handler_prompt);
+	signal(SIGINT, &sig_handler_prompt);
 	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, sig_handler_prompt);
 	buffer = NULL;
 	exit_status = 0;
 	rl_attempted_completion_function = history_completion;
