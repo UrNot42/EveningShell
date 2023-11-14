@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:05:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/13 16:54:55 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/14 15:07:20 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_compound	*parse_line(char *line, char **envp, int exit_status)
 	return (coumpound_command);
 }
 
-// TEST FUNCTION FOR COMPLETETION IMPLEMENTATION
+// TEST FUNCTION FOR COMPLETETION IMPLEMENTATION TODO RM
 char	**history_completion(const char *text, int start, int end)
 {
 	char		**match;

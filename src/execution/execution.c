@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:31:47 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/14 13:39:25 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/14 14:48:14 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	finish_execute(t_exec *exec)
 {
-	int					error_code;
+	int	error_code;
 
 	error_code = wait_pids(exec->pi.ds);
 	signal(SIGINT, sig_handler_prompt);
