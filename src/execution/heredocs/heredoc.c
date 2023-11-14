@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 13:16:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/14 14:43:02 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/14 17:42:56 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +43,40 @@ static void	create_heredoc(int fd_write, char *keyword)
 	close(fd_write);
 }
 
+/**
+ * @brief Free the keyword and close the fd if the assignment is false.
+ * 	Else, save the keyword and the fd_write.
+ * 
+ * @param assignment bool to know if it has to save or free.
+ * @param keyword char ** pointer of the keyword;
+ * @param fd_write int * pointer of the fd_write.
+ */
 void	exit_heredoc(bool assignment, char **keyword, int *fd_write)
 {
-	static char	**static_keyword = NULL;
-	static int	*static_fd_write = NULL;
+	static char		**static_keyword = NULL;
+	static int		*static_fd_write = NULL;
 
-	if (assignment == 1)
+	if (assignment == true)
 	{
 		static_keyword = keyword;
 		static_fd_write = fd_write;
 	}
-	if (assignment == 0)
+	if (assignment == false)
 	{
 		free(*static_keyword);
 		close(*static_fd_write);
 	}
 }
 
+/**
+ * @brief Do the process of the child of the heredoc.
+ * 	Meaning, open the file to write in it.
+ * 
+ * @param exec t_exec struct.
+ * @param keyword char * use to stop the heredoc if the input is equal.
+ * @param filename char * filename to open.
+ * @param fd_read in fd of the read to close.
+ */
 void	heredoc_child(t_exec *exec, char *keyword, char *filename, int fd_read)
 {
 	int					fd_write;
@@ -70,7 +87,7 @@ void	heredoc_child(t_exec *exec, char *keyword, char *filename, int fd_read)
 	free_exec(exec, 1);
 	if (!keyword_copy)
 		exit(-42);
-	exit_heredoc(1, &keyword_copy, &fd_write);
+	exit_heredoc(true, &keyword_copy, &fd_write);
 	signal(SIGINT, sig_handler_heredoc);
 	fd_write = open_heredoc_write(filename);
 	if (fd_write == -1)
@@ -83,6 +100,13 @@ void	heredoc_child(t_exec *exec, char *keyword, char *filename, int fd_read)
 	exit(0);
 }
 
+/**
+ * @brief Process of the heredoc.
+ * 
+ * @param exec t_exec struct.
+ * @param keyword char * use to stop the heredoc if the input is equal.
+ * @return int return the fd of the read.
+ */
 int	heredoc(t_exec *exec, char *keyword)
 {
 	int					fd_read;
