@@ -20,7 +20,9 @@ void	print_exec_struct(t_exec *exec)
 	for (int i = 0; i < exec->cmd_size; i++)
 	{
 		printf("	cmd[%d]: %s\n", i, exec->cmd[i].cmd);
-		for (int j = 0; exec->cmd[i].args[j]; j ++)
+		if (!exec->cmd[i].args)
+			printf("\tCMD Arg %d doesn't exist\n", i);
+		for (int j = 0; exec->cmd[i].args && exec->cmd[i].args[j]; j ++)
 			printf("	arg[%d]: %s\n", j, exec->cmd[i].args[j]);
 		if (exec->cmd[i].in != NULL)
 			print_file(exec->cmd[i].in, "in", '\t');
