@@ -3,14 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:05:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/14 15:07:20 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:54:15 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+/**
+ * @brief Check if the char is a space or a tab
+ * 
+ * @param c char to check
+ * @return int return 1 if the char is a space or a tab, 0 otherwise
+ */
+int	ft_isspace(char c)
+{
+	return (c == ' ' || c == '\t');
+}
+
+/**
+ * @brief Check if the line is null (only spaces and tabs)
+ * 
+ * @param line line to check
+ * @return int return 1 if the line is null, 0 otherwise
+ */
+int	is_line_null(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line [i] && ft_isspace(line[i]))
+		i++;
+	if (line[i] == '\0')
+		return (1);
+	return (0);
+}
 
 /**
  * @brief Take a line (char *) and convert it to a array of compound.
@@ -25,6 +54,8 @@ t_compound	*parse_line(char *line, char **envp, int exit_status)
 	char		**tokens;
 	t_compound	*coumpound_command;
 
+	if (is_line_null(line))
+		return (NULL);
 	tokens = minishplit(line);
 	if (!tokens)
 		error_failed_malloc();
