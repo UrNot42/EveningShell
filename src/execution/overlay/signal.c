@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:05:52 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/13 16:52:49 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/14 15:12:42 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,8 @@ void	sig_handler_heredoc(int signum)
 
 void	sig_handler_exec(int signum)
 {
-	(void)signum;
+	if (signum == SIGINT)
+		g_signal = 130;
+	if (signum == SIGQUIT)
+		g_signal = 131;
 }
