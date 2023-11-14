@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 13:16:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/13 16:46:03 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/14 14:43:02 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,8 @@ int	heredoc(t_exec *exec, char *keyword)
 	int					fd_read;
 	int					fork_process;
 	char				*filename;
-	struct sigaction	sa;
 
-	sa.sa_flags = 0;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_handler = SIG_IGN;
+	signal(SIGINT, SIG_IGN);
 	fd_read = open_heredoc_read(&filename, "/tmp/.heredoc");
 	fork_process = fork();
 	if (fork_process == -1)
@@ -103,6 +100,5 @@ int	heredoc(t_exec *exec, char *keyword)
 	}
 	waitpid(fork_process, NULL, 0);
 	free(filename);
-	sa.sa_handler = &sig_handler_prompt;
 	return (fd_read);
 }
