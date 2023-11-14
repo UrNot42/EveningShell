@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:05:50 by ulevallo          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/11/14 15:54:15 by aoberon          ###   ########.fr       */
-=======
-/*   Updated: 2023/11/14 20:03:17 by ulevallo         ###   ########.fr       */
->>>>>>> uly
+/*   Updated: 2023/11/14 20:51:31 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +14,7 @@
 
 /**
  * @brief Check if the char is a space or a tab
- * 
+ *
  * @param c char to check
  * @return int return 1 if the char is a space or a tab, 0 otherwise
  */
@@ -29,7 +25,7 @@ int	ft_isspace(char c)
 
 /**
  * @brief Check if the line is null (only spaces and tabs)
- * 
+ *
  * @param line line to check
  * @return int return 1 if the line is null, 0 otherwise
  */
