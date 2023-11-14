@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 15:59:53 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/09 09:58:12 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/09 16:47:21 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	wait_pids(int *pids)
 	while (pids[i] != -1)
 	{
 		waitpid(pids[i], &status, 0);
-		if (WIFEXITED(status) && g_signal == 131 && !quit)
+		if (!quit && WIFSIGNALED(status) && g_signal == 131)
 		{
 			quit = true;
 			write(2, "Quit (core dumped)\n", 19);

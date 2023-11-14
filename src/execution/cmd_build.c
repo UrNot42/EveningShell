@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 10:15:05 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/09 11:34:28 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/09 18:26:53 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ int	create_cmd(t_cmd *cmd, char **env, char **n_cmd, char ***n_args)
 	char	*env_path;
 	int		index;
 
+	if (!cmd->cmd)
+		return (0);
 	index = get_env_var_index(env, "PATH");
 	if (index != -1)
 		env_path = &env[index][5];

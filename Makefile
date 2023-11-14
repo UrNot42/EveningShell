@@ -83,10 +83,10 @@ SRC_TOOL_LAYER		=	$(addprefix overlay/, \
 
 # PROCESSING COMMANDS AND DIRECTING INPUTS AND OUTPUTS
 SRC_EXECUTION		=	$(addprefix execution/, \
-						exec_cmd.c \
-						execution.c \
 						cmd_build.c \
+						execution.c \
 						exec_debug.c \
+						child_process.c \
 						$(SRC_BUILTINS) \
 						$(SRC_ENVIRONMENT) \
 						$(SRC_HEREDOC) \
