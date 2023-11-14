@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:06:16 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/12 21:43:18 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/14 13:38:26 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@ int	g_signal = 0;
  */
 int	main(int argc, char **argv, char **envp)
 {
-	if (argc == 1)
+	if (argc != 1)
+		return (1);
+	if (isatty(STDIN_FILENO) && isatty(STDERR_FILENO))
 		start_interactive(envp);
 	else
-		return (run_single_cmd(argc - 1, &argv[1], envp));
+		return (run_single_cmd(argc - 1, &argv[1], envp)); // TODO
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pids.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 15:59:53 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/13 16:45:31 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/14 13:38:45 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	wait_pids(int *pids)
 	while (pids[i] != -1)
 	{
 		waitpid(pids[i], &status, 0);
-		if (WIFEXITED(status) && g_signal == 131 && !quit)
+		if (!quit && WIFSIGNALED(status) && g_signal == 131)
 		{
 			quit = true;
 			write(2, "Quit (core dumped)\n", 19);

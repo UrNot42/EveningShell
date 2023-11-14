@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:31:47 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/13 16:45:52 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/14 13:39:25 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	start_cmd(t_exec *exec, int i, int last_err)
 	exec->pi.ds[i] = fork();
 	if (exec->pi.ds[i] == 0)
 	{
-		signal(SIGINT, SIG_IGN);
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 		child_process(exec, i, last_err);
 	}
 }
@@ -39,8 +40,10 @@ int	run_one_builtin(t_exec *exec, int last_err)
 	int	fd;
 
 	fd = dup(STDOUT_FILENO);
-	dup_fd(&exec->cmd[0], exec->pi);
-	code = execute_builtin(exec, last_err, 0, fd);
+	if (dup_fd(&exec->cmd[0], exec->pi))
+		code = 1;
+	else
+		code = execute_builtin(exec, last_err, 0, fd);
 	close_files(exec->files, exec->file_size);
 	free_exec(exec, false);
 	dup2(fd, STDOUT_FILENO);
@@ -60,6 +63,7 @@ int	execute(t_compound *elemt_list, char ***env, int last_err)
 	if (exec.pipe_size == 0 && is_builtin(exec.cmd[0].cmd))
 		return (run_one_builtin(&exec, last_err));
 	i = 0;
+	signal(SIGINT, SIG_IGN);
 	while (i < exec.cmd_size)
 	{
 		if (i < exec.pipe_size)
@@ -71,6 +75,6 @@ int	execute(t_compound *elemt_list, char ***env, int last_err)
 		i++;
 	}
 	close_pipe(&exec.pi, PIP_READ);
-	exec.pi.ds[i] = -1;
+	exec.pi.ds[exec.cmd_size] = -1;
 	return (close_files(exec.files, exec.file_size), finish_execute(&exec));
 }

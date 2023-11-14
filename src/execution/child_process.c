@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_cmd.c                                         :+:      :+:    :+:   */
+/*   child_process.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 21:47:21 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/08 16:54:18 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/09 18:30:45 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	dup_fd(t_cmd *cmd, t_pipe pi)
 	if (cmd->in != NULL && cmd->in->exists)
 	{
 		if (cmd->in->fd == -1)
-			return (perror(cmd->in->name), 1);
+			return (1);
 		dup2(cmd->in->fd, STDIN_FILENO);
 		close(cmd->in->fd);
 	}
@@ -48,7 +48,7 @@ int	dup_fd(t_cmd *cmd, t_pipe pi)
 	if (cmd->out != NULL && cmd->out->exists)
 	{
 		if (cmd->out->fd == -1)
-			return (perror(cmd->out->name), 1);
+			return (1);
 		dup2(cmd->out->fd, STDOUT_FILENO);
 		close(cmd->out->fd);
 	}
@@ -61,6 +61,8 @@ void	exec_cmd(t_exec *exec, int i, int last_err)
 {
 	int	code;
 
+	if (!exec->cmd[i].cmd)
+		exit(0);
 	if (is_builtin(exec->cmd[i].cmd))
 	{
 		code = execute_builtin(exec, last_err, i, -1);
@@ -82,7 +84,7 @@ void	child_process(t_exec *exec, int i, int last_err)
 		close_files(exec->files, exec->file_size);
 		close_pipe(&exec->pi, PIP_ALL);
 		free_exec(exec, true);
-		exit(127);
+		exit(1);
 	}
 	close_files(exec->files, exec->file_size);
 	close_pipe(&exec->pi, PIP_ALL);
@@ -90,7 +92,6 @@ void	child_process(t_exec *exec, int i, int last_err)
 	if (create_cmd(&exec->cmd[i], *exec->env, &cmd, &args))
 		(free_exec(exec, true), exit(127));
 	free_exec(exec, false);
-
 	execve(cmd, args, *exec->env);
 	ft_free_dstr(*exec->env);
 	exit(127);
