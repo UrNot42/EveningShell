@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 21:05:52 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/09 18:16:24 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:40:28 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int	set_execute_struct(t_compound *compound, t_exec *ex, char ***env)
 	ex->allocated_content = compound;
 	ex->cmd_size = get_compound_type_size(compound, true);
 	ex->pi.ds = ft_calloc(ex->cmd_size + 1, sizeof(int));
+	if (!ex->pi.ds)
+		return (1);
 	ex->pi.ds[ex->cmd_size] = -1;
 	ex->pi.pe_prev = -1;
 	ex->pi.pe[0] = -1;
@@ -66,7 +68,7 @@ int	set_execute_struct(t_compound *compound, t_exec *ex, char ***env)
 	ex->files = ft_calloc(ex->file_size + 1, sizeof(t_file));
 	ex->files[ex->file_size] = (t_file){0};
 	if (!ex->files)
-		return (free(ex->cmd), 1);
+		return (1);
 	if (fill_file(compound, ex->files, ex->file_size))
 		return (1);
 	ex->pipe_size = fill_cmds(compound, ex->cmd, ex->files);

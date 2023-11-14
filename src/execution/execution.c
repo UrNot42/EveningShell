@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:31:47 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/14 14:48:14 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:35:34 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,9 @@ int	execute(t_compound *elemt_list, char ***env, int last_err)
 	open_files(exec.files);
 	if (exec.pipe_size == 0 && is_builtin(exec.cmd[0].cmd))
 		return (run_one_builtin(&exec, last_err));
-	i = 0;
 	signal(SIGINT, SIG_IGN);
+	i = 0;
+	printf("HOLA %d\n", exec.cmd_size);
 	while (i < exec.cmd_size)
 	{
 		if (i < exec.pipe_size)
