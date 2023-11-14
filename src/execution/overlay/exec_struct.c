@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 21:05:52 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/14 15:45:39 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/14 17:30:47 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ size_t	get_compound_type_size(t_compound *compound, bool is_cmd)
 		while (compound[i].content)
 			if (compound[i++].type == CMD)
 				++size;
-		return (size + 1);
+		return (size);
 	}
 	while (compound[i].content)
 	{
