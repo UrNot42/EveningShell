@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 21:47:21 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/14 20:41:45 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/14 20:47:37 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void	child_process(t_exec *exec, int i, int last_err)
 
 	cmd = NULL;
 	args = NULL;
-	// printf("CONARD\n");
 	if (dup_fd(&exec->cmd[i], exec->pi))
 	{
 		close_files(exec->files, exec->file_size);
