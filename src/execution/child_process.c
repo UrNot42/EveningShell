@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 21:47:21 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/09 18:30:45 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/14 20:47:37 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ void	child_process(t_exec *exec, int i, int last_err)
 	}
 	close_files(exec->files, exec->file_size);
 	close_pipe(&exec->pi, PIP_ALL);
+	if (!exec->cmd[i].args)
+		(free_exec(exec, true), exit(0));
 	exec_cmd(exec, i, last_err);
 	if (create_cmd(&exec->cmd[i], *exec->env, &cmd, &args))
 		(free_exec(exec, true), exit(127));

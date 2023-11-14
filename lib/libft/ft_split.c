@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 19:22:08 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/03/14 02:48:01 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/14 20:35:49 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ static char	*cut(char const *s, char c, int *i)
 
 static void	freeall(char **parts, int j)
 {
+	if (!parts)
+		return ;
 	while (j >= 0)
 		free(parts[j--]);
 	free(parts);
@@ -78,7 +80,7 @@ char	**ft_split(char const *s, char c)
 	i = 0;
 	j = 0;
 	sum = nb_parts(s, c) + 1;
-	parts = malloc(sum * sizeof(char *));
+	parts = ft_calloc(sum, sizeof(char *));
 	if (!parts)
 		return (0);
 	while (s[i])
