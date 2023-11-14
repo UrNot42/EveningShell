@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 13:16:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/14 17:42:56 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/14 17:58:34 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	heredoc_child(t_exec *exec, char *keyword, char *filename, int fd_read)
 	if (fd_write == -1)
 	{
 		free(keyword_copy);
-		exit (-42);
+		exit (-1);
 	}
 	create_heredoc(fd_write, keyword_copy);
 	free(keyword_copy);
@@ -115,9 +115,13 @@ int	heredoc(t_exec *exec, char *keyword)
 
 	signal(SIGINT, SIG_IGN);
 	fd_read = open_heredoc_read(&filename, "/tmp/.heredoc");
+	if (fd_read == -1)
+		return (-1);
+	if (fd_read == -42)
+		return (-42);
 	fork_process = fork();
 	if (fork_process == -1)
-		printf("Protector fork\n");
+		return (free(filename), printf("minishell: fork failed\n"), -43);
 	if (fork_process == 0)
 	{
 		heredoc_child(exec, keyword, filename, fd_read);
