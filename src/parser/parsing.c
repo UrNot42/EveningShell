@@ -14,7 +14,7 @@
 
 /**
  * @brief Counts the number of compounds to be created in a command type
- * 
+ *
  * @param argv array of strings used to create compounds
  * @param i size_t pointer to the index of argv
  * @param count size_t pointer to the count of compounds
@@ -40,7 +40,7 @@ static void	count_compound_cmd(char **argv, size_t *i, size_t *count)
 
 /**
  * @brief Counts the number of compounds to be created
- * 
+ *
  * @param argv array of strings used to create compounds
  * @return size_t count of compounds
  */
@@ -75,12 +75,12 @@ static size_t	count_compound(char **argv)
 
 /**
  * @brief Set the compounds
- * 
+ *
  * @param compound array of compounds
  * @param argv array of strings used to create compounds
  * @param i size_t pointer to the index of argv
  * @param n size_t pointer to the index of compound
- * @return int 
+ * @return int
  */
 static int	set_compounds(t_compound *compound, char **argv,
 	size_t *i, size_t *n)
@@ -113,7 +113,7 @@ static int	set_compounds(t_compound *compound, char **argv,
 
 /**
  * @brief parsing of the command line
- * 
+ *
  * @param argv array of strings used to create compounds
  * @return t_compound* array of compounds
  */
@@ -136,7 +136,6 @@ t_compound	*parsing(char **argv)
 			return (free_compound(compound), NULL);
 		}
 	}
-	compound[n].type = -1;
 	return (compound);
 }
 

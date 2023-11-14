@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 21:05:52 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/14 17:30:47 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/14 20:37:31 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ size_t	get_compound_type_size(t_compound *compound, bool is_cmd)
 	if (is_cmd)
 	{
 		while (compound[i].content)
-			if (compound[i++].type == CMD)
+			if (compound[i++].type == PIPE)
 				++size;
-		return (size);
+		return (size + 1);
 	}
 	while (compound[i].content)
 	{
@@ -38,6 +38,8 @@ size_t	get_compound_type_size(t_compound *compound, bool is_cmd)
 
 void	free_exec(t_exec *ex, bool env)
 {
+	// printf("HERE free\n");
+
 	free(ex->pi.ds);
 	free(ex->cmd);
 	free(ex->files);
@@ -46,20 +48,27 @@ void	free_exec(t_exec *ex, bool env)
 		ft_free_dstr(*ex->env);
 }
 
+int	init_pipe(t_pipe *pi, int size)
+{
+	pi->ds = ft_calloc(size + 1, sizeof(int));
+	if (!pi->ds)
+		return (1);
+	pi->ds[size] = -1;
+	pi->pe_prev = -1;
+	pi->pe[0] = -1;
+	pi->pe[1] = -1;
+	return (0);
+}
+
 int	set_execute_struct(t_compound *compound, t_exec *ex, char ***env)
 {
 	ex->env = env;
-	if (!compound)
+	if (compound[0].type == UNSET)
 		return (1);
 	ex->allocated_content = compound;
 	ex->cmd_size = get_compound_type_size(compound, true);
-	ex->pi.ds = ft_calloc(ex->cmd_size + 1, sizeof(int));
-	if (!ex->pi.ds)
+	if (init_pipe(&ex->pi, ex->cmd_size))
 		return (1);
-	ex->pi.ds[ex->cmd_size] = -1;
-	ex->pi.pe_prev = -1;
-	ex->pi.pe[0] = -1;
-	ex->pi.pe[1] = -1;
 	ex->cmd = ft_calloc(ex->cmd_size + 1, sizeof(t_cmd));
 	ex->cmd[ex->cmd_size] = (t_cmd){0};
 	if (!ex->cmd)

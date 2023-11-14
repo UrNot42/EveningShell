@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 15:59:53 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/14 15:21:58 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/14 19:32:10 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ int	wait_pids(int *pids)
 	if (WIFEXITED(status))
 		return (WEXITSTATUS(status));
 	if (WIFSIGNALED(status))
-		return (WTERMSIG(status));
+		return (g_signal);
 	return (0);
 }

@@ -6,11 +6,18 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 10:15:05 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/09 18:26:53 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/14 20:29:36 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	command_not_found(char *cmd)
+{
+	write(2, "Command '", 9);
+	write(2, cmd, ft_strlen(cmd));
+	write(2, "' not found\n", 12);
+}
 
 char	*build_cmd(char *cmd, char *path, int size)
 {
@@ -53,7 +60,6 @@ char	*get_cmd(char *cmd, char *path)
 		if (cmd[i++] == '/')
 			return (write(2, cmd, ft_strlen(cmd)),
 				write(2, ": No such file or directory\n", 28), NULL);
-	i = 0;
 	while (path && *path)
 	{
 		i = find_path_size(path);
@@ -64,8 +70,7 @@ char	*get_cmd(char *cmd, char *path)
 			free(tmp);
 		path += i + (path[i] != '\0');
 	}
-	return (write(2, "Command '", 9), write(2, cmd, ft_strlen(cmd)),
-		write(2, "' not found\n", 12), NULL);
+	return (command_not_found(cmd), NULL);
 }
 
 int	create_cmd(t_cmd *cmd, char **env, char **n_cmd, char ***n_args)
@@ -74,7 +79,9 @@ int	create_cmd(t_cmd *cmd, char **env, char **n_cmd, char ***n_args)
 	int		index;
 
 	if (!cmd->cmd)
-		return (0);
+		return (1);
+	if (*cmd->cmd == '\0')
+		return (command_not_found(""), 1);
 	index = get_env_var_index(env, "PATH");
 	if (index != -1)
 		env_path = &env[index][5];
