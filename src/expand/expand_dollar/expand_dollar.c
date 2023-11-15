@@ -6,12 +6,20 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 16:24:55 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/15 10:30:56 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/15 19:02:52 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief Expand one the $? variable
+ * 
+ * @param new_content char *** of the new_content
+ * @param count int * of the index of the new_content
+ * @param exit_status int exit status of the last command
+ * @return int -1 if malloc failed, 1 otherwise
+ */
 static int	expand_exit_status(char ***new_content, int count, int exit_status)
 {
 	char	str_itoa[12];
@@ -29,7 +37,16 @@ static int	expand_exit_status(char ***new_content, int count, int exit_status)
 	return (1);
 }
 
-static int	get_index_for_expand(char *words, int *index, char **env)
+/**
+ * @brief Find the index of the environment variable in the env
+ * 
+ * @param words char * of the content
+ * @param index int * of the index of the first char of the env var in words
+ * @param env char ** of the environment variables
+ * @return int the index of the env var in env, or
+ *  -1 if malloc failed, -2 if expand is $?, -3 if expand is not found in env
+ */
+static int	find_index_env(char *words, int *index, char **env)
 {
 	char	*var_name;
 	int		var_name_length;
@@ -38,7 +55,7 @@ static int	get_index_for_expand(char *words, int *index, char **env)
 
 	var_name_length = get_var_name_length(words, *index);
 	if (!retrieve_var_name(&var_name, words, *index, var_name_length))
-		return (-1);
+		return (-42);
 	j = 0;
 	while (j++ < var_name_length)
 	{
@@ -57,12 +74,21 @@ static int	get_index_for_expand(char *words, int *index, char **env)
 	return (index_env);
 }
 
+/**
+ * @brief Expand one environment variable
+ * 
+ * @param t_enc t_expand_new_content, char ***new_content, int *count,
+ *  char *flag, t_expand_dollar t_ed
+ * @return int -1 if malloc failed, 1 otherwise
+ */
 int	expand_dollar(t_expand_new_content t_enc)
 {
 	int		index_env;
 
-	index_env = get_index_for_expand(t_enc.t_ed.word, t_enc.index,
+	index_env = find_index_env(t_enc.t_ed.word, t_enc.index,
 			t_enc.t_ed.env);
+	if (index_env == -42)
+		return (-1);
 	if (index_env == -3)
 	{
 		return (expand_one_environment_variable(t_enc.new_content,

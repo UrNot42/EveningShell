@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 16:59:17 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/12 14:02:44 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/15 19:11:02 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * 
  * @param str string to check
  * @param i starting index
- * @return int returns 1 if the single quotes are not closed, 0 otherwise
+ * @return int 1 if the single quotes are not closed, 0 otherwise
  */
 static int	check_end_single_quotes(char const *str, size_t *i)
 {
@@ -37,7 +37,7 @@ static int	check_end_single_quotes(char const *str, size_t *i)
  * 
  * @param str string to check
  * @param i starting index
- * @return int returns 1 if the double quotes are not closed, 0 otherwise
+ * @return int 1 if the double quotes are not closed, 0 otherwise
  */
 static int	check_end_double_quotes(char const *str, size_t *i)
 {
@@ -56,7 +56,7 @@ static int	check_end_double_quotes(char const *str, size_t *i)
  * @brief Check quoting error on one string
  * 
  * @param str string to check
- * @return int returns 1 if there is an error, 0 otherwise
+ * @return int 1 if there is an error, 0 otherwise
  */
 static int	check_one_string_quotes(char const *str)
 {
@@ -80,7 +80,7 @@ static int	check_one_string_quotes(char const *str)
  * @brief Check for quoting error in the command line
  * 
  * @param argv array of strings to check
- * @return int returns 1 if there is an error, 0 otherwise
+ * @return int 1 if there is an error, 0 otherwise
  */
 int	check_quoting_error(char **argv)
 {

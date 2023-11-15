@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   free_compound.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 14:20:39 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/14 19:59:23 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/15 19:08:59 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief Free a array of compounds and its content
+ * 
+ * @param command_list t_compound * array of compounds to be freed
+ */
 void	free_compound(t_compound *command_list)
 {
 	size_t	i;

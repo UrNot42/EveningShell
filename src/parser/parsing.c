@@ -80,7 +80,7 @@ static size_t	count_compound(char **argv)
  * @param argv array of strings used to create compounds
  * @param i size_t pointer to the index of argv
  * @param n size_t pointer to the index of compound
- * @return int
+ * @return int 0 if a malloc failed, 1 otherwise
  */
 static int	set_compounds(t_compound *compound, char **argv,
 	size_t *i, size_t *n)
@@ -132,18 +132,8 @@ t_compound	*parsing(char **argv)
 	{
 		if (!set_compounds(compound, argv, &i, &n))
 		{
-			printf("compound[%zu].type = %d\n", n - 1, compound[n - 1].type);
 			return (free_compound(compound), NULL);
 		}
 	}
 	return (compound);
 }
-
-// cmd1 op arg1 arg2 > file arg3 | cmd2 arg1 arg2 < file arg3 |
-// 		cmd3 arg1 >> file arg2 arg3 | cmd4 << file arg1 arg2 arg3
-
-// cmd1 op arg1 arg2 > file arg3 | cmd2 arg1 arg2 < file arg3 | cmd3 arg1 >>
-// 	file arg2 arg3 | cmd4 << file arg1 arg2 arg3 | cmd5 > file | >> file < file
-
-// ls cmdjdkf and so em no >> filehere > true file < infile < infiletwo
-//		| cat oui oui oui

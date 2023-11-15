@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:41:36 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/15 10:29:32 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/15 18:34:08 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ char	*str_add_one_char(char *str_to_free, char c);
 
 // --------------------- CREATE_NEW_CONTENT_ON_ONE_CHAR ---------------------
 
-// int		create_new_content_on_one_char(char **new_content, int *count,
-			// int *index, char *flag, t_expand_dollar expand_dollar_t);
 int		create_new_content_on_one_char(t_expand_new_content expand_new_content);
 
 // -------------------------- CREATE_NEW_CONTENT --------------------------
@@ -86,9 +84,9 @@ int		retrieve_var_name(char **var, char *str, int index_dollar, int size);
 
 int		expand_dollar(t_expand_new_content t_enc);
 
-// --------------- EXPAND_ON_ONE_ENVIRONMENT_VARIABLE_CHARACTER ---------------
+// --------------- ADD_ONE_ENVIRONMENT_VARIABLE_CHARACTER ---------------
 
-int		expand_on_one_env_var_char(char ***new_content, int *count,
+int		add_one_env_var_char(char ***new_content, int *count,
 			char env_var_char, char *flag);
 
 // --------------------- EXPAND_ONE_ENVIRONMENT_VARIABLE ---------------------

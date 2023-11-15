@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 19:05:19 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/14 17:56:18 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/15 19:05:33 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  * 
  * @param filename char ** name of the file to read.
  * @param filename_std char * name of the file to read.
- * @return int return the fd of the file.
+ * @return int the fd of the file.
  */
 int	open_heredoc_read(char **filename, char *filename_std)
 {
@@ -52,7 +52,7 @@ int	open_heredoc_read(char **filename, char *filename_std)
  * @brief Open the file to write the heredoc.
  * 
  * @param filename char * name of the file to write.
- * @return int return the fd of the file.
+ * @return int the fd of the file.
  */
 int	open_heredoc_write(char *filename)
 {

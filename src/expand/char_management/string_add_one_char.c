@@ -6,12 +6,19 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 15:44:20 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/12 17:27:33 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/15 19:05:06 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief Create a copy of the string size + 1 with the char c at the end
+ * 
+ * @param str_to_free char * string to copy and free at the end
+ * @param c char to add at the end of the new string
+ * @return char* new string
+ */
 char	*str_add_one_char(char *str_to_free, char c)
 {
 	int		i;

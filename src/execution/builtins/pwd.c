@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 09:45:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/14 17:54:37 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/15 19:06:04 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 /**
  * @brief Builtins of the command pwd
- *
- * /!\ Have to change "arguments" to a better word
  *
  * @return int 1 getcwd() success, 0 otherwise
  */
@@ -26,6 +24,7 @@ int	builtins_pwd(void)
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
 	{
+		// fix error failed malloc not freeing
 		error_failed_malloc();
 		return (0);
 	}

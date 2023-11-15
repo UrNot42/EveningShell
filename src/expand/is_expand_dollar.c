@@ -6,12 +6,20 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 21:34:33 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/12 22:26:49 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/15 16:47:54 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief Goes through the word to the next single quote
+ * 
+ * @param word char * word to check
+ * @param i int * index of the word
+ * @return true if the word is not finished
+ * @return false if the word is finished
+ */
 static bool	is_expand_dollar_single_quote(char *word, int *i)
 {
 	*i += 1;
@@ -22,6 +30,16 @@ static bool	is_expand_dollar_single_quote(char *word, int *i)
 	return (true);
 }
 
+/**
+ * @brief Goes through the word to the next double quote and check if there is
+ * 	a dollar to expand
+ * 
+ * @param word char * word to check
+ * @param i int * index of the word
+ * @return true if the word contains a dollar to expand
+ *  or if the word is not finished
+ * @return false if the word is finished and does not contain a dollar to expand
+ */
 static bool	is_expand_dollar_double_quote(char *word, int *i)
 {
 	*i += 1;
@@ -36,6 +54,13 @@ static bool	is_expand_dollar_double_quote(char *word, int *i)
 	return (true);
 }
 
+/**
+ * @brief Check if the word contains a dollar to expand
+ * 
+ * @param word char * word to check
+ * @return true if the word contains a dollar to expand
+ * @return false if the word does not contain a dollar to expand
+ */
 bool	is_expand_dollar(char *word)
 {
 	int	i;

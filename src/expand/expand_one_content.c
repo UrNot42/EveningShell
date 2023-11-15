@@ -6,12 +6,21 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 15:23:20 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/12 21:20:30 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/15 19:02:22 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief Expands one content of a compound
+ * 
+ * @param compound t_compound ** compound to expand the content
+ * @param index int * index of the content to expand
+ * @param env char ** env to expand the content
+ * @param exit_status int exit status of the last command
+ * @return int 1 if success, -1 if error of malloc
+ */
 int	expand_one_content(t_compound **compound, int *index, char **env,
 	int exit_status)
 {

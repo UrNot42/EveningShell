@@ -6,12 +6,20 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 13:53:58 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/12 21:34:48 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/15 19:01:38 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief expand only one compound
+ * 
+ * @param compound compound to expand
+ * @param env char ** of the environment variables
+ * @param exit_status int containing the exit status of the last command
+ * @return int 1 if the expansion was successful, -1 otherwise
+ */
 static int	expand_one_compound(t_compound *compound,
 	char **env, int exit_status)
 {
@@ -57,12 +65,10 @@ void	expand(t_compound **compound, char **env, int exit_status)
 	while ((*compound)[i].type != UNSET && (*compound)[i].type != -1)
 	{
 		if (expand_one_compound(&(*compound)[i], env, exit_status) == -1)
-			(free_compound(*compound), error_failed_malloc());
+		{
+			(free_compound(*compound), ft_free_dstr(env),
+				error_failed_malloc());
+		}
 		++i;
 	}
 }
-
-// echo $HOME"$USER"'$PATH'"'$?'"$TOTO'"$PATH"'
-// /mnt/nfs/homes/aoberonaoberon$PATH'0'"$PATH"
-
-// echo "toto$HOME"'$USER toto'"'toto'"

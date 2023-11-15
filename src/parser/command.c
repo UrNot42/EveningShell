@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:00:52 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/15 10:49:54 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/15 19:08:19 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static size_t	get_number_str_in_cmd(char **argv)
  * @param argv array of strings used to create compound array of strings
  * @param i size_t pointer to the index of argv
  * @param k size_t index of the string to be set
- * @return int returns 0 if malloc fails, 1 otherwise
+ * @return int 0 if malloc fails, 1 otherwise
  */
 static int	set_one_str_in_cmd_type(t_compound compound, char **argv,
 	size_t *i, size_t k)
@@ -73,7 +73,7 @@ static int	set_one_str_in_cmd_type(t_compound compound, char **argv,
  * @param i size_t pointer to the index of argv
  * @param n size_t pointer to the index of compound
  * @param argv array of strings used to create compounds
- * @return int returns 0 if malloc fails, 1 otherwise
+ * @return int 0 if malloc fails, 1 otherwise
  */
 int	parsing_command(t_compound *compound, size_t *i, size_t *n, char **argv)
 {

@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quotes_management copy.c                           :+:      :+:    :+:   */
+/*   quotes_management.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 13:48:55 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/07 20:14:03 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/15 16:53:08 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	is_quotes(char *word)
+/**
+ * @brief Check if the word contains a double or single quote
+ * 
+ * @param word char * word to check
+ * @return true if the word contains a double or single quote
+ * @return false if not
+ */
+static bool	is_quotes(char *word)
 {
 	size_t	i;
 
@@ -20,13 +27,20 @@ static int	is_quotes(char *word)
 	while (word[i])
 	{
 		if (word[i] == '"' || word[i] == '\'')
-			return (1);
+			return (true);
 		++i;
 	}
-	return (0);
+	return (false);
 }
 
-static size_t	get_size_word(char *word)
+/**
+ * @brief Get the size of the new_word, meaning the size of the word without
+ *  (depending on the rules of bash)
+ * 
+ * @param word char * word to get the size
+ * @return size_t size of the new_word
+ */
+static size_t	get_size_new_word(char *word)
 {
 	size_t	i;
 	size_t	length;
@@ -51,6 +65,14 @@ static size_t	get_size_word(char *word)
 	return (length);
 }
 
+/**
+ * @brief Copy the word without the quotes (depending on the rules of bash)
+ * in the new_word
+ * 
+ * @param new_word char ** new word without quotes
+ * @param word char * word to copy
+ * @param length size_t length of the new_word
+ */
 static void	copy_word(char **new_word, char *word, size_t length)
 {
 	size_t	i;
@@ -79,6 +101,12 @@ static void	copy_word(char **new_word, char *word, size_t length)
 	}
 }
 
+/**
+ * @brief Create a new word without quotes (following the rules of bash)
+ * 
+ * @param word char * word to remove quotes in
+ * @return char* new word without quotes
+ */
 char	*remove_quotes(char *word)
 {
 	size_t	length;
@@ -86,7 +114,7 @@ char	*remove_quotes(char *word)
 
 	if (!is_quotes(word))
 		return (word);
-	length = get_size_word(word);
+	length = get_size_new_word(word);
 	new_word = ft_calloc(length + 1, sizeof(char));
 	if (!new_word)
 		return (NULL);

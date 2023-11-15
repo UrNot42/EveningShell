@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:05:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/15 16:09:46 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/15 19:11:53 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,19 +58,60 @@ t_compound	*parse_line(char *line, char **envp, int exit_status)
 		return (NULL);
 	tokens = minishplit(line);
 	if (!tokens)
-		error_failed_malloc();
+		(ft_free_dstr(envp), error_failed_malloc());
 	// debug_double_char(tokens, "Minishplit", 1);
 	if (check_error(tokens))
 		return (ft_free_dstr(tokens), NULL);
 	coumpound_command = parsing(tokens);
 	ft_free_dstr(tokens);
 	if (!coumpound_command)
-		error_failed_malloc();
+		(ft_free_dstr(envp), error_failed_malloc());
 	// debug_compound(coumpound_command, "Parsing");
 	expand(&coumpound_command, envp, exit_status);
 	// debug_compound(coumpound_command, "Expand");
 	return (coumpound_command);
 }
+
+// DELETE COMMENT AT THE START OF THE FILE \/!\/!\/!\/
+// LEXER TEST :
+
+// "a"sss"f"f|fdf>fd<$$$HOME
+// "a"sss"f"
+// f
+// |
+// fdf
+// >
+// fd
+// <
+// $$$HOME
+
+// "a"sss"f"f|fdf>fd<$$$HOME
+// "a  1	2"bbb"c"d|efg>hi<<$$$HOME$USER
+// "a  1        2"bbb"c"d|efg>hi<<$$$HOME$$USER || $PW|
+// "a  1        2"bbb"c"d| e          fg>hi<<$$$HOME$$USER
+//		 || $PW|	'zyx'5'wvuts' "rq'po'nmlk" 'jihg"fed"cba'
+
+// PARSING TEST :
+
+// cmd1 op arg1 arg2 > file arg3 | cmd2 arg1 arg2 < file arg3 |
+// 		cmd3 arg1 >> file arg2 arg3 | cmd4 << file arg1 arg2 arg3
+
+// cmd1 op arg1 arg2 > file arg3 | cmd2 arg1 arg2 < file arg3 | cmd3 arg1 >>
+// 	file arg2 arg3 | cmd4 << file arg1 arg2 arg3 | cmd5 > file | >> file < file
+
+// ls cmdjdkf and so em no >> filehere > true file < infile < infiletwo
+//		| cat oui oui oui
+
+// --------------------------------------------------
+
+// EXPAND TEST :
+
+// echo $HOME"$USER"'$PATH'"'$?'"$TOTO'"$PATH"'
+// /mnt/nfs/homes/aoberonaoberon$PATH'0'"$PATH"
+
+// echo "toto$HOME"'$USER toto'"'toto'"
+
+// --------------------------------------------------
 
 // TEST FUNCTION FOR COMPLETETION IMPLEMENTATION TODO RM
 char	**history_completion(const char *text, int start, int end)

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:28:19 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/15 10:39:36 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/15 19:07:42 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
  * and returns the number of -n
  * 
  * @param argv char ** of the arguments
- * @return int returns the number of -n
+ * @return int the number of -n
  */
 static int	detect_option_n(char **argv)
 {
@@ -54,10 +54,9 @@ static int	detect_option_n(char **argv)
 
 /**
  * @brief Builtins of the command echo
- *
- * /!\ Have to change "arguments" to a better word
- *
- * @param argv char** of the arguments
+ * 
+ * @param args char ** of the arguments
+ * @return int 0 in any case
  */
 int	builtins_echo(char **args)
 {

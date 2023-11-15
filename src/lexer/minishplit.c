@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 18:59:58 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/10 21:50:59 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/15 19:11:23 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,20 +145,3 @@ char	**minishplit(char const *s)
 	}
 	return (argv);
 }
-
-// "a"sss"f"f|fdf>fd<$$$HOME
-// "a"sss"f"
-// f
-// |
-// fdf
-// >
-// fd
-// <
-// $$$HOME
-
-// "a"sss"f"f|fdf>fd<$$$HOME
-// "a  1	2"bbb"c"d|efg>hi<<$$$HOME$USER
-// "a  1        2"bbb"c"d|efg>hi<<$$$HOME$$USER || $PW|
-// "a  1        2"bbb"c"d| e          fg>hi<<$$$HOME$$USER
-//		 || $PW|	'zyx'5'wvuts' "rq'po'nmlk" 'jihg"fed"cba'
-// DELETE COMMENT AT THE START OF THE FILE \/!\/!\/!\/

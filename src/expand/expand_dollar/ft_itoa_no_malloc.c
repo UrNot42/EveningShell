@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 15:40:15 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/12 15:41:04 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/15 19:02:32 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
  * @brief Get a length of a number.
  * 
  * @param n number to get the length.
- * @return int return the length.
+ * @return int the length.
  */
 int	ft_nbrlen(int n)
 {

@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:26:18 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/15 10:45:39 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/15 19:12:20 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * 
  * @param argv argv array of strings to check
  * @param n index of the redirection
- * @return int returns 1 if there is an error, 0 otherwise
+ * @return int 1 if there is an error, 0 otherwise
  */
 int	check_syntax_redir(char **argv, size_t n)
 {
@@ -35,7 +35,7 @@ int	check_syntax_redir(char **argv, size_t n)
  * 
  * @param argv array of strings to check
  * @param n index of the pipe
- * @return int returns 1 if there is an error, 0 otherwise
+ * @return int 1 if there is an error, 0 otherwise
  */
 int	check_syntax_pipe(char **argv, size_t n)
 {
@@ -56,7 +56,7 @@ int	check_syntax_pipe(char **argv, size_t n)
  * @brief Check if there is a syntax error in the command line
  * 
  * @param argv array of strings to check
- * @return int returns 1 if there is an error, 0 otherwise
+ * @return int 1 if there is an error, 0 otherwise
  */
 int	check_syntax_error(char **argv)
 {

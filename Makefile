@@ -50,7 +50,7 @@ SRC_EXPAND_DOLLAR	= $(addprefix expand_dollar/, \
 						expand_dollar.c \
 						environment_variables.c \
 						expand_one_environment_variable.c \
-						expand_on_one_environment_variable_character.c \
+						add_one_environment_variable_character.c \
 						)
 
 # FOURTH STEP OF THE SHELL OPERATIONS REPLACING THE VARIABLES WITH THEIR VALUE

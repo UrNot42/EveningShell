@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 13:16:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/15 16:19:24 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/15 19:05:42 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	heredoc_child(t_exec *exec, char *keyword, char *filename, int fd_read)
 
 	close(fd_read);
 	keyword_copy = ft_strdup(keyword);
+	close_files(exec->files, exec->file_size);
 	free_exec(exec, 1);
 	if (!keyword_copy)
 		exit(-42);
@@ -105,7 +106,8 @@ void	heredoc_child(t_exec *exec, char *keyword, char *filename, int fd_read)
  * 
  * @param exec t_exec struct.
  * @param keyword char * use to stop the heredoc if the input is equal.
- * @return int return the fd of the read.
+ * @return int the fd of the read, or -1 if error of open,
+ * -42 if error of malloc, -43 if error of fork, -130 if error of ctrl + c.
  */
 int	heredoc(t_exec *exec, char *keyword)
 {

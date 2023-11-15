@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 16:29:36 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/12 14:03:19 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/15 19:10:44 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
  * @brief Check for quoting and syntax error
  * 
  * @param argv array of strings to check
- * @return int returns 1 if there is an error, 0 otherwise
+ * @return int 1 if there is an error, 0 otherwise
  */
 int	check_error(char **argv)
 {
