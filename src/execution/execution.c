@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:31:47 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/14 20:38:39 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/15 18:14:07 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,9 @@ int	finish_execute(t_exec *exec)
 {
 	int	error_code;
 
-	// printf("HERE finish\n");
-
 	error_code = wait_pids(exec->pi.ds);
 	signal(SIGINT, sig_handler_prompt);
 	signal(SIGQUIT, SIG_IGN);
-	// print_exec_struct(exec);
 	free_exec(exec, false);
 	return (error_code);
 }
@@ -61,7 +58,8 @@ int	execute(t_compound *elemt_list, char ***env, int last_err)
 
 	if (set_execute_struct(elemt_list, &exec, env))
 		return (1);
-	open_here_documents(exec.files, &exec);
+	if (open_here_documents(exec.files, &exec))
+		return (g_signal);
 	open_files(exec.files);
 	if (exec.pipe_size == 0 && is_builtin(exec.cmd[0].cmd))
 		return (run_one_builtin(&exec, last_err));

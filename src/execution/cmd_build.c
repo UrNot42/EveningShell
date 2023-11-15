@@ -6,18 +6,11 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 10:15:05 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/14 20:29:36 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/15 20:13:19 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	command_not_found(char *cmd)
-{
-	write(2, "Command '", 9);
-	write(2, cmd, ft_strlen(cmd));
-	write(2, "' not found\n", 12);
-}
 
 char	*build_cmd(char *cmd, char *path, int size)
 {
@@ -48,18 +41,44 @@ int	find_path_size(char *path)
 	return (size);
 }
 
+bool	is_directory(char *path)
+{
+	int	fd;
+	int	i;
+	int	try;
+
+	i = 0;
+	try = false;
+	while (path && path[i])
+		if (path[i++] == '/')
+			try = true;
+	if (!try)
+		return (false);
+	fd = open(path, O_DIRECTORY);
+	if (fd == -1)
+		return (false);
+	write(2, path, ft_strlen(path));
+	write(2, ": Is a directory\n", 17);
+	close(fd);
+	return (true);
+}
+
 char	*get_cmd(char *cmd, char *path)
 {
 	char	*tmp;
 	int		i;
 
-	if (!access(cmd, F_OK | X_OK))
-		return (ft_strdup(cmd));
+	if (is_directory(cmd))
+		return (NULL);
 	i = 0;
 	while (cmd && cmd[i])
-		if (cmd[i++] == '/')
+	{
+		if (cmd[i] == '/' && !access(cmd, F_OK | X_OK))
+			return (ft_strdup(cmd));
+		if (cmd[i++] == '/' && access(cmd, F_OK | X_OK))
 			return (write(2, cmd, ft_strlen(cmd)),
 				write(2, ": No such file or directory\n", 28), NULL);
+	}
 	while (path && *path)
 	{
 		i = find_path_size(path);
@@ -94,9 +113,6 @@ int	create_cmd(t_cmd *cmd, char **env, char **n_cmd, char ***n_args)
 	if (!(*n_cmd))
 		return (ft_free_dstr((*n_args)), 1);
 	if (ft_strcmp((*n_cmd), (*n_args)[0]))
-	{
-		free((*n_args)[0]);
-		(*n_args)[0] = (*n_cmd);
-	}
+		(free((*n_args)[0]), (*n_args)[0] = (*n_cmd));
 	return (0);
 }

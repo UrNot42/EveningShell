@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 21:06:23 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/06 20:37:23 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/15 19:33:21 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,13 @@ int	open_here_documents(t_file *file, t_exec *exec)
 	{
 		if (file[i].type == HERE_DOC)
 			file[i].fd = heredoc(exec, file[i].name);
-		if (file[i].type == HERE_DOC && file[i].fd == 1)
+		if (file[i].type == HERE_DOC && file[i].fd < 0)
 		{
+			i = file[i].fd;
+			if (i == -130)
+				return (close_files(file, i), g_signal = 130, 130);
+			else if (i == -42)
+				;
 			close_files(file, i);
 			return (perror(file[i].name), i);
 		}

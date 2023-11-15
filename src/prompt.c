@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:05:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/15 19:18:05 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/15 20:21:15 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ void	prompt(char ***env)
 		g_signal = 0;
 		if (buffer)
 			free(buffer);
-		buffer = readline("minishell-0.1$ ");
+		buffer = readline("MarmiShell-4.2$ ");
 		if (g_signal != 0)
 			exit_status = g_signal;
 		if (!buffer)
