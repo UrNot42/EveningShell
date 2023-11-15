@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:19:25 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/12 21:51:43 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/15 16:54:40 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static bool	check_env_var_naming(char *name)
 	i = 0;
 	if (!name || !name[i]
 		|| (!ft_isalpha(name[i]) && name[i] != '_'))
-		return (false);
+		return (printf("export: `%s': not a valid identifier\n", name), false);
 	while (name[i]
 		&& (ft_isalpha(name[i]) || ft_isdigit(name[i]) || name[i] == '_'))
 		i++;
@@ -38,14 +38,12 @@ static bool	check_env_var_naming(char *name)
 		return (false);
 	return (true);
 }
-
 /**
  * @brief Check if the variable already exists in the environment
- * 
+ *
  * @param env char ** of the environment
  * @param var variable to check
  * @return int return the index of the variable if it exists, -1 otherwise
- */
 static int	check_env_var_exist(char **env, char *var)
 {
 	int	env_index;
@@ -62,7 +60,7 @@ static int	check_env_var_exist(char **env, char *var)
 		++env_index;
 	}
 	return (-1);
-}
+}*/
 
 int	print_solo_export(char **env)
 {
@@ -118,7 +116,7 @@ int	ft_export(char ***env, char **args)
 		return (print_solo_export(*env));
 	while (args && args[i])
 	{
-		env_index = check_env_var_exist(*env, args[i]);
+		env_index = get_env_var_index(*env, args[i]);
 		if (env_index != -1)
 		{
 			free((*env)[env_index]);

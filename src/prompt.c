@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:05:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/14 20:51:31 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/14 21:35:04 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,36 +72,6 @@ t_compound	*parse_line(char *line, char **envp, int exit_status)
 	return (coumpound_command);
 }
 
-// TEST FUNCTION FOR COMPLETETION IMPLEMENTATION TODO RM
-char	**history_completion(const char *text, int start, int end)
-{
-	char		**match;
-	int			i[2];
-	char		*str;
-	HIST_ENTRY	*hist_entry;
-	char		*entry;
-
-	match = NULL;
-	i[0] = start;
-	i[1] = 0;
-	while (i[0] < end)
-	{
-		hist_entry = history_get(i[0]++);
-		if (hist_entry)
-		{
-			entry = hist_entry->line;
-			if (ft_strncmp(entry, text, ft_strlen(text)) == 0)
-			{
-				str = ft_strdup(entry);
-				match = ft_realloc(match, (i[1] + 2) * sizeof(char *), 0);
-				match[i[1]++] = str;
-				match[i[1]] = NULL;
-			}
-		}
-	}
-	return (match);
-}
-
 /**
  * @brief prompt of the shell.
  *        WIP as it uses the highly unstable funtion readline
@@ -122,7 +92,6 @@ void	prompt(char ***env)
 	signal(SIGQUIT, SIG_IGN);
 	buffer = NULL;
 	exit_status = 0;
-	rl_attempted_completion_function = history_completion;
 	while (1)
 	{
 		g_signal = 0;
