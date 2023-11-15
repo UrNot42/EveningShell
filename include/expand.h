@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:41:36 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/12 21:37:20 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/15 10:29:32 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,7 @@ int		retrieve_var_name(char **var, char *str, int index_dollar, int size);
 
 // -------------------------- EXPAND_DOLLAR --------------------------
 
-int		expand_dollar(char ***new_content, int *count, int *index,
-			t_expand_dollar expand_dollar);
+int		expand_dollar(t_expand_new_content t_enc);
 
 // --------------- EXPAND_ON_ONE_ENVIRONMENT_VARIABLE_CHARACTER ---------------
 
@@ -95,7 +94,7 @@ int		expand_on_one_env_var_char(char ***new_content, int *count,
 // --------------------- EXPAND_ONE_ENVIRONMENT_VARIABLE ---------------------
 
 int		expand_one_environment_variable(char ***new_content, int *count,
-			char *env_var);
+			char *flag, char *env_var);
 
 // -------------------------- FT_ITOA_NO_MALLOC --------------------------
 
