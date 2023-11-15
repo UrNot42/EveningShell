@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 18:07:46 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/09 09:59:36 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/15 16:47:17 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,8 @@ char	**shorten_env(char **env, size_t index_var_to_delete)
 }
 
 /*
-// test of exort functions
+void	print_env(char **env);
+// test of epxort functions
 int	main(int ac, char **av, char **envb)
 {
 	char	**env;
@@ -150,17 +151,14 @@ int	main(int ac, char **av, char **envb)
 	print_env(env);
 	if (ac < 2)
 	{
-		printf("\nAdding a=456\n\n");
-		env = extend_env(env, "a=456");
-		print_env(env);
-		printf("\nRemoving a\n\n");
-		shorten_env(env, get_env_var_index(env, "a"));
+		char *s = "T";
+		printf("trying to get %s: %d\n", s, get_env_var_index(env, s));
 	}
 	else
 	{
 		printf("\nAdding %s\n\n", av[1]);
 		env = extend_env(env, av[1]);
 	}
-	print_env(env);
+	// print_env(env);
 }
 */

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:25:20 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/06 17:23:52 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/15 16:44:46 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,16 @@ char	**create_default_env(void)
 	return (env);
 }
 
-/*
-
 void	print_env(char **env)
 {
 	for (size_t i = 0; env && env[i]; i++)
 	{
-		get "%s\n", env[i]);
+		printf("%s\n", env[i]);
 	}
 	printf("====================================================\n");
 }
 
+/*
 int	main(int argc, char **argv, char **envp)
 {
 	char	**env;
