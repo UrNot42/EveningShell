@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 16:24:55 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/13 16:55:37 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/15 10:30:56 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,27 +57,26 @@ static int	get_index_for_expand(char *words, int *index, char **env)
 	return (index_env);
 }
 
-int	expand_dollar(char ***new_content, int *count, int *index,
-	t_expand_dollar expand_dollar)
+int	expand_dollar(t_expand_new_content t_enc)
 {
 	int		index_env;
 
-	index_env = get_index_for_expand(expand_dollar.word, index,
-			expand_dollar.env);
+	index_env = get_index_for_expand(t_enc.t_ed.word, t_enc.index,
+			t_enc.t_ed.env);
 	if (index_env == -3)
 	{
-		return (expand_one_environment_variable(new_content, count,
-				"=$"));
+		return (expand_one_environment_variable(t_enc.new_content,
+				t_enc.count, t_enc.flag, "=$"));
 	}
 	if (index_env == -2)
 	{
-		return (expand_exit_status(new_content, *count,
-				expand_dollar.exit_status));
+		return (expand_exit_status(t_enc.new_content, *t_enc.count,
+				t_enc.t_ed.exit_status));
 	}
 	if (index_env != -1)
 	{
-		return (expand_one_environment_variable(new_content, count,
-				expand_dollar.env[index_env]));
+		return (expand_one_environment_variable(t_enc.new_content,
+				t_enc.count, t_enc.flag, t_enc.t_ed.env[index_env]));
 	}
 	return (1);
 }

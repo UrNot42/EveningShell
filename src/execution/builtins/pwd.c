@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 09:45:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/08 16:51:28 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/14 17:54:37 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	builtins_pwd(void)
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
 	{
-		printf("Error of malloc.\n");
+		error_failed_malloc();
 		return (0);
 	}
 	printf("%s\n", pwd);

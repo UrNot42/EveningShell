@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 16:51:21 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/12 19:33:06 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/15 15:07:15 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,17 @@ int	expand_on_one_env_var_char(char ***new_content, int *count,
 	}
 	else if ((env_var_char == ' ' || env_var_char == '\t'))
 	{
-		if (new_word_in_content(new_content, count) == -1)
-			return (-1);
+		if (*flag == '\0')
+		{
+			if ((*new_content)[*count] && (*new_content)[*count][0] != '\0')
+				if (new_word_in_content(new_content, count) == -1)
+					return (-1);
+		}
+		else if (*flag == '\'' || *flag == '"')
+		{
+			if (new_char_in_word(&(*new_content)[*count], env_var_char) == -1)
+				return (-1);
+		}
 	}
 	else if (env_var_char == '\'')
 	{
