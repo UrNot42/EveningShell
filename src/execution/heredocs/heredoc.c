@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 13:16:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/14 17:58:34 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/15 16:19:24 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ int	heredoc(t_exec *exec, char *keyword)
 	int					fd_read;
 	int					fork_process;
 	char				*filename;
+	int					fork_status;
 
 	signal(SIGINT, SIG_IGN);
 	fd_read = open_heredoc_read(&filename, "/tmp/.heredoc");
@@ -126,7 +127,9 @@ int	heredoc(t_exec *exec, char *keyword)
 	{
 		heredoc_child(exec, keyword, filename, fd_read);
 	}
-	waitpid(fork_process, NULL, 0);
+	waitpid(fork_process, &fork_status, 0);
 	free(filename);
+	if (WIFEXITED(fork_status) && WEXITSTATUS(fork_status) == 130)
+		return (close (fd_read), -130);
 	return (fd_read);
 }
