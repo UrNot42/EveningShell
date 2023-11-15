@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:07:20 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/12 15:33:57 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/15 19:12:11 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ t_compound	*parse_line(char *line, char **envp, int exit_status);
 // ------------------------- ERROR_DISPLAY -----------------------
 
 void		error_failed_malloc(void);
+void		command_not_found(char *cmd);
 
 // ------------------------- RUNNING_SHELL -----------------------
 

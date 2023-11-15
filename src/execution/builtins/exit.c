@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:26:42 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/09 19:11:52 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/15 20:04:47 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	check_exit_args(char **args)
 		}
 		i++;
 	}
-	if (!err && args[1] && args[2])
+	if (!err && args[1] && args[1][0] != '\0')
 		err = 2;
 	if (err == 1)
 		write(2, "minishell: exit: numeric argument required\n", 43);

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:25:20 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/15 16:44:46 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/15 18:53:20 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ char	**create_default_env(void)
 	env = ft_calloc(3 + 1, sizeof(char *));
 	tmp = getcwd(NULL, 0);
 	if (!tmp)
-		(ft_free_dstr(env), error_failed_malloc());
+		(ft_free_dstr(env), error_failed_malloc(), exit(1));
 	env[0] = ft_strjoin(def_vars[0], tmp);
 	free(tmp);
 	if (!env[0])
-		(ft_free_dstr(env), error_failed_malloc());
+		(ft_free_dstr(env), error_failed_malloc(), exit(1));
 	i = 1;
 	while (i < 3)
 	{
