@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 13:16:01 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/16 13:49:36 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:41:07 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,4 +238,51 @@ int	dup_file_names(t_files *file, int max_file)
 	~~~> alloc (split of PATH) ??? (x)	- lets try without it
 										- otherwise we just allocate it
 		-> exec frees (char **) (env)
+*/
+
+/*
+char	*create_line_from_args(char **argv, int argc)
+{
+	char	*line;
+	size_t	total_length;
+	size_t	i;
+
+	total_length = 0;
+	i = 0;
+	while (argv[i])
+		total_length += ft_strlen(argv[i++]);
+	line = ft_calloc(total_length + 1, sizeof(char));
+	if (!line)
+		return (NULL);
+	i = 0;
+	while (argv[i])
+	{
+		line = ft_safe_strjoin(line, argv[i]);
+		if (!line)
+			return (NULL);
+		i++;
+	}
+	(void)argc;
+	return (line);
+}
+
+int	run_single_cmd(int arg_count, char **args, char **envp)
+{
+	t_compound	*compounds;
+	char		*line;
+	char		**env;
+
+	if (!envp || !*envp)
+		env = create_default_env();
+	else
+		env = copy_env(envp);
+	if (!args)
+		return (0);
+	line = create_line_from_args(args, arg_count);
+	compounds = parse_line(line, env, 0);
+	free(line);
+	if (compounds)
+		return (execute(compounds, &env, 0));
+	return (0);
+}
 */

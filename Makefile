@@ -113,6 +113,14 @@ SRC_EXECUTION		=	$(addprefix execution/, \
 						\
 						)
 
+# PROCESSING COMMANDS AND DIRECTING INPUTS AND OUTPUTS
+SRC_INTER		=	$(addprefix non_interactive/, \
+						get_next_line.c \
+						get_next_line_utils.c \
+						non_interactive.c \
+						\
+						)
+
 # MAIN MANAGER FILES
 MINISHELL_SRC		=  $(addprefix $(SRC_DIR), \
 						prompt.c \
@@ -124,6 +132,7 @@ MINISHELL_SRC		=  $(addprefix $(SRC_DIR), \
 						$(SRC_EXPAND) \
 						$(SRC_PARSER) \
 						$(SRC_EXECUTION) \
+						$(SRC_INTER) \
 						\
 						debug.c \
 						)

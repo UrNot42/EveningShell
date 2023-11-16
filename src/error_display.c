@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:16:47 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/16 14:18:20 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 15:29:33 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,17 @@ void	error_dup_failed(char *s)
  *
  * @param cmd
  */
-void	command_not_found(char *cmd)
+void	command_not_found(char *cmd, bool spe)
 {
-	write(2, "Command '", 9);
-	write(2, cmd, ft_strlen(cmd));
-	write(2, "' not found\n", 12);
+	if (spe)
+	{
+		write(2, "Command '", 9);
+		write(2, cmd, ft_strlen(cmd));
+		write(2, "' not found\n", 12);
+	}
+	else
+	{
+		write(2, cmd, ft_strlen(cmd));
+		write(2, ": command not found\n", 20);
+	}
 }
