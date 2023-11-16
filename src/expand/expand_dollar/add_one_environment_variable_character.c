@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 16:51:21 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/16 16:35:47 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/16 17:16:43 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 static int	new_word_in_content(char ***new_content, int *count)
 {
 	*count += 1;
-	printf("new word in content\n");
 	*new_content = char2d_add_one_string(*new_content);
 	if (!*new_content)
 		return (-1);
