@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:19:25 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/15 16:54:40 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 10:43:54 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ int	ft_export(char ***env, char **args)
 	while (args && args[i])
 	{
 		env_index = get_env_var_index(*env, args[i]);
+		printf("index of found var (-1 if unexisting): %d\n", env_index); // TODO RM
 		if (env_index != -1)
 		{
 			free((*env)[env_index]);

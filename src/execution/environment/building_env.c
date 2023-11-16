@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 18:07:46 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/15 16:47:17 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 12:01:53 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,9 @@ int	get_env_var_index(char **env, char *var)
 	while (env[i])
 	{
 		j = 0;
-		while (env[i][j] && var[j] && env[i][j] == var[j])
+		while (env[i][j] && var[j] && var[j] != '=' && env[i][j] == var[j])
 			j++;
-		if (env[i][j] && env[i][j] == '=' && !var[j])
+		if (env[i][j] && env[i][j] == '=' && (!var[j] || var[j] == '='))
 			return (i);
 		i++;
 	}
@@ -115,12 +115,14 @@ int	get_env_var_index(char **env, char *var)
  * @param new_var
  * @return env shortened
  */
-char	**shorten_env(char **env, size_t index_var_to_delete)
+char	**shorten_env(char **env, int index_var_to_delete)
 {
-	size_t	i;
-	size_t	size;
+	int	i;
+	int	size;
 
 	size = 0;
+	if (index_var_to_delete < 0)
+		return (env);
 	while (env && env[size])
 		size++;
 	if (size == 0 || size <= index_var_to_delete)
@@ -128,7 +130,7 @@ char	**shorten_env(char **env, size_t index_var_to_delete)
 	free(env[index_var_to_delete]);
 	env[index_var_to_delete] = NULL;
 	i = index_var_to_delete;
-	while (env && env[i] && env[i + 1])
+	while (env && env[i + 1])
 	{
 		env[i] = env[i + 1];
 		env[i + 1] = NULL;
@@ -143,7 +145,9 @@ void	print_env(char **env);
 int	main(int ac, char **av, char **envb)
 {
 	char	**env;
+	char	**args;
 
+	args = ft_calloc(2, sizeof(char *));
 	if (ac == 1 && envb && *envb)
 		env = copy_env(envb);
 	else
@@ -151,14 +155,23 @@ int	main(int ac, char **av, char **envb)
 	print_env(env);
 	if (ac < 2)
 	{
-		char *s = "T";
-		printf("trying to get %s: %d\n", s, get_env_var_index(env, s));
+		printf("Adding A1=123\n");
+		args[0] = ft_strdup("A1=123");
+		ft_export(&env, args);
+		print_env(env);
+		printf("Adding A1=321\n");
+		free(args[0]);
+		args[0] = ft_strdup("A1=321");
+		ft_export(&env, args);
+		free(args[0]);
+		print_env(env);
 	}
 	else
 	{
 		printf("\nAdding %s\n\n", av[1]);
 		env = extend_env(env, av[1]);
 	}
-	// print_env(env);
+	free(args);
+	ft_free_dstr(env);
 }
 */

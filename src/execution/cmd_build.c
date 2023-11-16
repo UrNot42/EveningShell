@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 10:15:05 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/15 20:13:19 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 11:04:00 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,13 @@ bool	is_directory(char *path)
 	return (true);
 }
 
-char	*get_cmd(char *cmd, char *path)
+char	*get_cmd(char *cmd, char *path, int *err)
 {
 	char	*tmp;
 	int		i;
 
 	if (is_directory(cmd))
-		return (NULL);
+		return (++*err, NULL);
 	i = 0;
 	while (cmd && cmd[i])
 	{
@@ -96,7 +96,9 @@ int	create_cmd(t_cmd *cmd, char **env, char **n_cmd, char ***n_args)
 {
 	char	*env_path;
 	int		index;
+	int		err;
 
+	err = 0;
 	if (!cmd->cmd)
 		return (1);
 	if (*cmd->cmd == '\0')
@@ -109,9 +111,11 @@ int	create_cmd(t_cmd *cmd, char **env, char **n_cmd, char ***n_args)
 	(*n_args) = ft_dstrdup((const char **)cmd->args);
 	if (!(*n_args))
 		return (1);
-	(*n_cmd) = get_cmd(cmd->cmd, env_path);
+	(*n_cmd) = get_cmd(cmd->cmd, env_path, &err);
 	if (!(*n_cmd))
-		return (ft_free_dstr((*n_args)), 1);
+		return (ft_free_dstr((*n_args)), 1 + err);
+	if (is_directory(*n_cmd))
+		return (ft_free_dstr((*n_args)), free(*n_cmd), 2);
 	if (ft_strcmp((*n_cmd), (*n_args)[0]))
 		(free((*n_args)[0]), (*n_args)[0] = (*n_cmd));
 	return (0);
