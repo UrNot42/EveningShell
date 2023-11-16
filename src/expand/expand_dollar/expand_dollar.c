@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 16:24:55 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/15 19:02:52 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/16 16:57:32 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,16 @@ static int	find_index_env(char *words, int *index, char **env)
 	return (index_env);
 }
 
+int	expand_nothing(t_expand_new_content t_enc)
+{
+	if (*t_enc.flag == '\0')
+		return (expand_one_environment_variable(t_enc.new_content,
+				t_enc.count, t_enc.flag, "="));
+	else
+		return (expand_one_environment_variable(t_enc.new_content,
+				t_enc.count, t_enc.flag, "=$"));
+}
+
 /**
  * @brief Expand one environment variable
  * 
@@ -91,8 +101,7 @@ int	expand_dollar(t_expand_new_content t_enc)
 		return (-1);
 	if (index_env == -3)
 	{
-		return (expand_one_environment_variable(t_enc.new_content,
-				t_enc.count, t_enc.flag, "=$"));
+		return (expand_nothing(t_enc));
 	}
 	if (index_env == -2)
 	{

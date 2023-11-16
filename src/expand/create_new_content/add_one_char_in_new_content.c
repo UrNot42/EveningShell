@@ -50,7 +50,7 @@ static int	add_char_in_single_quote(char ***new_content, int *count,
 	}
 	else if (*flag == '"')
 	{
-		if (new_char_in_word(new_content[*count], character) == -1)
+		if (new_char_in_word(&(*new_content)[*count], character) == -1)
 			return (-1);
 	}
 	return (1);
@@ -74,7 +74,7 @@ static int	add_char_in_double_quote(char ***new_content, int *count,
 	}
 	else if (*flag == '\'')
 	{
-		if (new_char_in_word(new_content[*count], character) == -1)
+		if (new_char_in_word((&*new_content)[*count], character) == -1)
 			return (-1);
 	}
 	else if (*flag == '"')
@@ -95,8 +95,8 @@ static int	create_new_content_dollar(t_expand_new_content t_enc)
 {
 	if (*t_enc.flag == '\'')
 	{
-		if (new_char_in_word(t_enc.new_content[*t_enc.count],
-				t_enc.t_ed.word[*t_enc.index]) == -1)
+		if (new_char_in_word(&(*t_enc.new_content)[*t_enc.count],
+			t_enc.t_ed.word[*t_enc.index]) == -1)
 			return (-1);
 	}
 	else if (*t_enc.flag == 0 || *t_enc.flag == '"')
@@ -137,8 +137,8 @@ int	add_one_char_in_new_content(t_expand_new_content t_enc)
 	}
 	else
 	{
-		if (new_char_in_word((t_enc).new_content[*t_enc.count],
-				t_enc.t_ed.word [*t_enc.index]) == -1)
+		if (new_char_in_word(&(*t_enc.new_content)[*t_enc.count],
+			t_enc.t_ed.word[*t_enc.index]) == -1)
 			return (-1);
 	}
 	return (1);
