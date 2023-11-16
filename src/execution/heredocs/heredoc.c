@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 13:16:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/16 18:58:49 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 19:15:45 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ static void	create_heredoc(int fd_write, char *keyword)
 		line = readline("> ");
 		if (!line)
 		{
-			printf("MarmiShell: warning: here-document delimited by end-of-file\
- (wanted `%s')\n", keyword);
+			write(2, "MarmiShell: warning: here-document delimited by end-of-fi\
+le (wanted `", 69);
+			write(2, keyword, ft_strlen(keyword));
+			write(2, "')\n", 3);
 			break ;
 		}
 		if (!ft_strcmp(line, keyword))

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:26:42 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/16 19:01:47 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 19:45:06 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ static bool	is_num(char *str)
 	int	i;
 
 	i = 0;
+	while (str[i] == '+' && str[i] == '-')
+		i++;
+	if (!str[i])
+		return (false);
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))

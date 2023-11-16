@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:19:25 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/16 12:45:09 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 19:08:12 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ static bool	check_env_var_naming(char *name)
 	i = 0;
 	if (!name || !name[i]
 		|| (!ft_isalpha(name[i]) && name[i] != '_'))
-		return (printf("export: `%s': not a valid identifier\n", name), false);
+		return (write(2, "export: `", 9), write(2, name, ft_strlen(name)),
+			write(2, "': not a valid identifier\n", 26), false);
 	while (name[i]
 		&& (ft_isalpha(name[i]) || ft_isdigit(name[i]) || name[i] == '_'))
 		i++;

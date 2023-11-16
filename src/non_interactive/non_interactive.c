@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:45:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/16 15:30:32 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 19:21:14 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	prompt_non_interactive(char ***env)
 		if (!buffer)
 			(ft_free_dstr(*env), exit(exit_status));
 		replace_last_nwline(buffer);
-		compound_command = parse_line(buffer, *env, exit_status);
+		compound_command = parse_line(buffer, *env, &exit_status);
 		if (compound_command)
 			exit_status = execute(compound_command, env, exit_status);
 	}

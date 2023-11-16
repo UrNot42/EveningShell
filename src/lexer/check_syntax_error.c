@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:26:18 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/16 19:02:24 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 19:17:51 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ int	check_syntax_redir(char **argv, size_t n)
 {
 	if (!argv[n + 1] || get_redir_type(argv[n + 1]) || argv[n + 1][0] == '|')
 	{
-		printf("MarmiShell: syntax error near unexpected token `%s'\n",
-			argv[n + 1]);
+		write(2, "MarmiShell: syntax error near unexpected token `", 48);
+		write(2, argv[n + 1], ft_strlen(argv[n + 1]));
+		write(2, "'\n", 2);
 		return (1);
 	}
 	return (0);

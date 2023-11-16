@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:05:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/16 12:31:38 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/16 19:20:52 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	is_line_null(char *line)
  * @param exit_status int exit status of the last command
  * @return t_compound* array of compounds created from the line
  */
-t_compound	*parse_line(char *line, char **envp, int exit_status)
+t_compound	*parse_line(char *line, char **envp, int *exit_status)
 {
 	char		**tokens;
 	t_compound	*coumpound_command;
@@ -60,12 +60,15 @@ t_compound	*parse_line(char *line, char **envp, int exit_status)
 	if (!tokens)
 		(ft_free_dstr(envp), error_malloc_failed(true));
 	if (check_error(tokens))
+	{
+		*exit_status = 2;
 		return (ft_free_dstr(tokens), NULL);
+	}
 	coumpound_command = parsing(tokens);
 	ft_free_dstr(tokens);
 	if (!coumpound_command)
 		(ft_free_dstr(envp), error_malloc_failed(true));
-	expand(&coumpound_command, envp, exit_status);
+	expand(&coumpound_command, envp, *exit_status);
 	return (coumpound_command);
 }
 
@@ -100,7 +103,7 @@ void	prompt(char ***env)
 			(ft_free_dstr(*env), write(2, "exit\n", 5), exit(exit_status));
 		if (buffer && *buffer)
 			add_history(buffer);
-		compound_command = parse_line(buffer, *env, exit_status);
+		compound_command = parse_line(buffer, *env, &exit_status);
 		if (compound_command)
 			exit_status = execute(compound_command, env, exit_status);
 	}

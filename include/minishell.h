@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:07:20 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/16 15:38:29 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 19:20:31 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ extern int	g_signal;
 
 void		prompt(char ***env);
 void		prompt_non_interactive(char ***env);
-t_compound	*parse_line(char *line, char **envp, int exit_status);
+t_compound	*parse_line(char *line, char **envp, int *exit_status);
 
 // ------------------------- ERROR_DISPLAY -----------------------
 
