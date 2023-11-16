@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:16:47 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/16 15:29:33 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 15:38:51 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ void	error_malloc_failed(bool _exit)
 		exit(1);
 }
 
+/**
+ * @brief prints a simple message
+ *
+ * @param s
+ */
 void	error_dup_failed(char *s)
 {
 	printf("MarmiShell: dup failed (%s)\n", s);

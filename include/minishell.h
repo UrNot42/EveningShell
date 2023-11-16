@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:07:20 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/16 15:29:46 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 15:38:29 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_compound	*parse_line(char *line, char **envp, int exit_status);
 
 // ------------------------- ERROR_DISPLAY -----------------------
 
-void		error_dup_failed(char *s); // TODO
+void		error_dup_failed(char *s);
 void		error_malloc_failed(bool _exit);
 void		command_not_found(char *cmd, bool spe);
 
