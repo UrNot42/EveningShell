@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 15:23:20 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/15 19:02:22 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/16 11:11:28 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,7 @@ int	expand_one_content(t_compound **compound, int *index, char **env,
 		return (-1);
 	(*compound)->content = insert_char2d_into_char2d((*compound)->content,
 			new_content, index);
+	if (!(*compound)->content)
+		return (-1);
 	return (1);
 }

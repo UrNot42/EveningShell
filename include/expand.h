@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:41:36 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/15 18:34:08 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/16 10:57:51 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ char	*str_add_one_char(char *str_to_free, char c);
 
 // ========================== CREATE_NEW_CONTENT ==========================
 
-// --------------------- CREATE_NEW_CONTENT_ON_ONE_CHAR ---------------------
+// --------------------- ADD_ONE_CHAR_IN_NEW_CONTENT ---------------------
 
-int		create_new_content_on_one_char(t_expand_new_content expand_new_content);
+int		add_one_char_in_new_content(t_expand_new_content expand_new_content);
 
 // -------------------------- CREATE_NEW_CONTENT --------------------------
 

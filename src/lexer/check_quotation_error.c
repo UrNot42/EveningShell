@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_quoting_error.c                              :+:      :+:    :+:   */
+/*   check_quotation_error.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 16:59:17 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/15 19:11:02 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/16 09:38:43 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	check_end_double_quotes(char const *str, size_t *i)
 }
 
 /**
- * @brief Check quoting error on one string
+ * @brief Check quotation errors on one string
  * 
  * @param str string to check
  * @return int 1 if there is an error, 0 otherwise
@@ -77,12 +77,12 @@ static int	check_one_string_quotes(char const *str)
 }
 
 /**
- * @brief Check for quoting error in the command line
+ * @brief Check for quotation error in the command line
  * 
  * @param argv array of strings to check
  * @return int 1 if there is an error, 0 otherwise
  */
-int	check_quoting_error(char **argv)
+int	check_quotation_error(char **argv)
 {
 	size_t	i;
 

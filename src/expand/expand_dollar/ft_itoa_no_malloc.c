@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 15:40:15 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/15 19:02:32 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/16 11:10:43 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_itoa_no_malloc(int n, char result[12])
 	else
 		tmp = n;
 	size = (ft_nbrlen(tmp) + (n < 0));
-	ft_bzero(result, 10);
+	ft_bzero(result, 12);
 	result[size--] = '\0';
 	if (n == 0)
 		result[0] = '0';

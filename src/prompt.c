@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:05:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/16 09:14:56 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/16 11:13:42 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ t_compound	*parse_line(char *line, char **envp, int exit_status)
 		(ft_free_dstr(envp), error_failed_malloc());
 	// debug_compound(coumpound_command, "Parsing");
 	expand(&coumpound_command, envp, exit_status);
+	// protect expand if error_failed_malloc() not exit;
 	// debug_compound(coumpound_command, "Expand");
 	return (coumpound_command);
 }

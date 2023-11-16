@@ -21,7 +21,7 @@ SRC_LEXER			=	$(addprefix lexer/, \
 						single_quotes.c \
 						metacharacters.c \
 						check_syntax_error.c \
-						check_quoting_error.c \
+						check_quotation_error.c \
 						\
 						)
 
@@ -42,7 +42,7 @@ SRC_EXPAND_CHAR		= $(addprefix char_management/, \
 
 SRC_EXPAND_NEW_CONT	= $(addprefix create_new_content/, \
 						create_new_content.c \
-						create_new_content_on_one_char.c \
+						add_one_char_in_new_content.c \
 						)
 
 SRC_EXPAND_DOLLAR	= $(addprefix expand_dollar/, \

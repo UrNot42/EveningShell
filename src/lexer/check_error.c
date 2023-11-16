@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 16:29:36 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/15 19:10:44 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/16 09:38:57 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
  */
 int	check_error(char **argv)
 {
-	if (check_quoting_error(argv) || check_syntax_error(argv))
+	if (check_quotation_error(argv) || check_syntax_error(argv))
 		return (1);
 	return (0);
 }

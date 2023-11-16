@@ -6,14 +6,14 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 12:56:27 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/31 12:47:00 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/16 09:36:47 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * @brief Get the next char that is a single quote
+ * @brief Go to the next single quote
  * 
  * @param s string to go through
  * @param i index to start from

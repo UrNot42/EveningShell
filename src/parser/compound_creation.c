@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:01:47 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/01 15:20:59 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/16 09:45:56 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	**doublecharncpy(char **src, size_t n)
 			break ;
 		dest[i] = ft_strdup(src[i]);
 		if (!dest[i])
-			return (free(dest), NULL);
+			return (ft_rewind_free(dest, i));
 		i++;
 	}
 	return (dest);
