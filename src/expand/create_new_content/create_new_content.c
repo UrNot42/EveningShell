@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 17:44:56 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/15 19:03:23 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/16 10:57:01 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	**create_new_content(t_expand_dollar expand_dollar_t)
 		return (NULL);
 	while (expand_dollar_t.word[index])
 	{
-		if (create_new_content_on_one_char((t_expand_new_content){&new_content,
+		if (add_one_char_in_new_content((t_expand_new_content){&new_content,
 				&count, &index, &flag, expand_dollar_t}) == -1)
 		{
 			ft_free_dstr(new_content);

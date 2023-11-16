@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_new_content_on_one_char.c                   :+:      :+:    :+:   */
+/*   add_one_char_in_new_content.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -116,7 +116,7 @@ static int	create_new_content_dollar(t_expand_new_content t_enc)
  * the index, the flag and the t_expand_dollar struct
  * @return int 1 if success, -1 if error of malloc
  */
-int	create_new_content_on_one_char(t_expand_new_content t_enc)
+int	add_one_char_in_new_content(t_expand_new_content t_enc)
 {
 	if (t_enc.t_ed.word[*t_enc.index] == '\'')
 	{

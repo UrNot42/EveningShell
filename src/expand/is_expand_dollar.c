@@ -6,14 +6,14 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 21:34:33 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/15 16:47:54 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/16 09:49:13 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * @brief Goes through the word to the next single quote
+ * @brief Go to the next single quote and if the single quote is the last char
  * 
  * @param word char * word to check
  * @param i int * index of the word
@@ -31,8 +31,7 @@ static bool	is_expand_dollar_single_quote(char *word, int *i)
 }
 
 /**
- * @brief Goes through the word to the next double quote and check if there is
- * 	a dollar to expand
+ * @brief Goes the next double quote and check if there is a dollar to expand
  * 
  * @param word char * word to check
  * @param i int * index of the word

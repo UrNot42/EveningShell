@@ -6,14 +6,14 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 12:42:32 by aoberon           #+#    #+#             */
-/*   Updated: 2023/10/31 12:46:44 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/16 09:36:22 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * @brief Get the char that is a double quote
+ * @brief Go to the next double quote
  * 
  * @param s string to go through
  * @param i index to start from

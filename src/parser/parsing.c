@@ -13,7 +13,7 @@
 #include "minishell.h"
 
 /**
- * @brief Counts the number of compounds to be created in a command type
+ * @brief Counts the number of compounds to create in a command type
  *
  * @param argv array of strings used to create compounds
  * @param i size_t pointer to the index of argv
@@ -39,7 +39,7 @@ static void	count_compound_cmd(char **argv, size_t *i, size_t *count)
 }
 
 /**
- * @brief Counts the number of compounds to be created
+ * @brief Counts the number of compounds to create
  *
  * @param argv array of strings used to create compounds
  * @return size_t count of compounds

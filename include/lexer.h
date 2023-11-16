@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:40:00 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/02 17:43:54 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/16 09:45:45 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 
 int		check_error(char **argv);
 
-// -------------------------- CHECK_QUOTING_ERROR --------------------------
+// -------------------------- CHECK_QUOTATION_ERROR --------------------------
 
-int		check_quoting_error(char **argv);
+int		check_quotation_error(char **argv);
 
 // -------------------------- CHECK_SYNTAX_ERROR --------------------------
 
@@ -42,6 +42,7 @@ size_t	get_next_single_quote(char const *s, size_t i);
 // -------------------------- MINISHPLIT --------------------------
 
 char	**minishplit(char const *s);
+char	**ft_rewind_free(char **argv, size_t y);
 
 // -------------------------- DOLLARS --------------------------
 
