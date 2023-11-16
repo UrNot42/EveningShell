@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:26:18 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/16 12:44:45 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/16 14:00:47 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	check_syntax_redir(char **argv, size_t n)
 {
 	if (!argv[n + 1] || get_redir_type(argv[n + 1]) || argv[n + 1][0] == '|')
 	{
-		printf("MarmiShell-4.2$: syntax error near unexpected token `%s'\n",
+		printf("MarmiShell: syntax error near unexpected token `%s'\n",
 			argv[n + 1]);
 		return (1);
 	}
@@ -41,12 +41,12 @@ int	check_syntax_pipe(char **argv, size_t n)
 {
 	if (n == 0)
 	{
-		printf("MarmiShell-4.2$: syntax error near unexpected token `|'\n");
+		printf("MarmiShell: syntax error near unexpected token `|'\n");
 		return (1);
 	}
 	if (!argv[n + 1] || argv[n + 1][0] == '|')
 	{
-		printf("MarmiShell-4.2$: syntax error near unexpected token `|'\n");
+		printf("MarmiShell: syntax error near unexpected token `|'\n");
 		return (1);
 	}
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:26:42 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/16 12:41:03 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:01:21 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ int	check_exit_args(char **args)
 	if (!err && args[1] && args[1][0] != '\0')
 		err = 2;
 	if (err == 1)
-		write(2, "minishell: exit: numeric argument required\n", 43);
+		write(2, "MarmiShell: exit: numeric argument required\n", 43);
 	else if (err == 2)
-		write(2, "minishell: exit: too many arguments\n", 36);
+		write(2, "MarmiShell: exit: too many arguments\n", 36);
 	return (err);
 }
 

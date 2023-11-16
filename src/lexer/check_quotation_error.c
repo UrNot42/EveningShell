@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 11:34:12 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/16 12:44:45 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/16 14:00:47 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	check_end_single_quotes(char const *str, size_t *i)
 			return (0);
 		*i += 1;
 	}
-	printf("MarmiShell-4.2$: syntax error: single quotes not closed\n");
+	printf("MarmiShell: syntax error: single quotes not closed\n");
 	return (1);
 }
 
@@ -48,7 +48,7 @@ static int	check_end_double_quotes(char const *str, size_t *i)
 			return (0);
 		*i += 1;
 	}
-	printf("MarmiShell-4.2$: syntax error: double quotes not closed\n");
+	printf("MarmiShell: syntax error: double quotes not closed\n");
 	return (1);
 }
 
