@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 13:16:01 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/16 12:26:02 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 12:39:28 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,13 +116,60 @@ void	db_print_exec_struct(t_exec *exec)
 		for (int j = 0; exec->cmd[i].args && exec->cmd[i].args[j]; j ++)
 			printf("	arg[%d]: %s\n", j, exec->cmd[i].args[j]);
 		if (exec->cmd[i].in != NULL)
-			print_file(exec->cmd[i].in, "in", '\t');
+			db_print_file(exec->cmd[i].in, "in", '\t');
 		if (exec->cmd[i].out != NULL)
-			print_file(exec->cmd[i].out, "out", '\t');
+			db_print_file(exec->cmd[i].out, "out", '\t');
 	}
 	printf("File struct\n");
 	printf("TYPES:\n-REDIR_IN: %d\n-REDIR_OUT: %d\n-HERE_DOC: %d\n-APPEND: %d\n",
 		REDIR_IN, REDIR_OUT, HERE_DOC, APPEND);
 	for (int i = 0; i < exec->file_size; i++)
-		print_file(&exec->files[i], ft_itoa(i), ' ');
+		db_print_file(&exec->files[i], ft_itoa(i), ' ');
 }
+
+/*
+================= TESTS =================
+LEXER TEST :
+
+
+"a"sss"f"f|fdf>fd<$$$HOME
+result : 
+"a"sss"f"
+f
+|
+fdf
+>
+fd
+<
+$$$HOME
+
+
+"a  1	2"bbb"c"d|efg>hi<<$$$HOME$USER
+"a  1        2"bbb"c"d|efg>hi<<$$$HOME$$USER || $PW|
+"a  1        2"bbb"c"d| e          fg>hi<<$$$HOME$$USER || $PW|	'zyx'5'wvuts' "rq'po'nmlk" 'jihg"fed"cba'
+
+PARSING TEST :
+
+cmd1 op arg1 arg2 > file arg3 | cmd2 arg1 arg2 < file arg3 | cmd3 arg1 >> file arg2 arg3 | cmd4 << file arg1 arg2 arg3
+
+cmd1 op arg1 arg2 > file arg3 | cmd2 arg1 arg2 < file arg3 | cmd3 arg1 >> file arg2 arg3 | cmd4 << file arg1 arg2 arg3 | cmd5 > file | >> file < file
+
+ls cmdjdkf and so em no >> filehere > true file < infile < infiletwo | cat oui oui oui
+
+--------------------------------------------------
+
+EXPAND TEST :
+
+echo $HOME"$USER"'$PATH'"'$?'"$TOTO'"$PATH"'
+result :
+/mnt/nfs/homes/aoberonaoberon$PATH'0'"$PATH"
+
+echo "toto$HOME"'$USER toto'"'toto'"
+result :
+toto/mnt/nfs/homes/aoberon$USER toto'toto'
+
+echo "tata$USER"'$PATH'toto"'$?'"titi
+result :
+tataaoberon$PATHtototiti
+--------------------------------------------------
+*/

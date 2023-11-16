@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:05:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/16 12:15:33 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 12:31:38 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,47 +69,6 @@ t_compound	*parse_line(char *line, char **envp, int exit_status)
 	return (coumpound_command);
 }
 
-// DELETE COMMENT AT THE START OF THE FILE \/!\/!\/!\/
-// LEXER TEST :
-
-// "a"sss"f"f|fdf>fd<$$$HOME
-// "a"sss"f"
-// f
-// |
-// fdf
-// >
-// fd
-// <
-// $$$HOME
-
-// "a"sss"f"f|fdf>fd<$$$HOME
-// "a  1	2"bbb"c"d|efg>hi<<$$$HOME$USER
-// "a  1        2"bbb"c"d|efg>hi<<$$$HOME$$USER || $PW|
-// "a  1        2"bbb"c"d| e          fg>hi<<$$$HOME$$USER
-//		 || $PW|	'zyx'5'wvuts' "rq'po'nmlk" 'jihg"fed"cba'
-
-// PARSING TEST :
-
-// cmd1 op arg1 arg2 > file arg3 | cmd2 arg1 arg2 < file arg3 |
-// 		cmd3 arg1 >> file arg2 arg3 | cmd4 << file arg1 arg2 arg3
-
-// cmd1 op arg1 arg2 > file arg3 | cmd2 arg1 arg2 < file arg3 | cmd3 arg1 >>
-// 	file arg2 arg3 | cmd4 << file arg1 arg2 arg3 | cmd5 > file | >> file < file
-
-// ls cmdjdkf and so em no >> filehere > true file < infile < infiletwo
-//		| cat oui oui oui
-
-// --------------------------------------------------
-
-// EXPAND TEST :
-
-// echo $HOME"$USER"'$PATH'"'$?'"$TOTO'"$PATH"'
-// /mnt/nfs/homes/aoberonaoberon$PATH'0'"$PATH"
-
-// echo "toto$HOME"'$USER toto'"'toto'"
-
-// --------------------------------------------------
-
 /**
  * @brief prompt of the shell.
  *        WIP as it uses the highly unstable funtion readline
@@ -119,7 +78,6 @@ t_compound	*parse_line(char *line, char **envp, int exit_status)
  *        although it is the main loop of Minishell
  *
  */
-
 void	prompt(char ***env)
 {
 	char				*buffer;
