@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_display.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:16:47 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/16 12:44:29 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/16 13:49:44 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,16 @@ void	error_malloc_failed(bool _exit)
 		exit(1);
 }
 
+void	error_dup_failed(void)
+{
+	printf("minishell: dup failed\n");
+}
+
+/**
+ * @brief Displays that a certain command hasn't been found
+ *
+ * @param cmd
+ */
 void	command_not_found(char *cmd)
 {
 	write(2, "Command '", 9);

@@ -6,12 +6,20 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 13:27:54 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/09 18:31:06 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 13:17:43 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief fills the t_cmd struct with found last infile and last outfile
+ *
+ * @param element
+ * @param cmd
+ * @param file
+ * @return int
+ */
 int	fill_cmd_files(t_compound *element, t_cmd *cmd, t_file *file)
 {
 	int	e_id;
@@ -34,6 +42,14 @@ int	fill_cmd_files(t_compound *element, t_cmd *cmd, t_file *file)
 	return (e_id);
 }
 
+/**
+ * @brief fills the t_cmd struct with null values
+ *
+ * @param element
+ * @param cmd
+ * @param file
+ * @return int
+ */
 int	fill_cmds(t_compound *element, t_cmd *cmd, t_file *file)
 {
 	int	c_index;

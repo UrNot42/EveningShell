@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 13:16:01 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/16 12:39:28 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/16 13:49:36 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ LEXER TEST :
 
 
 "a"sss"f"f|fdf>fd<$$$HOME
-result : 
+result :
 "a"sss"f"
 f
 |
@@ -172,4 +172,70 @@ echo "tata$USER"'$PATH'toto"'$?'"titi
 result :
 tataaoberon$PATHtototiti
 --------------------------------------------------
+*/
+
+/*
+void	print_env(char **env);
+// test of epxort functions
+int	main(int ac, char **av, char **envb)
+{
+	char	**env;
+	char	**args;
+
+	args = ft_calloc(2, sizeof(char *));
+	if (ac == 1 && envb && *envb)
+		env = copy_env(envb);
+	else
+		env = NULL;
+	print_env(env);
+	if (ac < 2)
+	{
+		printf("Adding A1=123\n");
+		args[0] = ft_strdup("A1=123");
+		ft_export(&env, args);
+		print_env(env);
+		printf("Adding A1=321\n");
+		free(args[0]);
+		args[0] = ft_strdup("A1=321");
+		ft_export(&env, args);
+		free(args[0]);
+		print_env(env);
+	}
+	else
+	{
+		printf("\nAdding %s\n\n", av[1]);
+		env = extend_env(env, av[1]);
+	}
+	free(args);
+	ft_free_dstr(env);
+}
+*/
+
+/*
+Here is a prototype which copies memory so that we're independant from tokens
+int	dup_file_names(t_files *file, int max_file)
+{
+	int	i;
+
+	i = 0;
+	while (i < max_file)
+	{
+		file[i].name = ft_strdup(file[i].name);
+		if (!file[i].name)
+			return (free_files(file), 1);
+		file[i].exists = true;
+		i++;
+	}
+	return (0);
+}
+*/
+
+/* LOGIC OF THE EXEC - CHILD
+-> exec
+	(tokens) (env)
+	-> child frees (tokens) (env)
+	~~~> alloc (cpy of args) free (tokens)
+	~~~> alloc (split of PATH) ??? (x)	- lets try without it
+										- otherwise we just allocate it
+		-> exec frees (char **) (env)
 */

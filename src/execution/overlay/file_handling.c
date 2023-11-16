@@ -6,12 +6,20 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 21:06:23 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/15 19:33:21 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 13:15:24 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief fills the t_file list with corresponding type and values
+ *
+ * @param element
+ * @param file
+ * @param max_file
+ * @return int
+ */
 int	fill_file(t_compound *element, t_file *file, int max_file)
 {
 	size_t	i;
@@ -35,6 +43,13 @@ int	fill_file(t_compound *element, t_file *file, int max_file)
 	return (0);
 }
 
+/**
+ * @brief opens here documents and allows for stop by ctrl-C stopping everything
+ *
+ * @param file
+ * @param exec
+ * @return int
+ */
 int	open_here_documents(t_file *file, t_exec *exec)
 {
 	int	i;
@@ -50,15 +65,21 @@ int	open_here_documents(t_file *file, t_exec *exec)
 			if (i == -130)
 				return (close_files(file, i), g_signal = 130, 130);
 			else if (i == -42)
-				;
+				i = 1;
 			close_files(file, i);
-			return (perror(file[i].name), i);
+			return (error_malloc_failed(false), i);
 		}
 		i++;
 	}
 	return (0);
 }
 
+/**
+ * @brief opens every file
+ *
+ * @param file
+ * @return int
+ */
 int	open_files(t_file *file)
 {
 	int	i;
@@ -83,6 +104,13 @@ int	open_files(t_file *file)
 	return (0);
 }
 
+/**
+ * @brief safely closes every file
+ * until reaching the last one
+ *
+ * @param file
+ * @param to
+ */
 void	close_files(t_file *file, int to)
 {
 	int	i;
@@ -97,22 +125,3 @@ void	close_files(t_file *file, int to)
 		i++;
 	}
 }
-
-/*
-Here is a prototype which copies memory so that we're independant from tokens
-int	dup_file_names(t_files *file, int max_file)
-{
-	int	i;
-
-	i = 0;
-	while (i < max_file)
-	{
-		file[i].name = ft_strdup(file[i].name);
-		if (!file[i].name)
-			return (free_files(file), 1);
-		file[i].exists = true;
-		i++;
-	}
-	return (0);
-}
-*/
