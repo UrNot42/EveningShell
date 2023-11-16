@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_syntax_error.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:26:18 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/16 14:00:47 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/16 19:02:24 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /**
  * @brief Check for redirection syntax error
- * 
+ *
  * @param argv argv array of strings to check
  * @param n index of the redirection
  * @return int 1 if there is an error, 0 otherwise
@@ -32,7 +32,7 @@ int	check_syntax_redir(char **argv, size_t n)
 
 /**
  * @brief Check for pipe syntax error
- * 
+ *
  * @param argv array of strings to check
  * @param n index of the pipe
  * @return int 1 if there is an error, 0 otherwise
@@ -41,12 +41,12 @@ int	check_syntax_pipe(char **argv, size_t n)
 {
 	if (n == 0)
 	{
-		printf("MarmiShell: syntax error near unexpected token `|'\n");
+		write(2, "MarmiShell: syntax error near unexpected token `|'\n", 51);
 		return (1);
 	}
 	if (!argv[n + 1] || argv[n + 1][0] == '|')
 	{
-		printf("MarmiShell: syntax error near unexpected token `|'\n");
+		write(2, "MarmiShell: syntax error near unexpected token `|'\n", 51);
 		return (1);
 	}
 	return (0);
@@ -54,7 +54,7 @@ int	check_syntax_pipe(char **argv, size_t n)
 
 /**
  * @brief Check if there is a syntax error in the command line
- * 
+ *
  * @param argv array of strings to check
  * @return int 1 if there is an error, 0 otherwise
  */

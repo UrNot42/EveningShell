@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:26:42 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/16 14:01:21 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/16 19:01:47 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ int	check_exit_args(char **args)
 	if (!err && args[1] && args[1][0] != '\0')
 		err = 2;
 	if (err == 1)
-		write(2, "MarmiShell: exit: numeric argument required\n", 43);
+		write(2, "MarmiShell: exit: numeric argument required\n", 44);
 	else if (err == 2)
-		write(2, "MarmiShell: exit: too many arguments\n", 36);
+		write(2, "MarmiShell: exit: too many arguments\n", 37);
 	return (err);
 }
 
@@ -87,9 +87,9 @@ int	builtins_exit(t_exec *ex, int i, int last_err, int fd_stdout)
 		code = last_err;
 	err = check_exit_args(&ex->cmd[i].args[1]);
 	if (err == 1)
-		code = 2;
+		code = 1;
 	if (err == 2)
-		return (2);
+		return (1);
 	else
 	{
 		free_exec(ex, true);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 13:16:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/16 14:00:47 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/16 18:58:49 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	create_heredoc(int fd_write, char *keyword)
 /**
  * @brief Free the keyword and close the fd if the assignment is false.
  * 	Else, save the keyword and the fd_write.
- * 
+ *
  * @param assignment bool to know if it has to save or free.
  * @param keyword char ** pointer of the keyword;
  * @param fd_write int * pointer of the fd_write.
@@ -71,7 +71,7 @@ void	exit_heredoc(bool assignment, char **keyword, int *fd_write)
 /**
  * @brief Do the process of the child of the heredoc.
  * 	Meaning, open the file to write in it.
- * 
+ *
  * @param exec t_exec struct.
  * @param keyword char * use to stop the heredoc if the input is equal.
  * @param filename char * filename to open.
@@ -103,7 +103,7 @@ void	heredoc_child(t_exec *exec, char *keyword, char *filename, int fd_read)
 
 /**
  * @brief Process of the heredoc.
- * 
+ *
  * @param exec t_exec struct.
  * @param keyword char * use to stop the heredoc if the input is equal.
  * @return int the fd of the read, or -1 if error of open,
@@ -124,7 +124,7 @@ int	heredoc(t_exec *exec, char *keyword)
 		return (-42);
 	fork_process = fork();
 	if (fork_process == -1)
-		return (free(filename), printf("MarmiShell: fork failed\n"), -43);
+		return (free(filename), write(2, "MarmiShell: fork failed\n", 24), -43);
 	if (fork_process == 0)
 	{
 		heredoc_child(exec, keyword, filename, fd_read);

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:16:47 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/16 15:38:51 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 18:57:28 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  */
 void	error_malloc_failed(bool _exit)
 {
-	printf("MarmiShell: malloc failed\n");
+	write(2, "MarmiShell: malloc failed\n", 26);
 	if (_exit)
 		exit(1);
 }
@@ -28,9 +28,11 @@ void	error_malloc_failed(bool _exit)
  *
  * @param s
  */
-void	error_dup_failed(char *s)
+void	error_dup_failed(char *cmd)
 {
-	printf("MarmiShell: dup failed (%s)\n", s);
+	write(2, "MarmiShell: dup failed ", 23);
+	write(2, cmd, ft_strlen(cmd));
+	write(2, "\n", 1);
 }
 
 /**
@@ -52,3 +54,12 @@ void	command_not_found(char *cmd, bool spe)
 		write(2, ": command not found\n", 20);
 	}
 }
+
+/*
+export test="arg1	arg2"
+echo 'echo $1' > tmp_test_sh
+bash tmp_test_sh $test
+echo 'echo $2' > tmp_test_sh
+bash tmp_test_sh $test
+rm -f tmp_test_sh
+*/

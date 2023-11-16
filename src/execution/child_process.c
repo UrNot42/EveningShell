@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 21:47:21 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/16 14:25:40 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 18:33:30 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	execute_builtin(t_exec *ex, int last_err, int i, int fd)
 	else if (code == BT_PWD)
 		code = builtins_pwd();
 	else if (code == BT_UNSET)
-		code = unset(*ex->env, ex->cmd[i].args);
+		code = unset(*ex->env, &ex->cmd[i].args[1]);
 	return (code);
 }
 

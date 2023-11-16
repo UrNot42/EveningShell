@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:36:57 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/16 13:54:44 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 18:58:15 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,13 @@ int	builtins_cd(char **args, char **env)
 	{
 		index = get_env_var_index(env, "HOME");
 		if (index == -1)
-			(printf("MarmiShell: cd: HOME not set\n"), err++);
-		else if (access(&env[index][5], F_OK) != -1)
-			if (chdir(&env[index][5]) == -1)
-				return (perror("cd"), err);
+			(write(2, "MarmiShell: cd: HOME not set\n", 29), ++err);
+		if (chdir(&env[index][5]) == -1)
+			return (perror("cd"), err);
 	}
 	else if (args[2] != NULL)
-		(printf("MarmiShell: cd: too many arguments\n"), err++);
-	else if (access(args[1], F_OK) == -1)
-		printf("MarmiShell: cd: %s: No such file or directory\n", args[++err]);
-	else if (args[2] == NULL)
-		if (chdir(args[1]) == -1)
-			return (perror("cd"), err);
+		(write(2, "MarmiShell: cd: too many arguments\n", 35), ++err);
+	else if (args[2] == NULL && chdir(args[1]) == -1)
+		return (perror("cd"), ++err);
 	return (err);
 }

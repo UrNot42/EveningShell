@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 09:45:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/16 12:16:03 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 18:36:39 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /**
  * @brief Builtins of the command pwd
  *
- * @return int 1 getcwd() success, 0 otherwise
+ * @return if getcwd() success 0, 1 otherwise
  */
 int	builtins_pwd(void)
 {
@@ -25,9 +25,9 @@ int	builtins_pwd(void)
 	if (!pwd)
 	{
 		error_malloc_failed(false);
-		return (0);
+		return (1);
 	}
 	printf("%s\n", pwd);
 	free(pwd);
-	return (1);
+	return (0);
 }
