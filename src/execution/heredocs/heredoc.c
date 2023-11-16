@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 13:16:16 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/15 19:05:42 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/16 12:44:29 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	create_heredoc(int fd_write, char *keyword)
 		line = readline("> ");
 		if (!line)
 		{
-			printf("minishell: warning: here-document delimited by end-of-file\
+			printf("MarmiShell-4.2$: warning: here-document delimited by end-of-file\
  (wanted `%s')\n", keyword);
 			break ;
 		}
@@ -124,7 +124,7 @@ int	heredoc(t_exec *exec, char *keyword)
 		return (-42);
 	fork_process = fork();
 	if (fork_process == -1)
-		return (free(filename), printf("minishell: fork failed\n"), -43);
+		return (free(filename), printf("MarmiShell-4.2$: fork failed\n"), -43);
 	if (fork_process == 0)
 	{
 		heredoc_child(exec, keyword, filename, fd_read);

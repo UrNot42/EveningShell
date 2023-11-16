@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_display.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:16:47 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/16 12:18:47 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 12:44:29 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  */
 void	error_malloc_failed(bool _exit)
 {
-	printf("minishell: malloc failed\n");
+	printf("MarmiShell-4.2$: malloc failed\n");
 	if (_exit)
 		exit(1);
 }
