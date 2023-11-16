@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:25:20 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/15 18:53:20 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 12:20:50 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ char	**create_default_env(void)
 	env = ft_calloc(3 + 1, sizeof(char *));
 	tmp = getcwd(NULL, 0);
 	if (!tmp)
-		(ft_free_dstr(env), error_failed_malloc(), exit(1));
+		(ft_free_dstr(env), error_malloc_failed(true));
 	env[0] = ft_strjoin(def_vars[0], tmp);
 	free(tmp);
 	if (!env[0])
-		(ft_free_dstr(env), error_failed_malloc(), exit(1));
+		(ft_free_dstr(env), error_malloc_failed(true));
 	i = 1;
 	while (i < 3)
 	{
@@ -42,7 +42,7 @@ char	**create_default_env(void)
 	}
 	return (env);
 }
-
+/*
 void	print_env(char **env)
 {
 	for (size_t i = 0; env && env[i]; i++)
@@ -52,7 +52,6 @@ void	print_env(char **env)
 	printf("====================================================\n");
 }
 
-/*
 int	main(int argc, char **argv, char **envp)
 {
 	char	**env;

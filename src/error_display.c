@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:16:47 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/15 18:56:45 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 12:18:47 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
  * @brief Display error message when malloc fails and exit
  *
  */
-void	error_failed_malloc(void)
+void	error_malloc_failed(bool _exit)
 {
 	printf("minishell: malloc failed\n");
-	exit(1);
+	if (_exit)
+		exit(1);
 }
 
 void	command_not_found(char *cmd)

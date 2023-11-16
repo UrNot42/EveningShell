@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:05:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/16 11:13:42 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/16 12:15:33 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,14 @@ t_compound	*parse_line(char *line, char **envp, int exit_status)
 		return (NULL);
 	tokens = minishplit(line);
 	if (!tokens)
-		(ft_free_dstr(envp), error_failed_malloc());
-	// debug_double_char(tokens, "Minishplit", 1);
+		(ft_free_dstr(envp), error_malloc_failed(true));
 	if (check_error(tokens))
 		return (ft_free_dstr(tokens), NULL);
 	coumpound_command = parsing(tokens);
 	ft_free_dstr(tokens);
 	if (!coumpound_command)
-		(ft_free_dstr(envp), error_failed_malloc());
-	// debug_compound(coumpound_command, "Parsing");
+		(ft_free_dstr(envp), error_malloc_failed(true));
 	expand(&coumpound_command, envp, exit_status);
-	// protect expand if error_failed_malloc() not exit;
-	// debug_compound(coumpound_command, "Expand");
 	return (coumpound_command);
 }
 

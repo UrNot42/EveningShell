@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:20:51 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/15 19:13:48 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/16 12:22:12 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,5 @@ int		wait_pids(int *pids);
 void	sig_handler_exec(int signum);
 void	sig_handler_prompt(int signum);
 void	sig_handler_heredoc(int signum);
-
-// ========================= DEBUG ============================
-
-void	print_exec_struct(t_exec *exec); // TODO REMOVE
 
 #endif

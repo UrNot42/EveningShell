@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 21:05:52 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/14 20:37:31 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 12:23:54 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ size_t	get_compound_type_size(t_compound *compound, bool is_cmd)
 
 void	free_exec(t_exec *ex, bool env)
 {
-	// printf("HERE free\n");
-
 	free(ex->pi.ds);
 	free(ex->cmd);
 	free(ex->files);
