@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 15:45:40 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/15 19:00:44 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/16 09:14:35 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,6 @@ char	**insert_char2d_into_char2d(char **array1, char **array2, int *index)
 		new_array[i++] = ft_strdup(array1[*index + k++]);
 	ft_free_dstr(array1);
 	ft_free_dstr(array2);
-	*index += j;
+	*index += j - 1;
 	return (new_array);
 }
