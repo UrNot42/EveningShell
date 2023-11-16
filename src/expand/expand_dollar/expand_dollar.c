@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 16:24:55 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/16 16:57:32 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/16 17:08:46 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,9 @@ static int	find_index_env(char *words, int *index, char **env)
 
 int	expand_nothing(t_expand_new_content t_enc)
 {
-	if (*t_enc.flag == '\0')
+	if (*t_enc.flag == '\0'
+		&& (t_enc.t_ed.word[*t_enc.index + 1] == '\''
+			|| (t_enc.t_ed.word)[*t_enc.index + 1] == '"'))
 		return (expand_one_environment_variable(t_enc.new_content,
 				t_enc.count, t_enc.flag, "="));
 	else
