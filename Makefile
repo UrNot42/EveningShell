@@ -105,7 +105,6 @@ SRC_TOOL_LAYER		=	$(addprefix overlay/, \
 SRC_EXECUTION		=	$(addprefix execution/, \
 						cmd_build.c \
 						execution.c \
-						exec_debug.c \
 						child_process.c \
 						$(SRC_BUILTINS) \
 						$(SRC_ENVIRONMENT) \

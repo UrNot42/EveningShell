@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:28:19 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/15 19:07:42 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/16 12:35:44 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,8 @@
 
 /**
  * @brief Detects if the option -n is present in the arguments
- *
- *
- * @param str string to check
- * @return int 1 if the option is present, 0 otherwise
- */
-
-/**
- * @brief Detects if the option -n is present in the arguments
  * and returns the number of -n
- * 
+ *
  * @param argv char ** of the arguments
  * @return int the number of -n
  */
@@ -54,7 +46,7 @@ static int	detect_option_n(char **argv)
 
 /**
  * @brief Builtins of the command echo
- * 
+ *
  * @param args char ** of the arguments
  * @return int 0 in any case
  */

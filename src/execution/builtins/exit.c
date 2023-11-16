@@ -6,13 +6,20 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:26:42 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/15 20:04:47 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 12:41:03 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	is_num(char *str)
+/**
+ * @brief checks if a str is only composed of digits
+ *
+ * @param str
+ * @return true
+ * @return false
+ */
+static bool	is_num(char *str)
 {
 	int	i;
 
@@ -26,6 +33,12 @@ bool	is_num(char *str)
 	return (true);
 }
 
+/**
+ * @brief allows or not the exit function to actually exit the current process
+ *
+ * @param args
+ * @return errors while checking the arguments
+ */
 int	check_exit_args(char **args)
 {
 	int	i;

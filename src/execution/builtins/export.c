@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:19:25 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/16 12:22:29 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 12:45:09 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,30 +38,13 @@ static bool	check_env_var_naming(char *name)
 		return (false);
 	return (true);
 }
+
 /**
- * @brief Check if the variable already exists in the environment
+ * @brief handles the printing of the entire env when typing export on its own
  *
- * @param env char ** of the environment
- * @param var variable to check
- * @return int return the index of the variable if it exists, -1 otherwise
-static int	check_env_var_exist(char **env, char *var)
-{
-	int	env_index;
-	int	varname_len;
-
-	varname_len = 0;
-	while (var[varname_len] && var[varname_len] != '=')
-		++varname_len;
-	env_index = 0;
-	while (env[env_index])
-	{
-		if (!ft_strncmp(env[env_index], var, varname_len))
-			return (env_index);
-		++env_index;
-	}
-	return (-1);
-}*/
-
+ * @param env
+ * @return 0
+ */
 int	print_solo_export(char **env)
 {
 	int	i;

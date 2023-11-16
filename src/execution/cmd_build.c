@@ -6,12 +6,24 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 10:15:05 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/16 11:04:00 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 13:45:09 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief joins a path with a command
+ * ex:
+ *  ls with /bin
+ * gives
+ *  /bin/ls
+ *
+ * @param cmd
+ * @param path
+ * @param size
+ * @return char*
+ */
 char	*build_cmd(char *cmd, char *path, int size)
 {
 	char	*full_cmd;
@@ -63,6 +75,14 @@ bool	is_directory(char *path)
 	return (true);
 }
 
+/**
+ * @brief Get the cmd object with its correct path
+ *
+ * @param cmd
+ * @param path
+ * @param err
+ * @return char*
+ */
 char	*get_cmd(char *cmd, char *path, int *err)
 {
 	char	*tmp;
@@ -92,6 +112,17 @@ char	*get_cmd(char *cmd, char *path, int *err)
 	return (command_not_found(cmd), NULL);
 }
 
+/**
+ * @brief Create a cmd object
+ *  and sets the given adresses of char *cmd and char **args to a new allocated
+ *  address
+ *
+ * @param cmd
+ * @param env
+ * @param n_cmd
+ * @param n_args
+ * @return int
+ */
 int	create_cmd(t_cmd *cmd, char **env, char **n_cmd, char ***n_args)
 {
 	char	*env_path;

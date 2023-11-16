@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 18:07:46 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/16 12:01:53 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 12:47:35 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,40 +138,3 @@ char	**shorten_env(char **env, int index_var_to_delete)
 	}
 	return (env);
 }
-
-/*
-void	print_env(char **env);
-// test of epxort functions
-int	main(int ac, char **av, char **envb)
-{
-	char	**env;
-	char	**args;
-
-	args = ft_calloc(2, sizeof(char *));
-	if (ac == 1 && envb && *envb)
-		env = copy_env(envb);
-	else
-		env = NULL;
-	print_env(env);
-	if (ac < 2)
-	{
-		printf("Adding A1=123\n");
-		args[0] = ft_strdup("A1=123");
-		ft_export(&env, args);
-		print_env(env);
-		printf("Adding A1=321\n");
-		free(args[0]);
-		args[0] = ft_strdup("A1=321");
-		ft_export(&env, args);
-		free(args[0]);
-		print_env(env);
-	}
-	else
-	{
-		printf("\nAdding %s\n\n", av[1]);
-		env = extend_env(env, av[1]);
-	}
-	free(args);
-	ft_free_dstr(env);
-}
-*/

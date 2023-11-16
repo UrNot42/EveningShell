@@ -6,12 +6,22 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 21:47:21 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/16 11:06:23 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 13:42:43 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief sends the correct function with the correct arguments within the
+ * shell builtins
+ *
+ * @param ex
+ * @param last_err
+ * @param i
+ * @param fd
+ * @return int
+ */
 int	execute_builtin(t_exec *ex, int last_err, int i, int fd)
 {
 	int	code;
@@ -34,29 +44,45 @@ int	execute_builtin(t_exec *ex, int last_err, int i, int fd)
 	return (code);
 }
 
+/**
+ * @brief dups in and out file or the previous or next pipe
+ *
+ * @param cmd
+ * @param pi
+ * @return int
+ */
 int	dup_fd(t_cmd *cmd, t_pipe pi)
 {
 	if (cmd->in != NULL && cmd->in->exists)
 	{
 		if (cmd->in->fd == -1)
 			return (1);
-		dup2(cmd->in->fd, STDIN_FILENO);
+		if (dup2(cmd->in->fd, STDIN_FILENO) < 0)
+			return (error_dup_failed(), close(cmd->out->fd), 1);
 		close(cmd->in->fd);
 	}
-	else
-		dup2(pi.pe_prev, STDIN_FILENO);
+	else if (dup2(pi.pe_prev, STDIN_FILENO) < 0)
+		return (error_dup_failed(), 1);
 	if (cmd->out != NULL && cmd->out->exists)
 	{
 		if (cmd->out->fd == -1)
 			return (1);
-		dup2(cmd->out->fd, STDOUT_FILENO);
+		if (dup2(cmd->out->fd, STDOUT_FILENO) < 0)
+			return (error_dup_failed(), close(cmd->out->fd), 1);
 		close(cmd->out->fd);
 	}
-	else
-		dup2(pi.pe[1], STDOUT_FILENO);
+	else if (dup2(pi.pe[1], STDOUT_FILENO) < 0)
+		return (error_dup_failed(), 1);
 	return (0);
 }
 
+/**
+ * @brief executes builtin and checks for existence of the said command
+ *
+ * @param exec
+ * @param i
+ * @param last_err
+ */
 void	exec_cmd(t_exec *exec, int i, int last_err)
 {
 	int	code;
@@ -72,6 +98,13 @@ void	exec_cmd(t_exec *exec, int i, int last_err)
 	}
 }
 
+/**
+ * @brief process inside a fork to start correctly a command
+ *
+ * @param exec
+ * @param i
+ * @param last_err
+ */
 void	child_process(t_exec *exec, int i, int last_err)
 {
 	char	*cmd;
@@ -96,13 +129,3 @@ void	child_process(t_exec *exec, int i, int last_err)
 	ft_free_dstr(*exec->env);
 	exit(127);
 }
-
-/*
--> exec
-	(tokens) (env)
-	-> child frees (tokens) (env)
-	~~~> alloc (cpy of args) free (tokens)
-	~~~> alloc (split of PATH) ??? (x)	- lets try without it
-										- otherwise we just allocate it
-		-> exec frees (char **) (env)
-*/
