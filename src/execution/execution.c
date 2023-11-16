@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:31:47 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/16 13:45:53 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:20:42 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,16 @@ int	run_one_builtin(t_exec *exec, int last_err)
 	int	fd;
 
 	fd = dup(STDOUT_FILENO);
-	if (fd < 0)
-		return (error_dup_failed(), 2);
+	if (fd == -1)
+		return (error_dup_failed("single stdout"), 2);
 	if (dup_fd(&exec->cmd[0], exec->pi))
 		code = 1;
 	else
 		code = execute_builtin(exec, last_err, 0, fd);
 	close_files(exec->files, exec->file_size);
 	free_exec(exec, false);
-	if (dup2(fd, STDOUT_FILENO))
-		error_dup_failed();
+	if (dup2(fd, STDOUT_FILENO) == -1)
+		error_dup_failed("single out stdout");
 	close(fd);
 	return (code);
 }

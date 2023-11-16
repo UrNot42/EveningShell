@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 21:06:23 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/16 13:15:24 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:12:23 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ int	open_here_documents(t_file *file, t_exec *exec)
 		{
 			i = file[i].fd;
 			if (i == -130)
-				return (close_files(file, i), g_signal = 130, 130);
+				return (close_files(file, i),
+					signal(SIGINT, &sig_handler_prompt), g_signal = 130, 130);
 			else if (i == -42)
 				i = 1;
 			close_files(file, i);

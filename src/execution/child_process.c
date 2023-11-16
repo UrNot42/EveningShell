@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 21:47:21 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/16 13:42:43 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:25:40 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,22 +57,22 @@ int	dup_fd(t_cmd *cmd, t_pipe pi)
 	{
 		if (cmd->in->fd == -1)
 			return (1);
-		if (dup2(cmd->in->fd, STDIN_FILENO) < 0)
-			return (error_dup_failed(), close(cmd->out->fd), 1);
+		if (dup2(cmd->in->fd, STDIN_FILENO) == -1)
+			return (error_dup_failed("in"), close(cmd->out->fd), 1);
 		close(cmd->in->fd);
 	}
-	else if (dup2(pi.pe_prev, STDIN_FILENO) < 0)
-		return (error_dup_failed(), 1);
+	else if (pi.pe_prev != -1 && dup2(pi.pe_prev, STDIN_FILENO) == -1)
+		return (error_dup_failed("in pipe"), 1);
 	if (cmd->out != NULL && cmd->out->exists)
 	{
 		if (cmd->out->fd == -1)
 			return (1);
-		if (dup2(cmd->out->fd, STDOUT_FILENO) < 0)
-			return (error_dup_failed(), close(cmd->out->fd), 1);
+		if (dup2(cmd->out->fd, STDOUT_FILENO) == -1)
+			return (error_dup_failed("out"), close(cmd->out->fd), 1);
 		close(cmd->out->fd);
 	}
-	else if (dup2(pi.pe[1], STDOUT_FILENO) < 0)
-		return (error_dup_failed(), 1);
+	else if (pi.pe[1] != -1 && dup2(pi.pe[1], STDOUT_FILENO) == -1)
+		return (error_dup_failed("out pipe"), 1);
 	return (0);
 }
 
