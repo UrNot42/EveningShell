@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:26:42 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/16 19:45:06 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 20:57:20 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static bool	is_num(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] == '+' && str[i] == '-')
+	if (str[i] == '+' || str[i] == '-')
 		i++;
 	if (!str[i])
 		return (false);
@@ -45,7 +45,6 @@ static bool	is_num(char *str)
  */
 int	check_exit_args(char **args)
 {
-	int	i;
 	int	err;
 
 	err = 0;
@@ -53,16 +52,8 @@ int	check_exit_args(char **args)
 		write(2, "exit\n", 5);
 	if (!args || !*args)
 		return (err);
-	i = 0;
-	while (args[i])
-	{
-		if (!is_num(args[i]))
-		{
-			err = 1;
-			break ;
-		}
-		i++;
-	}
+	if (!is_num(args[0]))
+		err = 1;
 	if (!err && args[1] && args[1][0] != '\0')
 		err = 2;
 	if (err == 1)
@@ -91,7 +82,7 @@ int	builtins_exit(t_exec *ex, int i, int last_err, int fd_stdout)
 		code = last_err;
 	err = check_exit_args(&ex->cmd[i].args[1]);
 	if (err == 1)
-		code = 1;
+		code = 2;
 	if (err == 2)
 		return (1);
 	else

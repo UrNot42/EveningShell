@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:19:25 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/16 19:08:12 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/16 21:06:08 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ int	ft_export(char ***env, char **args)
 	i = 0;
 	if (!args || !*args)
 		return (print_solo_export(*env));
+	if (args[0] && args[0][0] == '-' && args[0][1] != '\0')
+		return (write(2, "export: invalid option\n", 23), 2);
 	while (args && args[i])
 	{
 		env_index = get_env_var_index(*env, args[i]);
