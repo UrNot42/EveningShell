@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child_process.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 21:47:21 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/16 18:33:30 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/18 12:47:00 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ void	child_process(t_exec *exec, int i, int last_err)
 	if (err_cmd)
 		(free_exec(exec, true), exit(127 - (err_cmd == 2)));
 	free_exec(exec, false);
+	(signal(SIGINT, SIG_DFL), signal(SIGQUIT, SIG_DFL));
 	execve(cmd, args, *exec->env);
 	ft_free_dstr(*exec->env);
 	exit(127);

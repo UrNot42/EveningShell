@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:31:47 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/16 14:20:42 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/18 12:46:30 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,7 @@ void	start_cmd(t_exec *exec, int i, int last_err)
 {
 	exec->pi.ds[i] = fork();
 	if (exec->pi.ds[i] == 0)
-	{
-		signal(SIGINT, SIG_DFL);
-		signal(SIGQUIT, SIG_DFL);
 		child_process(exec, i, last_err);
-	}
 }
 
 int	run_one_builtin(t_exec *exec, int last_err)
