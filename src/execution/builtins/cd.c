@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:36:57 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/16 18:58:15 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/18 11:34:32 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	builtins_cd(char **args, char **env)
 		index = get_env_var_index(env, "HOME");
 		if (index == -1)
 			(write(2, "MarmiShell: cd: HOME not set\n", 29), ++err);
-		if (chdir(&env[index][5]) == -1)
+		else if (chdir(&env[index][5]) == -1)
 			return (perror("cd"), err);
 	}
 	else if (args[2] != NULL)
