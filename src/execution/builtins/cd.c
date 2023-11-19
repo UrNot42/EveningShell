@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:36:57 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/18 11:34:32 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/19 11:46:55 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,14 @@ int	builtins_cd(char **args, char **env)
 	}
 	else if (args[2] != NULL)
 		(write(2, "MarmiShell: cd: too many arguments\n", 35), ++err);
+	else if (args[2] == NULL && args[1][0] == '-' && args[1][1] == '\0')
+	{
+		index = get_env_var_index(env, "OLDPWD");
+		if (index == -1)
+			(write(2, "MarmiShell: cd: OLDPWD not set\n", 31), ++err);
+		else if (chdir(&env[index][7]) == -1)
+			return (perror("cd"), err);
+	}
 	else if (args[2] == NULL && chdir(args[1]) == -1)
 		return (perror("cd"), ++err);
 	return (err);
