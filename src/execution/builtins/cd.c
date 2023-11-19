@@ -3,14 +3,67 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:36:57 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/19 16:53:54 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/19 19:59:50 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+/**
+ * @brief moves to the var specified by var and at the index size
+ *
+ * @param env
+ * @param var
+ * @param size
+ * @return int
+ */
+int	try_cd(char **env, char *var, int size)
+{
+	int	index;
+
+	index = get_env_var_index(env, var);
+	if (index == -1)
+	{
+		write(2, "MarmiShell: cd: ", 16);
+		write(2, var, ft_strlen(var));
+		write(2, " not set\n", 9);
+		return (1);
+	}
+	else if (chdir(&env[index][size]) == -1)
+		return (perror("cd"), 1);
+	return (0);
+}
+
+int	do_export_cd(char ***env, char *content, bool new)
+{
+	char	*tmp;
+	char	**args;
+
+	if (new)
+	{
+		tmp = getcwd(NULL, 0);
+		if (!tmp)
+			return (error_malloc_failed(false), 1);
+		tmp = ft_safe_strjoin_2("PWD=", tmp);
+		if (!tmp)
+			return (error_malloc_failed(false), 1);
+	}
+	else
+	{
+		tmp = ft_safe_strjoin_2("OLDPWD=", content);
+		if (!tmp)
+			return (error_malloc_failed(false), 1);
+	}
+	args = ft_calloc(sizeof(char *), 2);
+	if (!args)
+		return (error_malloc_failed(false), 1);
+	args[0] = tmp;
+	ft_export(env, (char **)args, false);
+	return (ft_free_dstr(args), 0);
+}
 
 /**
  * @brief Builtins of the command cd
@@ -20,32 +73,31 @@
  * @param args char** of the arguments
  * @return int 1 if the command is well executed, 0 otherwise
  */
-int	builtins_cd(char **args, char **env)
+int	builtins_cd(char **args, char ***env)
 {
-	int	index;
-	int	err;
+	char	*opwd;
 
-	err = 0;
+	opwd = getcwd(NULL, 0);
+	if (!opwd)
+		return (error_malloc_failed(false), 1);
 	if (args[1] == NULL)
 	{
-		index = get_env_var_index(env, "HOME");
-		if (index == -1)
-			(write(2, "MarmiShell: cd: HOME not set\n", 29), ++err);
-		else if (chdir(&env[index][5]) == -1)
-			return (perror("cd"), err);
+		if (try_cd(*env, "HOME", 5))
+			return (free(opwd), 1);
 	}
 	else if (args[2] != NULL)
-		(write(2, "MarmiShell: cd: too many arguments\n", 35), ++err);
+	{
+		return (write(2, "MarmiShell: cd: too many arguments\n", 35),
+			free(opwd), 1);
+	}
 	else if (args[2] == NULL && args[1][0] == '-' && args[1][1] == '\0')
 	{
-		index = get_env_var_index(env, "OLDPWD");
-		if (index == -1)
-			(write(2, "MarmiShell: cd: OLDPWD not set\n", 31), ++err);
-		else if (chdir(&env[index][7]) == -1)
-			return (perror("cd"), err);
+		if (try_cd(*env, "OLDPWD", 7))
+			return (free(opwd), 1);
 		builtins_pwd();
 	}
 	else if (args[2] == NULL && chdir(args[1]) == -1)
-		return (perror("cd"), ++err);
-	return (err);
+		return (perror("cd"), free(opwd), 1);
+	(do_export_cd(env, opwd, false), do_export_cd(env, NULL, true));
+	return (0);
 }

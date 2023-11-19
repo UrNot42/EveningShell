@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:19:25 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/18 12:32:09 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/19 19:58:20 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,22 @@
  * @return true if the var is fitted to be added inside the env
  * @return false if the variable is not conform to be added to the env
  */
-static bool	check_env_var_naming(char *name)
+static bool	check_env_var_naming(char *name, bool print)
 {
 	int	i;
 
 	i = 0;
 	if (!name || !name[i]
 		|| (!ft_isalpha(name[i]) && name[i] != '_'))
-		return (write(2, "export: `", 9), write(2, name, ft_strlen(name)),
-			write(2, "': not a valid identifier\n", 26), false);
+	{
+		if (print)
+		{
+			write(2, "export: `", 9);
+			write(2, name, ft_strlen(name));
+			write(2, "': not a valid identifier\n", 26);
+		}
+		return (false);
+	}
 	while (name[i]
 		&& (ft_isalpha(name[i]) || ft_isdigit(name[i]) || name[i] == '_'))
 		i++;
@@ -88,7 +95,7 @@ int	print_solo_export(char **env)
  *
  * @return int as the error value
  */
-int	ft_export(char ***env, char **args)
+int	ft_export(char ***env, char **args, bool print)
 {
 	int	i;
 	int	err;
@@ -97,9 +104,9 @@ int	ft_export(char ***env, char **args)
 	err = 0;
 	i = 0;
 	if (!args || !*args)
-		return (print_solo_export(*env));
+		return ((print && print_solo_export(*env)), 0);
 	if (args[0] && args[0][0] == '-' && args[0][1] != '\0')
-		return (write(2, "export: invalid option\n", 23), 2);
+		return ((print && write(2, "export: invalid option\n", 23)), 2);
 	while (args && args[i])
 	{
 		env_index = get_env_var_index(*env, args[i]);
@@ -108,7 +115,7 @@ int	ft_export(char ***env, char **args)
 			free((*env)[env_index]);
 			(*env)[env_index] = ft_strdup(args[i]);
 		}
-		else if (check_env_var_naming(args[i]))
+		else if (check_env_var_naming(args[i], print))
 			*env = extend_env(*env, args[i]);
 		else
 			err++;
