@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:41:36 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/16 10:57:51 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/20 17:01:00 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int		retrieve_var_name(char **var, char *str, int index_dollar, int size);
 // -------------------------- EXPAND_DOLLAR --------------------------
 
 int		expand_dollar(t_expand_new_content t_enc);
+int		find_index_env(char *words, int *index, char **env);
 
 // --------------- ADD_ONE_ENVIRONMENT_VARIABLE_CHARACTER ---------------
 

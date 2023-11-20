@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 21:05:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/16 19:20:52 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/20 18:28:38 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	is_line_null(char *line)
  */
 t_compound	*parse_line(char *line, char **envp, int *exit_status)
 {
+	int			checkerror;
 	char		**tokens;
 	t_compound	*coumpound_command;
 
@@ -59,8 +60,12 @@ t_compound	*parse_line(char *line, char **envp, int *exit_status)
 	tokens = minishplit(line);
 	if (!tokens)
 		(ft_free_dstr(envp), error_malloc_failed(true));
-	if (check_error(tokens))
+	checkerror = check_error(tokens, envp);
+	if (checkerror != 0)
 	{
+		if (checkerror == -42)
+			(ft_free_dstr(tokens), ft_free_dstr(envp),
+				error_malloc_failed(true));
 		*exit_status = 2;
 		return (ft_free_dstr(tokens), NULL);
 	}
