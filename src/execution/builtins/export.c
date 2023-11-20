@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:19:25 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/20 17:02:58 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/20 18:16:26 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,57 @@ static bool	check_env_var_naming(char *name, bool print)
 	return (true);
 }
 
+char	**get_sorted_env(char **env)
+{
+	char	**sort_env;
+	char	*tmp;
+	int		i;
+
+	if (!env)
+		return (NULL);
+	sort_env = ft_dstrdup((const char **)env);
+	if (!sort_env)
+		return (error_malloc_failed(false), NULL);
+	while (!ft_dstr_is_sorted(sort_env))
+	{
+		i = 0;
+		while (sort_env[i] && sort_env[i + 1])
+		{
+			if (ft_strcmp(sort_env[i], sort_env[i + 1]) > 0)
+			{
+				tmp = sort_env[i];
+				sort_env[i] = sort_env[i + 1];
+				sort_env[i + 1] = tmp;
+			}
+			i++;
+		}
+	}
+	return (sort_env);
+}
+
+void	print_export_var(char *var)
+{
+	int	i;
+	int	check;
+
+	i = 0;
+	check = 0;
+	printf("export ");
+	while (var[i])
+	{
+		if (var[i] == '\"')
+			printf("\\");
+		printf("%c", var[i]);
+		if (var[i] == '=' && !check++)
+			printf("\"");
+		i++;
+	}
+	if (check)
+		printf("\"");
+	printf("\n");
+	i++;
+}
+
 /**
  * @brief handles the printing of the entire env when typing export on its own
  *
@@ -56,30 +107,15 @@ static bool	check_env_var_naming(char *name, bool print)
 int	print_solo_export(char **env)
 {
 	int	i;
-	int	j;
-	int	check;
 
 	if (!env)
 		return (0);
 	i = 0;
 	while (env[i])
 	{
-		printf("export ");
-		j = 0;
-		check = 0;
-		while (env[i][j])
-		{
-			if (env[i][j] == '\"')
-				printf("\\");
-			printf("%c", env[i][j]);
-			if (env[i][j] == '=' && !check++)
-				printf("\"");
-			j++;
-		}
-		printf("\"\n");
-		i++;
+		print_export_var(env[i++]);
 	}
-	return (0);
+	return (ft_free_dstr(env), 0);
 }
 
 /**
@@ -104,7 +140,7 @@ int	ft_export(char ***env, char **args, bool print)
 	err = 0;
 	i = 0;
 	if (!args || !*args)
-		return ((print && print_solo_export(*env)), 0);
+		return ((print && print_solo_export(get_sorted_env(*env))), 0);
 	if (args[0] && args[0][0] == '-' && args[0][1] != '\0')
 		return ((print && write(2, "export: invalid option\n", 23)), 2);
 	while (args && args[i])
