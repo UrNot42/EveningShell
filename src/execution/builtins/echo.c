@@ -6,9 +6,11 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:28:19 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/20 17:01:45 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/20 17:04:42 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "minishell.h"
 
 /**
  * @brief Detects if the option -n is present in the arguments

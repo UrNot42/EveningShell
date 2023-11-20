@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:19:25 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/19 19:58:20 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/20 17:02:58 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static bool	check_env_var_naming(char *name, bool print)
 	while (name[i]
 		&& (ft_isalpha(name[i]) || ft_isdigit(name[i]) || name[i] == '_'))
 		i++;
-	if (name[i] != '=')
+	if (name[i] && name[i] != '=')
 		return (false);
 	return (true);
 }
