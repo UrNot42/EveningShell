@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 21:47:21 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/20 17:07:56 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/20 17:18:01 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,12 @@ void	exec_cmd(t_exec *exec, int i, int last_err)
 	int	code;
 
 	if (!exec->cmd[i].cmd)
-		exit(0);
+	{
+		command_not_found("", false);
+		close_files(exec->files, exec->file_size);
+		free_exec(exec, true);
+		exit(127);
+	}
 	if (is_builtin(exec->cmd[i].cmd))
 	{
 		code = execute_builtin(exec, last_err, i, -1);
