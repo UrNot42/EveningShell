@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child_process.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 21:47:21 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/18 12:47:00 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/19 19:21:47 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	execute_builtin(t_exec *ex, int last_err, int i, int fd)
 
 	code = is_builtin(ex->cmd[i].cmd);
 	if (code == BT_CD)
-		code = builtins_cd(ex->cmd[i].args, *ex->env);
+		code = builtins_cd(ex->cmd[i].args, ex->env);
 	else if (code == BT_ECHO)
 		code = builtins_echo(ex->cmd[i].args);
 	else if (code == BT_ENV)
@@ -36,7 +36,7 @@ int	execute_builtin(t_exec *ex, int last_err, int i, int fd)
 	else if (code == BT_EXIT)
 		code = builtins_exit(ex, i, last_err, fd);
 	else if (code == BT_EXPORT)
-		code = ft_export(ex->env, &ex->cmd[i].args[1]);
+		code = ft_export(ex->env, &ex->cmd[i].args[1], true);
 	else if (code == BT_PWD)
 		code = builtins_pwd();
 	else if (code == BT_UNSET)

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:20:51 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/16 15:32:19 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/19 19:21:42 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	is_builtin(char *cmd);
 
 // -------------------------- CD --------------------------
 
-int	builtins_cd(char **args, char **env);
+int	builtins_cd(char **args, char ***env);
 
 // -------------------------- ECHO --------------------------
 
@@ -53,7 +53,7 @@ int	builtins_exit(t_exec *ex, int i, int last_err, int fd_stdout);
 
 // -------------------------- EXPORT --------------------------
 
-int	ft_export(char ***env, char **args);
+int	ft_export(char ***env, char **args, bool print);
 
 // -------------------------- PWD --------------------------
 

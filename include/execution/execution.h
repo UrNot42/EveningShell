@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:20:51 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/16 12:22:12 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/19 19:51:50 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int		fill_cmds(t_compound *comp, t_cmd *cmd, t_file *file);
 int		set_execute_struct(t_compound *comp, t_exec *ex, char ***env);
 size_t	get_compound_type_size(t_compound *comp, bool is_cmd);
 char	*ft_safe_strjoin(char *to_free_str, char *str_2);
+char	*ft_safe_strjoin_2(char *str_1, char *to_free_str);
 int		create_cmd(t_cmd *cmd, char **env, char **n_cmd, char ***n_args);
 
 // ========================= EXECUTION ========================
