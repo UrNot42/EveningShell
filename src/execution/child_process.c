@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 21:47:21 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/20 17:18:01 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/20 17:26:11 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,6 @@ void	child_process(t_exec *exec, int i, int last_err)
 	free_exec(exec, false);
 	(signal(SIGINT, SIG_DFL), signal(SIGQUIT, SIG_DFL));
 	execve(cmd, args, *exec->env);
-	(free(cmd), ft_free_dstr(args));
-	ft_free_dstr(*exec->env);
+	(free(cmd), ft_free_dstr(args)), ft_free_dstr(*exec->env);
 	exit(127);
 }
