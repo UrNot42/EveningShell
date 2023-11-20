@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:28:19 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/16 12:35:44 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/20 14:18:08 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@ int	builtins_echo(char **args)
 	i = 1 + new_line;
 	while (args[i] != NULL)
 	{
-		printf("%s", args[i]);
+		write(1, args[i], ft_strlen(args[i]));
 		if (args[i + 1] != NULL)
-			printf(" ");
+			write(1, " ", 1);
 		++i;
 	}
 	if (!new_line)
-		printf("\n");
+		write(1, "\n", 1);
 	return (0);
 }
