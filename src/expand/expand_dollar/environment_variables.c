@@ -6,7 +6,7 @@
 /*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 15:35:32 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/21 17:57:24 by aoberon          ###   ########.fr       */
+/*   Updated: 2023/11/21 19:02:58 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /**
  * @brief Check if the char is a special character : 
  *(space, tab, ', ", $, , % ,{, }, ~, `, &, ?, ;, (, ), [, ], *,
-   +, -, @, :, ., ,, /)
+   +, -, @, :, ., ,, /, =)
  * 
  * @param c char to check
  * @return true if the char is a special character
@@ -27,7 +27,8 @@ static bool	is_special_character(char c)
 		|| c == '$' || c == '{' || c == '}' || c == '~' || c == '`'
 		|| c == '&' || c == '?' || c == ';' || c == '(' || c == ')'
 		|| c == '[' || c == ']' || c == '*' || c == '+' || c == '-'
-		|| c == '@' || c == ':' || c == '.' || c == ',' || c == '/')
+		|| c == '@' || c == ':' || c == '.' || c == ',' || c == '/'
+		|| c == '=')
 		return (true);
 	return (false);
 }
