@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aoberon <aoberon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:28:19 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/20 17:04:42 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/21 16:50:50 by aoberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,9 @@ static int	detect_option_n(char **argv)
 		j++;
 		while (argv[i][j] == 'n')
 			j++;
-		if (!argv[i][j])
-			new_line += 1;
+		if (argv[i][j])
+			return (new_line);
+		new_line += 1;
 		i++;
 		j = 0;
 	}
