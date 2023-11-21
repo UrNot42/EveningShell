@@ -148,22 +148,22 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(DEPS)
 	@$(CC) $(CFLAGS) $(INCLUDES_H) -c -o $@ $<
 
 $(NAME): $(OBJS) $(DEPS)
-	@echo "\e[36mMaking $(NAME)...\e[0m"
+	@echo "\e[36;1mMaking $(NAME)...\e[0m"
 	@make --no-print-directory -C lib/libft/
 	@mv lib/libft/libft.a .obj/
 	@$(CC) $(CFLAGS) $(INCLUDES_H) $(OBJS) $(LIBFLAGS) -o $(NAME) .obj/libft.a
-	@echo "\e[32mDone !\e[0m"
+	@echo "\e[32;1mDone !\e[0m"
 
 bonus: all
 
 clean:
 	@rm -rf $(OBJ_DIR)
 	@make --no-print-directory -C lib/libft/ clean
-	@echo "\e[31mObject files removed.\e[0m"
+	@echo "\e[31;1mObject files removed.\e[0m"
 
 fclean:	clean
 	@$(RM) $(NAME)
-	@echo "\e[31m$(NAME) removed.\e[0m"
+	@echo "\e[31;1m$(NAME) removed.\e[0m"
 
 re:		fclean all
 

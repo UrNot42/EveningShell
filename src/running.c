@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:28:14 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/19 19:53:22 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/21 14:03:21 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,13 @@ void	start_interactive(char **env)
 	prompt(&env_cpy);
 }
 
-// frees the 1st var
+/**
+ * @brief frees the 1st var given
+ *
+ * @param to_free_str
+ * @param str_2
+ * @return char*
+ */
 char	*ft_safe_strjoin(char *to_free_str, char *str_2)
 {
 	char	*str;
@@ -41,7 +47,13 @@ char	*ft_safe_strjoin(char *to_free_str, char *str_2)
 	return (str);
 }
 
-// frees the 2nd var
+/**
+ * @brief frees the 2nd var given
+ *
+ * @param str_1
+ * @param to_free_str
+ * @return char*
+ */
 char	*ft_safe_strjoin_2(char *str_1, char *to_free_str)
 {
 	char	*str;
