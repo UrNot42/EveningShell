@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:17:28 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/10/30 10:07:57 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/20 18:18:32 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ char	*ft_strtrim(char const *s, char const *set);
 char	*ft_itoa(int n);
 char	*ft_strdup(const char *s);
 char	**ft_dstrdup(const char **dstr);
+int		ft_dstr_is_sorted(char **dstr);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	**ft_split(char const *s, char c);
 void	*ft_memset(void *s, int c, size_t n);

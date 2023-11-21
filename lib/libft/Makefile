@@ -4,6 +4,7 @@ SRCS		=	ft_atoi.c \
 				ft_bzero.c \
 				ft_calloc.c \
 				ft_dstrdup.c \
+				ft_dstr_is_sorted.c \
 				ft_isalnum.c \
 				ft_isalpha.c \
 				ft_isascii.c \
