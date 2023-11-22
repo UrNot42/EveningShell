@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:26:42 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/16 20:57:20 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:40:12 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int	check_exit_args(char **args)
 	int	err;
 
 	err = 0;
-	if (isatty(STDIN_FILENO) && isatty(STDERR_FILENO))
-		write(2, "exit\n", 5);
+	if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO))
+		write(1, "exit\n", 5);
 	if (!args || !*args)
 		return (err);
 	if (!is_num(args[0]))
