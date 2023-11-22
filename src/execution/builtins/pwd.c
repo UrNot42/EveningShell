@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 09:45:59 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/16 18:36:39 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/22 00:06:34 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	builtins_pwd(void)
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
 	{
-		error_malloc_failed(false);
+		error_wd_failed("pwd");
 		return (1);
 	}
 	printf("%s\n", pwd);

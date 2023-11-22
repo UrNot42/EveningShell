@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 10:15:05 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/11/20 19:40:05 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/21 23:18:20 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ char	*get_cmd(char *cmd, char *path, int *err)
 	{
 		if ((cmd[i] == '/' || !path) && !access(cmd, F_OK | X_OK))
 			return (ft_strdup(cmd));
-		if (cmd[i++] == '/' && access(cmd, F_OK | X_OK))
+		if ((cmd[i++] == '/' || !path) && access(cmd, F_OK | X_OK))
 			return (perror(cmd), (access(cmd, X_OK) && ++*err),
 				(access(cmd, F_OK) && --*err), NULL);
 	}

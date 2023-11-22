@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:36:57 by aoberon           #+#    #+#             */
-/*   Updated: 2023/11/19 19:59:50 by ulevallo         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:12:04 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	try_cd(char **env, char *var, int size)
 		return (1);
 	}
 	else if (chdir(&env[index][size]) == -1)
-		return (perror("cd"), 1);
+		return (1);
 	return (0);
 }
 
@@ -42,16 +42,17 @@ int	do_export_cd(char ***env, char *content, bool new)
 	char	*tmp;
 	char	**args;
 
+	tmp = NULL;
 	if (new)
 	{
 		tmp = getcwd(NULL, 0);
 		if (!tmp)
-			return (error_malloc_failed(false), 1);
+			return (error_wd_failed("cd"), 1);
 		tmp = ft_safe_strjoin_2("PWD=", tmp);
 		if (!tmp)
 			return (error_malloc_failed(false), 1);
 	}
-	else
+	else if (content != NULL)
 	{
 		tmp = ft_safe_strjoin_2("OLDPWD=", content);
 		if (!tmp)
@@ -61,8 +62,8 @@ int	do_export_cd(char ***env, char *content, bool new)
 	if (!args)
 		return (error_malloc_failed(false), 1);
 	args[0] = tmp;
-	ft_export(env, (char **)args, false);
-	return (ft_free_dstr(args), 0);
+	return ((tmp && ft_export(env, (char **)args, false)), ft_free_dstr(args),
+		0);
 }
 
 /**
@@ -77,18 +78,16 @@ int	builtins_cd(char **args, char ***env)
 {
 	char	*opwd;
 
+	if (args[1] && args[2] != NULL)
+		return (write(2, "MarmiShell: cd: too many arguments\n", 35), 1);
 	opwd = getcwd(NULL, 0);
-	if (!opwd)
-		return (error_malloc_failed(false), 1);
+	if (!opwd && args[1] != NULL && args[2] == NULL
+		&& access(args[1], F_OK | R_OK))
+		return (error_wd_failed("chdir"), perror("cd"), 1);
 	if (args[1] == NULL)
 	{
 		if (try_cd(*env, "HOME", 5))
 			return (free(opwd), 1);
-	}
-	else if (args[2] != NULL)
-	{
-		return (write(2, "MarmiShell: cd: too many arguments\n", 35),
-			free(opwd), 1);
 	}
 	else if (args[2] == NULL && args[1][0] == '-' && args[1][1] == '\0')
 	{
